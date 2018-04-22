@@ -28,6 +28,19 @@ if (_player distance _vehicle > 20) exitWith {};
 
 _VehLockMessages = ['CfgEpochClient' call EPOCH_returnConfig, "VehLockMessages", true] call EPOCH_fnc_returnConfigEntry;
 
+// Prep for Key (un)lock
+_vehKeyed = _vehicle call EPOCH_fnc_server_vehIsKeyed;
+_plyrKeys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+_plyrHasKey = false;
+{
+    if ((_x select 0) isEqualTo (typeOf _vehicle)) then {
+        _matching = [_vehicle,(_x select 1)] call EPOCH_fnc_server_testVehKey;
+        if (_matching) then {
+            _plyrHasKey = true;
+        };
+    };
+} forEach (_plyrKeys select 0);
+
 // Group access
 _playerUID = getPlayerUID _player;
 _playerGroup = _player getVariable["GROUP", ""];
@@ -37,6 +50,7 @@ if (_playerGroup != "") then {
 	_lockOwner = _playerGroup;
 };
 
+// Remove this Hive call code in the future for speed
 _lockedOwner = "-1";
 _vehSlot = _vehicle getVariable["VEHICLE_SLOT", "ABORT"];
 _vehLockHiveKey = format["%1:%2", (call EPOCH_fn_InstanceID), _vehSlot];
@@ -62,36 +76,76 @@ _crew = [];
 	};
 } forEach (crew _vehicle);
 
+// With the switch to keys, only use Group (old style) if this is the first unlock since update
+// Otherwise we need to use Key Logic
 
-// if vehicle has a crew and player is not inside vehicle only allow locking if already owner
-_logic = if !(_crew isEqualTo []) then {
-	if (_player in _crew) then {
-		// allow unlock if player is the driver or is inside the vehicle with out a driver.
-		(_player isEqualTo _driver || isNull(_driver) || _lockedOwner == _lockOwner || !alive _driver)
-	} else {
-		// allow only if player is already the owner as they are not inside the occupied vehicle.
-		(_lockedOwner == _lockOwner)
-	};
+if (_lockedOwner isEqualTo _lockOwner && !_vehKeyed) then {
+    // Vehicle still locked with group system
+
+    // if vehicle has a crew and player is not inside vehicle only allow locking if already owner
+    _logic = if !(_crew isEqualTo []) then {
+    	if (_player in _crew) then {
+    		// allow unlock if player is the driver or is inside the vehicle with out a driver.
+    		(_player isEqualTo _driver || isNull(_driver) || _lockedOwner == _lockOwner || !alive _driver)
+    	} else {
+    		// allow only if player is already the owner as they are not inside the occupied vehicle.
+    		(_lockedOwner == _lockOwner)
+    	};
+    } else {
+    	// vehicle has no crew, so allow only if: unlocked, is already the owner, vehicle has no owner.
+    	(!_isLocked || _lockedOwner == _lockOwner || _lockedOwner == "-1")
+    };
+
 } else {
-	// vehicle has no crew, so allow only if: unlocked, is already the owner, vehicle has no owner.
-	(!_isLocked || _lockedOwner == _lockOwner || _lockedOwner == "-1")
+    // Vehicle is not locked by Group System. We need to use Key Logic.
+
+    _logic = if !(_crew isEqualTo []) then {
+    	if (_player in _crew) then {
+    		// allow (un)lock if player is the driver or is inside the vehicle with out a driver.
+    		(_player isEqualTo _driver || isNull(_driver) || _plyrHasKey || !alive _driver)
+    	} else {
+    		// allow only if player has the keys and is outside the vehicle
+    		(_plyrHasKey)
+    	};
+    } else {
+    	// vehicle has no crew, so allow only if: unlocked, plyr has key, vehicle is unkeyed.
+    	(!_isLocked || _plyrHasKey || !_vehKeyed)
+    };
 };
 
 // Lockout mech
 if (_logic) then {
 
-	if (_value) then {
-		if !(_vehSlot isequalto "ABORT") then {
-			["VehicleLock", _vehLockHiveKey, EPOCH_vehicleLockTime, [_lockOwner]] call EPOCH_fnc_server_hiveSETEX;
-		}
-		else {
-			_vehicle setvariable ["EPOCH_LockedOwner",_lockOwner];
-		};
-	} else {
+    if (!_value) then {
         // re-allow damage (server-side) on first unlock
         if (_vehicle getVariable ["EPOCH_disallowedDamage", false]) then {
             _vehicle allowDamage true;
             _vehicle setVariable ["EPOCH_disallowedDamage", nil];
+        };
+
+        // If vehicle was unlocked by Group, give key to unlocker and convert
+        if (!_vehKeyed && (_lockedOwner isEqualTo _lockOwner)) then {
+            // Convert to New System
+            _secret = ('epochserver' callExtension format['810|%1', 1]);
+
+    		_rnd1 = (_vehClass+_secret) call EPOCH_fnc_server_hiveMD5;
+            _vehHash = [((_rnd1)+(EPOCH_server_vehRandomKey))] call EPOCH_fnc_server_hiveMD5;
+
+    		_vehObj setVariable ["VEHICLE_KEYHASH",_vehHash];
+
+    		_plyrKeys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+    		(_plyrKeys select 0) pushback [_vehClass,_secret];
+    		(_plyrKeys select 1) pushback 1;
+    		_player setVariable ["PLAYER_KEYS",_plyrKeys];
+
+            // Purge Group Lock
+            ["VehicleLock", _vehLockHiveKey] call EPOCH_fnc_server_hiveDEL;
+
+            // Force Vehicle Save
+            [_vehicle,_secret] call EPOCH_server_save_vehicle;
+
+            // Inform
+            ["A key was added to your keychain",5] remoteExec ["Epoch_Message",_player];
         };
     };
 
@@ -108,6 +162,10 @@ if (_logic) then {
 }
 else {
 	if (_VehLockMessages) then {
-		["You are not the owner",5] remoteExec ["Epoch_Message",_player];
+        if (_vehKeyed) then {
+            ["You do not have the keys",5] remoteExec ["Epoch_Message",_player];
+        } else {
+            ["You are not the owner",5] remoteExec ["Epoch_Message",_player];
+        };
 	};
 };
