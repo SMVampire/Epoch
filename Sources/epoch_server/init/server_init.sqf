@@ -172,6 +172,93 @@ EPOCH_NPCSlotsLimit call EPOCH_server_loadTraders;
 diag_log "Epoch: Spawning NPC traders";
 call EPOCH_server_spawnTraders;
 
+diag_log "Epoch: Preparing Vehicle Keys";
+EPOCH_server_vehRandomKey = ('epochserver' callExtension format['810|%1', 1]); // Only Reference on Server Side
+
+EPOCH_fnc_server_hashVehicle = {
+    // Takes Vehicle Information and provides hash back
+    _vehicle = param [0, objNull];
+    _keySecret = param [1, ""];
+
+    if (_keySecret isEqualTo "") then {
+        // Get secret from DB
+        _vehSlot = _vehicle getVariable["VEHICLE_SLOT", "ABORT"];
+    	if (_vehSlot != "ABORT") then {
+            _vehHiveKey = format ["%1:%2", (call EPOCH_fn_InstanceID),_vehSlot];
+
+            _response = ["Vehicle", _vehHiveKey] call EPOCH_fnc_server_hiveGETRANGE;
+    		_response params ["_status","_arr"];
+
+            if ((_response select 0) == 1 && (_response select 1) isEqualType []) then {
+                if (count _arr > 10) then {
+    				_secret = _arr select 9;
+
+                    if (_secret isEqualTo "") then {
+                        _keySecret = "NOKEY";
+                    } else {
+                        _keySecret = _secret;
+                    };
+    			};
+            };
+        };
+    };
+
+    if !(_keySecret isEqualTo "NOKEY") then {
+        _rnd1 = ((typeOf _vehicle)+_keySecret) call EPOCH_fnc_server_hiveMD5;
+        _return = [((_rnd1)+(EPOCH_server_vehRandomKey))] call EPOCH_fnc_server_hiveMD5;
+    } else {
+        _return = "NOKEY";
+    };
+
+    _return
+};
+
+EPOCH_fnc_server_vehIsKeyed = {
+    // Returns BOOL on whether vehicle is keyed
+    _vehicle = param [0, objNull];
+
+    _vehHash = _vehicle getVariable ["VEHICLE_KEYHASH",""];
+
+    if !(_vehHash isEqualTo "") then { true } else {
+        // Vehicle has not been hashed - get hash now
+        _vehSlot = _vehicle getVariable["VEHICLE_SLOT", "ABORT"];
+        if (_vehSlot != "ABORT") then {
+            _vehHiveKey = format ["%1:%2", (call EPOCH_fn_InstanceID),_vehSlot];
+
+            _response = ["Vehicle", _vehHiveKey] call EPOCH_fnc_server_hiveGETRANGE;
+            _response params ["_status","_arr"];
+
+            if ((_response select 0) == 1 && (_response select 1) isEqualType []) then {
+                if (count _arr > 10) then {
+                    _secret = _arr select 9;
+
+                    if (_secret isEqualTo "") then {
+                        false
+                    } else {
+                        true
+                    };
+                } else { false };
+            } else { false };
+        } else { false };
+    };
+};
+
+EPOCH_fnc_server_testVehKey = {
+    // Takes provided vehicle secret and compares it to DB hash
+    // Returns BOOL on accepted or failed
+    _vehicle = param [0, objNull];
+    _testSecret = param [1, ""];
+
+    if (isNull _vehicle || {!alive _vehicle} || {_testSecret isEqualTo ""} || {_testSecret isEqualTo "NOKEY"}) then { false } else {
+        _vehDBHash = _vehicle call EPOCH_fnc_server_hashVehicle;
+        if (_vehDBHash isEqualTo "NOKEY") then { true } else {
+            _testHash = [_vehicle,_testSecret] call EPOCH_fnc_server_hashVehicle;
+
+            if (_vehDBHash isEqualTo _testHash) then { true } else { false };
+        };
+    };
+};
+
 diag_log "Epoch: Loading vehicles";
 // Vehicle slot limit set to total of all allowed limits
 _allowedVehicleIndex = if (EPOCH_modCUPVehiclesEnabled) then {if (EPOCH_mod_madArma_Enabled) then {3} else {1}} else {if (EPOCH_mod_madArma_Enabled) then {2} else {0}};
