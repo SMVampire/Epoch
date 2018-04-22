@@ -13,7 +13,7 @@
     https://github.com/EpochModTeam/Epoch/tree/release/Sources/epoch_server/compile/epoch_vehicle/EPOCH_server_lockVehicle.sqf
 */
 //[[[cog import generate_private_arrays ]]]
-private ["_VehLockMessages","_msg","_crew","_driver","_isLocked","_lockOwner","_lockedOwner","_logic","_playerGroup","_playerUID","_response","_vehLockHiveKey","_vehSlot"];
+private ["_VehLockMessages","_msg","_crew","_driver","_isLocked","_lockOwner","_lockedOwner","_logic","_playerGroup","_playerUID","_response","_vehLockHiveKey","_vehSlot","_vehKeyed","_plyrKeys","_plyrHasKey","_matching","_secret","_rnd1","_vehHash"];
 //[[[end]]]
 params [
     ["_vehicle",objNull,[objNull]],
@@ -133,7 +133,6 @@ if (_logic) then {
 
     		_vehObj setVariable ["VEHICLE_KEYHASH",_vehHash];
 
-    		_plyrKeys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
     		(_plyrKeys select 0) pushback [_vehClass,_secret];
     		(_plyrKeys select 1) pushback 1;
     		_player setVariable ["PLAYER_KEYS",_plyrKeys];
