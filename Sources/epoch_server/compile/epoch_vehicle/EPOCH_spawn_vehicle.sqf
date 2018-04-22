@@ -15,7 +15,7 @@
 //[[[cog import generate_private_arrays ]]]
 private ["_availableColorsConfig","_cfgEpochVehicles","_color","_colors","_count","_marker","_maxDamage","_removemagazinesturret","_removeweapons","_selections","_serverSettingsConfig","_textureSelectionIndex","_textures","_vehLockHiveKey","_vehObj"];
 //[[[end]]]
-params ["_vehClass","_position","_direction","_locked","_slot",["_lockOwner",""],["_can_collide","CAN_COLLIDE"],["_spawnLoot",false],["_spawnDamaged",true]];
+params ["_vehClass","_position","_direction","_locked","_slot",["_player",""],["_can_collide","CAN_COLLIDE"],["_spawnLoot",false],["_spawnDamaged",true]];
 if !(isClass (configFile >> "CfgVehicles" >> _vehClass)) exitWith {objNull};
 _serverSettingsConfig = configFile >> "CfgEpochServer";
 _removeweapons = [_serverSettingsConfig, "removevehweapons", []] call EPOCH_fnc_returnConfigEntry;
@@ -106,13 +106,21 @@ if !(isNull _vehObj) then{
 	_vehObj setVariable["VEHICLE_SLOT", _slot, true];
 
 	// Lock vehicle for owner
-	if (_locked && _lockOwner != "") then {
-	  _vehLockHiveKey = format["%1:%2", (call EPOCH_fn_InstanceID), _slot];
-	  ["VehicleLock", _vehLockHiveKey, EPOCH_vehicleLockTime, [_lockOwner]] call EPOCH_fnc_server_hiveSETEX;
-	} else {
-	  _vehLockHiveKey = format["%1:%2", (call EPOCH_fn_InstanceID), _slot];
-	  ["VehicleLock", _vehLockHiveKey] call EPOCH_fnc_server_hiveDEL;
+	if (_locked && _player != "") then {
+		// Create key for vehicle and give to player
+		_secret = ('epochserver' callExtension format['810|%1', 1]);
+
+		_rnd1 = (_vehClass+_secret) call EPOCH_fnc_server_hiveMD5;
+		_vehHash = [((_rnd1)+(EPOCH_server_vehRandomKey))] call EPOCH_fnc_server_hiveMD5;
+
+		_vehObj setVariable ["VEHICLE_KEYHASH",_vehHash];
+
+		_plyrKeys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+		(_plyrKeys select 0) pushback [_vehClass,_secret];
+		(_plyrKeys select 1) pushback 1;
+		_player setVariable ["PLAYER_KEYS",_plyrKeys];
 	};
+	_vehObj setVariable ["VEHICLE_KEYS", [[],[]] ];
 
 	// new Dynamicsimulation
 	if([configFile >> "CfgEpochServer", "vehicleDynamicSimulationSystem", true] call EPOCH_fnc_returnConfigEntry)then
@@ -121,9 +129,12 @@ if !(isNull _vehObj) then{
 		_vehObj enableDynamicSimulation true;
 	};
 
-
 	// SAVE VEHICLE
-	_vehObj call EPOCH_server_save_vehicle;
+	if (isNil "_secret") then {
+		_vehObj call EPOCH_server_save_vehicle;
+	} else {
+		[_vehObj,_secret] call EPOCH_server_save_vehicle;
+	};
 
 	// Event Handlers
 	_vehObj call EPOCH_server_vehicleInit;

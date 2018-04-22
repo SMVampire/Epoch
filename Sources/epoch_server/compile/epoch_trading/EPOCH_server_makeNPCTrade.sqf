@@ -14,9 +14,9 @@
 */
 
 private [	"_MaxBankDebit","_SkipOut","_VAL","_aiItems","_bankBalance","_bankData","_cIndex","_config","_currQty","_current_crypto","_current_cryptoRaw","_errorMsg","_final_location","_foundSmoke",
-			"_group","_helipad","_helipads","_item","_itemClasses","_itemQty","_itemQtys","_itemTax","_itemWorth","_itemsIn","_itemsOut","_lockOwner","_makeTradeIn","_message","_nearByHolder",
-			"_objHiveKey","_objOwner","_playerCryptoLimit","_playerGroup","_playerNetID","_playerUID","_position","_qtyIndex","_response","_return","_returnIn","_returnOut","_road",
-			"_serverSettingsConfig","_slot","_smoke","_tax","_tmpposition","_tradeIn","_tradeOut","_tradeQtyTotal","_tradeTotal","_vars","_vehHiveKey","_vehObj","_vehSlot","_vehicle","_vehicleBought",
+			"_group","_helipad","_helipads","_item","_itemClasses","_itemQty","_itemQtys","_itemTax","_itemWorth","_itemsIn","_itemsOut","_makeTradeIn","_message","_nearByHolder",
+			"_objHiveKey","_objOwner","_playerCryptoLimit","_playerNetID","_playerUID","_position","_qtyIndex","_response","_return","_returnIn","_returnOut","_road","_serverSettingsConfig",
+			"_slot","_smoke","_tax","_tmpposition","_tradeIn","_tradeOut","_tradeQtyTotal","_tradeTotal","_vars","_vehHiveKey","_vehObj","_vehSlot","_vehicle","_vehicleBought",
 			"_vehicleSold","_vehicles","_vehslot","_wH","_wHPos","_wp","_kIndex","_playerCStats","_playerKarma","_playerKarmaAdj","_EnableTempVehTrade"
 ];
 params ["_trader","_itemsIn","_itemsOut","_player",["_token","",[""]] ];
@@ -140,10 +140,10 @@ if (_slot != -1) then {
 				if (_tradeIn > 0) then {
 					_bankBalance = _bankBalance + _tradeIn;
 					_return = ["Bank", _playerUID, EPOCH_expiresBank, [_bankBalance]] call EPOCH_fnc_server_hiveSETEX;
-					_message = _message + "Items sold, but the Money goes to your Bank - to much Bank-Debit";
+					_message = _message + "Items sold, but the Money goes to your Bank - too much Bank-Debit";
 				}
 				else {
-					_message = _message + "Purchase not possible - to much Bank-Debit";
+					_message = _message + "Purchase not possible - too much Bank-Debit";
 				};
 				_current_crypto = _current_cryptoRaw;
 				_tradeIn = 0;
@@ -247,12 +247,7 @@ if (_slot != -1) then {
 										EPOCH_VehicleSlots = EPOCH_VehicleSlots - [_vehslot];
 										missionNamespace setVariable ['EPOCH_VehicleSlotCount', count EPOCH_VehicleSlots, true];
 										_vehicleBought = true;
-										_lockOwner = getPlayerUID _player;
-										_playerGroup = _player getVariable["GROUP", ""];
-										if (_playerGroup != "") then {
-											_lockOwner = _playerGroup;
-										};
-										_vehObj = [_item,_position,random 360,true,_vehslot,_lockOwner,"NONE",false,false] call EPOCH_spawn_vehicle;
+										_vehObj = [_item,_position,random 360,true,_vehslot,_player,"NONE",false,false] call EPOCH_spawn_vehicle;
 										_final_location = getPosATL _vehObj;
 										_group = group _player;
 										_wp = _group addWaypoint [_final_location, 0];
