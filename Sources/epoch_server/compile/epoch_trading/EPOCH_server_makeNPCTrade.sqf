@@ -133,10 +133,10 @@ if (_slot != -1) then {
 				if (_tradeIn > 0) then {
 					_bankBalance = _bankBalance + _tradeIn;
 					_return = ["Bank", _playerUID, EPOCH_expiresBank, [_bankBalance]] call EPOCH_fnc_server_hiveSETEX;
-					_message = _message + "Items sold, but the Money goes to your Bank - to much Bank-Debit";
+					_message = _message + "Items sold, but the Money goes to your Bank - too much Bank-Debit";
 				}
 				else {
-					_message = _message + "Purchase not possible - to much Bank-Debit";
+					_message = _message + "Purchase not possible - too much Bank-Debit";
 				};
 				_current_crypto = _current_cryptoRaw;
 				_tradeIn = 0;
@@ -240,12 +240,7 @@ if (_slot != -1) then {
 										EPOCH_VehicleSlots = EPOCH_VehicleSlots - [_vehslot];
 										missionNamespace setVariable ['EPOCH_VehicleSlotCount', count EPOCH_VehicleSlots, true];
 										_vehicleBought = true;
-										_lockOwner = getPlayerUID _player;
-										_playerGroup = _player getVariable["GROUP", ""];
-										if (_playerGroup != "") then {
-											_lockOwner = _playerGroup;
-										};
-										_vehObj = [_item,_position,random 360,true,_vehslot,_lockOwner,"NONE",false,false] call EPOCH_spawn_vehicle;
+										_vehObj = [_item,_position,random 360,true,_vehslot,_player,"NONE",false,false] call EPOCH_spawn_vehicle;
 										_final_location = getPosATL _vehObj;
 										_group = group _player;
 										_wp = _group addWaypoint [_final_location, 0];
