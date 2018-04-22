@@ -13,9 +13,11 @@
     https://github.com/EpochModTeam/Epoch/tree/release/Sources/epoch_server/compile/epoch_vehicle/EPOCH_server_save_vehicle.sqf
 */
 //[[[cog import generate_private_arrays ]]]
-private ["_VAL","_cargo","_cargoIndex","_colorSlot","_hitpoints","_inventory","_magsAmmoCargo","_magsAmmoCargoMinimized","_magsAmmoCargox","_newComponents","_selectedWeapon","_selectedWeaponComponents","_startTime","_vehHiveKey","_vehSlot","_weapon","_weaponComponents","_wepsItemsCargo","_wepsItemsCargoNormalized","_wepsItemsCargox"];
+private ["_VAL","_cargo","_cargoIndex","_colorSlot","_hitpoints","_inventory","_magsAmmoCargo","_magsAmmoCargoMinimized","_magsAmmoCargox","_newComponents","_selectedWeapon","_selectedWeaponComponents","_startTime","_vehHiveKey","_vehSlot","_weapon",
+	"_weaponComponents","_wepsItemsCargo","_wepsItemsCargoNormalized","_wepsItemsCargox",
+	"_response","_status","_oldVeh","_vehSecret","_storedKeys"];
 //[[[end]]]
-params [["_vehicle",objNull]];
+params [["_vehicle",objNull],["_vehSecret",""]];
 
 if (!isNull _vehicle) then {
 
@@ -28,10 +30,22 @@ if (!isNull _vehicle) then {
 		_hitpoints = (getAllHitPointsDamage _vehicle) param [2,[]];
 
 		_inventory = _vehicle call EPOCH_server_CargoSave;
-		
+
 		_colorSlot = _vehicle getVariable ["VEHICLE_TEXTURE",0];
 		_baseType = _vehicle getVariable ["VEHICLE_BASECLASS",""];
-		_VAL = [typeOf _vehicle,[(getposATL _vehicle call EPOCH_precisionPos),vectordir _vehicle,vectorup _vehicle],damage _vehicle,_hitpoints,fuel _vehicle,_inventory,[true,magazinesAllTurrets _vehicle],_colorSlot,_baseType];
+
+		// Call DB for Key Secret
+		_response = ["Vehicle", _vehHiveKey] call EPOCH_fnc_server_hiveGETRANGE;
+		_response params ["_status","_oldVeh"];
+		if ((_response select 0) == 1 && (_response select 1) isEqualType []) then {
+			if (count _oldVeh > 10) then {
+				_vehSecret = _oldVeh select 9;
+			};
+		};
+
+		_storedKeys = _vehicle getVariable ["VEHICLE_KEYS", [[],[]] ];
+
+		_VAL = [typeOf _vehicle,[(getposATL _vehicle call EPOCH_precisionPos),vectordir _vehicle,vectorup _vehicle],damage _vehicle,_hitpoints,fuel _vehicle,_inventory,[true,magazinesAllTurrets _vehicle],_colorSlot,_baseType,_vehSecret,_storedKeys];
 		["Vehicle", _vehHiveKey, EPOCH_expiresVehicle, _VAL] call EPOCH_fnc_server_hiveSETEX;
 	};
 };
