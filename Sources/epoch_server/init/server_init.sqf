@@ -243,6 +243,75 @@ EPOCH_fnc_server_vehIsKeyed = {
     };
 };
 
+"EPOCH_fnc_server_playerHasKeys" addPublicVariableEventHandler {
+    // Returns BOOL on whether player has keys
+    // Exists to prevent Client from being able to access player keys variable
+    _player = param [1,objNull];
+
+    _return = false;
+    if !(isNull _player) then {
+        _plyrKeys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+        if (count (_plyrKeys select 0) > 0) then {
+            _return = true;
+        };
+
+        EPOCH_tmp_playerHasKeys = _return;
+        (owner (vehicle _player)) publicVariableClient "EPOCH_tmp_playerHasKeys";
+        EPOCH_tmp_playerHasKeys = nil;
+    };
+};
+
+"EPOCH_fnc_server_playerKeyInfo" addPublicVariableEventHandler {
+    // Returns Information about current player keys - NO SECRETS
+    _player = param [1,objNull];
+    _plyrKeys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+
+    _return = [[],[]];
+    if ((!isNull _player) && (count (_plyrKeys select 0) > 0)) then {
+        {
+            (_return select 0) pushBack (_x select 0);
+            (_return select 1) pushBack ((_plyrKeys select 1) select _forEachIndex);
+        } forEach (_plyrKeys select 0);
+    };
+
+    EPOCH_tmp_playerKeyInfo = _return;
+    (owner (vehicle _player)) publicVariableClient "EPOCH_tmp_playerKeyInfo";
+    EPOCH_tmp_playerKeyInfo = nil;
+};
+
+"EPOCH_fnc_server_transferKeys" addPublicVariableEventHandler {
+    // Transfer Vehicle Keys from one player to another
+    _arr = param [1,[objNull,objNull,0]];
+    _player1 = param [0,objNull];
+    _player2 = param [1,objNull];
+    _index = param [2,0];
+
+    // Add more valid player checking?
+
+    if !(isNull _player1 || isNull _player2 || local _player1 || local _player2 || !isPlayer _player1 || !isPlayer _player2) then {
+        _p1Keys = _player1 getVariable ["PLAYER_KEYS", [[],[]] ];
+        _p2Keys = _player2 getVariable ["PLAYER_KEYS", [[],[]] ];
+
+        if (count (_p1Keys select 0) > 0) then {
+            // Take from Player 1
+            _cnt = (_p1Keys select 1) select _index;
+            if (_cnt > 1) then {
+                _vars = (_p1Keys select 0) select _index;
+                (_p1Keys select 1) set [_index,(_cnt)-1];
+            } else {
+                _vars = (_p1Keys select 0) deleteAt _index;
+                _cnt = (_p1Keys select 1) deleteAt _index;
+            };
+            _player1 setVariable ["PLAYER_KEYS", _p1Keys];
+
+            // Give to Player 2
+            (_p2Keys select 0) pushBack _vars;
+            (_p2Keys select 1) pushBack _cnt;
+            _player2 setVariable ["PLAYER_KEYS", _p2Keys];
+        };
+    };
+};
+
 EPOCH_fnc_server_testVehKey = {
     // Takes provided vehicle secret and compares it to DB hash
     // Returns BOOL on accepted or failed
