@@ -399,9 +399,9 @@ EPOCH_fnc_server_alreadyHasKey = {
     if !(_type isEqualTo "" || _secret isEqualTo "" || isNull _target) then {
         _return = false;
         if (isPlayer _target) then {
-            _keys = getVariable ["PLAYER_KEYS", [[],[]] ];
+            _keys = _target getVariable ["PLAYER_KEYS", [[],[]] ];
         } else {
-            _keys = getVariable ["VEHICLE_KEYS", [[],[]] ];
+            _keys = _target getVariable ["VEHICLE_KEYS", [[],[]] ];
         };
         if (count (_keys select 0) > 0) then {
             {
