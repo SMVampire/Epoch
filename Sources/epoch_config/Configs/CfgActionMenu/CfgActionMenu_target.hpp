@@ -542,11 +542,179 @@ class player_tempGroup_requests
 };
 
 // Working defibrillator
-
 class player_revive
 {
 	condition = "dyna_isDeadPlayer && ('ItemDefibrillator' in dyna_magazinesPlayer)";
 	action = "[dyna_cursorTarget, player, Epoch_personalToken] remoteExec ['EPOCH_server_revivePlayer',2];";
 	icon = "x\addons\a3_epoch_code\Data\UI\buttons\group_requests_ca.paa";
 	tooltip = "Revive Player";
+};
+
+// Vehicle Keys
+class give_keys_menu
+{
+	condition = "dyna_plyrHasKeys && dyna_isPlayer";
+	action = "call EPOCH_client_getPlayerKeysArr";
+	icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+	tooltip = "Give Key";
+
+	class keys_1
+	{
+		condition = "(count EPOCH_playerKeys > 0)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,0]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 0) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 0) select 1) >> 'displayName')]";
+	};
+
+	class keys_2
+	{
+		condition = "(count EPOCH_playerKeys > 1)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,1]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 1) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 1) select 1) >> 'displayName')]";
+	};
+
+	class keys_3
+	{
+		condition = "(count EPOCH_playerKeys > 2)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,2]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 2) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 2) select 1) >> 'displayName')]";
+	};
+
+	class keys_4
+	{
+		condition = "(count EPOCH_playerKeys > 3)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,3]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 3) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 3) select 1) >> 'displayName')]";
+	};
+
+	class keys_5
+	{
+		condition = "(count EPOCH_playerKeys > 4)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,4]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 4) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 4) select 1) >> 'displayName')]";
+	};
+
+	class keys_6
+	{
+		condition = "(count EPOCH_playerKeys > 5)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,5]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 5) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 5) select 1) >> 'displayName')]";
+	};
+
+	class keys_7
+	{
+		condition = "(count EPOCH_playerKeys > 6)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,6]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 6) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 6) select 1) >> 'displayName')]";
+	};
+
+	class keys_8
+	{
+		condition = "(count EPOCH_playerKeys > 7)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,7]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 7) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 7) select 1) >> 'displayName')]";
+	};
+
+	class keys_9
+	{
+		condition = "(count EPOCH_playerKeys > 8)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,8]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 8) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 8) select 1) >> 'displayName')]";
+	};
+
+	class keys_10
+	{
+		condition = "(count EPOCH_playerKeys > 9)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,9]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 9) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 9) select 1) >> 'displayName')]";
+	};
+
+	class keys_11
+	{
+		condition = "(count EPOCH_playerKeys > 10)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,10]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 10) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 10) select 1) >> 'displayName')]";
+	};
+
+	class keys_12
+	{
+		condition = "(count EPOCH_playerKeys > 11)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,11]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 11) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 11) select 1) >> 'displayName')]";
+	};
+
+	class keys_13
+	{
+		condition = "(count EPOCH_playerKeys > 12)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,12]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 12) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 12) select 1) >> 'displayName')]";
+	};
+
+	class keys_14
+	{
+		condition = "(count EPOCH_playerKeys > 13)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,13]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 13) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 13) select 1) >> 'displayName')]";
+	};
+
+	class keys_15
+	{
+		condition = "(count EPOCH_playerKeys > 14)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,14]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 14) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 14) select 1) >> 'displayName')]";
+	};
+
+	class keys_16
+	{
+		condition = "(count EPOCH_playerKeys > 15)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,15]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 15) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 15) select 1) >> 'displayName')]";
+	};
+
+	class keys_17
+	{
+		condition = "(count EPOCH_playerKeys > 16)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,16]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 16) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 16) select 1) >> 'displayName')]";
+	};
+
+	class keys_18
+	{
+		condition = "(count EPOCH_playerKeys > 17)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,17]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 17) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 17) select 1) >> 'displayName')]";
+	};
+
+	class keys_19
+	{
+		condition = "(count EPOCH_playerKeys > 18)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,18]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 18) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 18) select 1) >> 'displayName')]";
+	};
+
+	class keys_20
+	{
+		condition = "(count EPOCH_playerKeys > 19)";
+		action = "EPOCH_fnc_server_transferKeys = [player,dyna_cursorTarget,19]; publicVariableServer ""EPOCH_fnc_server_transferKeys""; ";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 19) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 19) select 1) >> 'displayName')]";
+	};
 };

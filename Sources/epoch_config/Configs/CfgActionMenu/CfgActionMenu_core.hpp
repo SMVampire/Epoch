@@ -35,21 +35,23 @@ class CfgActionMenu
 		dyna_canAcceptTrade = "if (!(isNull EPOCH_pendingP2ptradeTarget) && alive EPOCH_pendingP2ptradeTarget) then {((EPOCH_pendingP2ptradeTarget isKindOf 'Man') && (dyna_cursorTarget isEqualTo EPOCH_pendingP2ptradeTarget))} else {false}";
 		dyna_locked = "locked dyna_cursorTarget in [2,3]";
 		dyna_lockedInVehicle = "locked vehicle player in [2,3]";
-		
+
 		dyna_blockWeapons = "[]";
 		dyna_Turret = "if (!dyna_inVehicle) then {[]} else {if ((assignedVehicleRole player) isequalto ['driver']) then {[-1]} else {if (count (assignedVehicleRole player) == 2) then {(assignedVehicleRole player) select 1}else {[]}}}";
 		dyna_weaponsTurret = "if (!dyna_inVehicle) then {[]}else {((vehicle player) weaponsTurret dyna_Turret) select {!((getArray(configFile >> 'CfgWeapons' >> _x >> 'magazines')) select {!((getText (configFile >> 'CfgMagazines' >> _x >> 'picture')) isequalto '')} isequalto [])}}";
 		dyna_WeapsMagsTurret = "call {_out = [];if (dyna_inVehicle) then {_added = [];{_weapon = _x;_WeaponMags = ((vehicle player) magazinesTurret dyna_Turret) select {(_x in (getArray (configFile >> 'CfgWeapons' >> _weapon >> 'magazines'))) && !((getText (configFile >> 'CfgMagazines' >> _x >> 'picture')) isequalto '')};if !(_WeaponMags isequalto []) then {{if !(_x in _added) then {_out pushback [_weapon,_x];_added pushback _x;};} foreach _WeaponMags;};} foreach dyna_weaponsTurret;};_out}";
-		
+
 		dyna_mapPlayerMarkerON = "(getNumber(('CfgEpochClient' call EPOCH_returnConfig) >> 'playerLocationMarkerGPSOnly') isEqualTo 1)";
 		dyna_mapPlayerMarker = "(((getArray(('CfgMarkerSets' call EPOCH_returnConfig) >> 'PlayerMarker' >> 'markerArray') select 0) select 0) in allMapMarkers)";
-		
+
 		dyna_deathMarkerON = "(getNumber(('CfgEpochClient' call EPOCH_returnConfig) >> 'playerDeathMarkerGPSOnly') isEqualTo 1)";
 		dyna_deathMarker = "profileNameSpace getVariable['EPOCHLastKnownDeath',[]]";
 		dyna_deathMarkerAvail = "!(dyna_deathMarker isEqualTo [])";
 		dyna_mapDeathMarker = "(((getArray(('CfgMarkerSets' call EPOCH_returnConfig) >> 'DeathMarker' >> 'markerArray') select 0) select 0) in allMapMarkers)";
-		
+
 		dyna_AtHome = "call {_config = 'CfgEpochClient' call EPOCH_returnConfig;_buildingJammerRange = getNumber(_config >> 'buildingJammerRange');_nearjammers = nearestobjects [player,['Plotpole_EPOCH'],_buildingJammerRange];if (_nearjammers isEqualTo []) exitwith {false};_nearestJammer = _nearjammers select 0;((_nearestJammer getVariable['BUILD_OWNER', '-1']) in[getPlayerUID player, Epoch_my_GroupUID])}";
+
+		dyna_plyrHasKeys = "EPOCH_fnc_server_playerHasKeys = player; publicVariableServer ""EPOCH_fnc_server_playerHasKeys""; waitUntil{!isNil ""EPOCH_tmp_playerHasKeys""}; EPOCH_tmp_playerHasKeys";
 	};
 
 	class self
@@ -61,7 +63,7 @@ class CfgActionMenu
 	{
 		#include "CfgActionMenu_target.hpp"
 	};
-	
+
 	class map
 	{
 		#include "CfgActionMenu_map.hpp"
