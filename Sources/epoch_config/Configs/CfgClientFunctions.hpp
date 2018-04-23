@@ -190,7 +190,7 @@ class CfgClientFunctions
 			class vehicle_checkTurretAmmo {};
 			class vehicle_removeTurretAmmo {};
 
-			class client_getPlayerKeysArr {};
+			class client_getTargetKeysArr {};
 		};
 		class missions
 		{
@@ -212,6 +212,8 @@ class CfgClientFunctions
 			class equip {};
 			class itemTypeSlot {};
 			class usedItemRepack {};
+
+			class targetHasKeys {};
 		};
 		class servicepoint
 		{

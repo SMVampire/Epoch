@@ -51,7 +51,8 @@ class CfgActionMenu
 
 		dyna_AtHome = "call {_config = 'CfgEpochClient' call EPOCH_returnConfig;_buildingJammerRange = getNumber(_config >> 'buildingJammerRange');_nearjammers = nearestobjects [player,['Plotpole_EPOCH'],_buildingJammerRange];if (_nearjammers isEqualTo []) exitwith {false};_nearestJammer = _nearjammers select 0;((_nearestJammer getVariable['BUILD_OWNER', '-1']) in[getPlayerUID player, Epoch_my_GroupUID])}";
 
-		dyna_plyrHasKeys = "EPOCH_fnc_server_playerHasKeys = player; publicVariableServer ""EPOCH_fnc_server_playerHasKeys""; waitUntil{!isNil ""EPOCH_tmp_playerHasKeys""}; EPOCH_tmp_playerHasKeys";
+		dyna_plyrHasKeys = "player call EPOCH_targetHasKeys";
+		dyna_targetHasKeys = "(dyna_isVehicle && {dyna_cursorTarget call EPOCH_targetHasKeys})";
 	};
 
 	class self

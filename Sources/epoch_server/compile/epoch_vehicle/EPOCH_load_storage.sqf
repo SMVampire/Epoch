@@ -13,7 +13,7 @@
     https://github.com/EpochModTeam/Epoch/tree/release/Sources/epoch_server/compile/epoch_vehicle/EPOCH_load_storage.sqf
 */
 //[[[cog import generate_private_arrays ]]]
-private ["_ExceptedBaseObjects","_IndestructibleBaseObjects","_UseIndestructible","_arr","_attachments","_availableColorsConfig","_cfgBaseBuilding","_class","_class_raw","_color","_colors","_count","_damage","_diag","_dir","_inventory","_location","_magazineName","_magazineSize","_magazineSizeMax","_marker","_objQty","_objType","_objTypes","_qty","_response","_selections","_serverSettingsConfig","_storageSlotIndex","_textureSelectionIndex","_textures","_vehHiveKey","_vehicle","_wMags","_wMagsArray","_worldspace","_wsCount"];
+private ["_ExceptedBaseObjects","_IndestructibleBaseObjects","_UseIndestructible","_arr","_attachments","_availableColorsConfig","_cfgBaseBuilding","_class","_class_raw","_color","_colors","_count","_damage","_diag","_dir","_inventory","_location","_magazineName","_magazineSize","_magazineSizeMax","_marker","_objQty","_objType","_objTypes","_qty","_response","_selections","_serverSettingsConfig","_storageSlotIndex","_textureSelectionIndex","_textures","_vehHiveKey","_vehicle","_wMags","_wMagsArray","_worldspace","_wsCount","_keys"];
 //[[[end]]]
 params [["_maxStorageLimit",0]];
 
@@ -80,7 +80,7 @@ for "_i" from 1 to _maxStorageLimit do {
 			if (_class isEqualTo "Garden_EPOCH") then {
 				EPOCH_activeGardens pushBack _vehicle;
 			};
-			
+
 			if (_class in ["SolarCharger_EPOCH","SolarChargerXL_EPOCH"]) then {
 				EPOCH_activeSolars pushBack _vehicle;
 			};
@@ -143,6 +143,10 @@ for "_i" from 1 to _maxStorageLimit do {
 					};
 				};
 			};
+
+			// Add Vehicle Keys
+			_keys = _arr param [6,[[],[]]];
+			_vehicle setVariable ["VEHICLE_KEYS", _keys];
 
 			clearWeaponCargoGlobal    _vehicle;
 			clearMagazineCargoGlobal  _vehicle;
