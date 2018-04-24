@@ -31,7 +31,7 @@ if !(isNull _target) then {
 
     [_target,player] remoteExec ['EPOCH_fnc_server_targetHasKeys',2];
 
-    waitUntil{ EPOCH_tmp_targetHasKeys };
+    waitUntil{ !isNil "EPOCH_tmp_targetHasKeys" };
 
     if (EPOCH_tmp_targetHasKeys) then { true } else { false };
 
