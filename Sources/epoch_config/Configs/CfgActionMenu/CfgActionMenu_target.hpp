@@ -560,162 +560,162 @@ class give_keys_menu
 
 	class keys_1
 	{
-		condition = "(count EPOCH_targetKeys > 0)";
+		condition = "(count EPOCH_playerKeys > 0)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 0] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 0] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 0) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 0) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 0) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 0) select 0) >> 'displayName')]";
 	};
 
 	class keys_2
 	{
-		condition = "(count EPOCH_targetKeys > 1)";
+		condition = "(count EPOCH_playerKeys > 1)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 1] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 1] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 1) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 1) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 1) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 1) select 0) >> 'displayName')]";
 	};
 
 	class keys_3
 	{
-		condition = "(count EPOCH_targetKeys > 2)";
+		condition = "(count EPOCH_playerKeys > 2)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 2] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 2] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 2) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 2) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 2) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 2) select 0) >> 'displayName')]";
 	};
 
 	class keys_4
 	{
-		condition = "(count EPOCH_targetKeys > 3)";
+		condition = "(count EPOCH_playerKeys > 3)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 3] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 3] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 3) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 3) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 3) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 3) select 0) >> 'displayName')]";
 	};
 
 	class keys_5
 	{
-		condition = "(count EPOCH_targetKeys > 4)";
+		condition = "(count EPOCH_playerKeys > 4)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 4] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 4] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 4) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 4) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 4) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 4) select 0) >> 'displayName')]";
 	};
 
 	class keys_6
 	{
-		condition = "(count EPOCH_targetKeys > 5)";
+		condition = "(count EPOCH_playerKeys > 5)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 5] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 5] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 5) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 5) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 5) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 5) select 0) >> 'displayName')]";
 	};
 
 	class keys_7
 	{
-		condition = "(count EPOCH_targetKeys > 6)";
+		condition = "(count EPOCH_playerKeys > 6)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 6] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 6] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 6) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 6) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 6) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 6) select 0) >> 'displayName')]";
 	};
 
 	class keys_8
 	{
-		condition = "(count EPOCH_targetKeys > 7)";
+		condition = "(count EPOCH_playerKeys > 7)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 7] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 7] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 7) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 7) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 7) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 7) select 0) >> 'displayName')]";
 	};
 
 	class keys_9
 	{
-		condition = "(count EPOCH_targetKeys > 8)";
+		condition = "(count EPOCH_playerKeys > 8)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 8] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 8] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 8) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 8) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 8) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 8) select 0) >> 'displayName')]";
 	};
 
 	class keys_10
 	{
-		condition = "(count EPOCH_targetKeys > 9)";
+		condition = "(count EPOCH_playerKeys > 9)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 9] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 9] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 9) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 9) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 9) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 9) select 0) >> 'displayName')]";
 	};
 
 	class keys_11
 	{
-		condition = "(count EPOCH_targetKeys > 10)";
+		condition = "(count EPOCH_playerKeys > 10)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 10] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 10] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 10) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 10) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 10) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 10) select 0) >> 'displayName')]";
 	};
 
 	class keys_12
 	{
-		condition = "(count EPOCH_targetKeys > 11)";
+		condition = "(count EPOCH_playerKeys > 11)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 11] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 11] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 11) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 11) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 11) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 11) select 0) >> 'displayName')]";
 	};
 
 	class keys_13
 	{
-		condition = "(count EPOCH_targetKeys > 12)";
+		condition = "(count EPOCH_playerKeys > 12)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 12] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 12] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 12) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 12) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 12) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 12) select 0) >> 'displayName')]";
 	};
 
 	class keys_14
 	{
-		condition = "(count EPOCH_targetKeys > 13)";
+		condition = "(count EPOCH_playerKeys > 13)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 13] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 13] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 13) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 13) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 13) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 13) select 0) >> 'displayName')]";
 	};
 
 	class keys_15
 	{
-		condition = "(count EPOCH_targetKeys > 14)";
+		condition = "(count EPOCH_playerKeys > 14)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 14] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 14] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 14) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 14) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 14) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 14) select 0) >> 'displayName')]";
 	};
 
 	class keys_16
 	{
-		condition = "(count EPOCH_targetKeys > 15)";
+		condition = "(count EPOCH_playerKeys > 15)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 15] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 15] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 15) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 15) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 15) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 15) select 0) >> 'displayName')]";
 	};
 
 	class keys_17
 	{
-		condition = "(count EPOCH_targetKeys > 16)";
+		condition = "(count EPOCH_playerKeys > 16)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 16] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 16] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 16) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 16) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 16) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 16) select 0) >> 'displayName')]";
 	};
 
 	class keys_18
 	{
-		condition = "(count EPOCH_targetKeys > 17)";
+		condition = "(count EPOCH_playerKeys > 17)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 17] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 17] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 17) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 17) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 17) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 17) select 0) >> 'displayName')]";
 	};
 
 	class keys_19
 	{
-		condition = "(count EPOCH_targetKeys > 18)";
+		condition = "(count EPOCH_playerKeys > 18)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 18] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 18] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 18) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 18) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 18) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 18) select 0) >> 'displayName')]";
 	};
 
 	class keys_20
 	{
-		condition = "(count EPOCH_targetKeys > 19)";
+		condition = "(count EPOCH_playerKeys > 19)";
 		action = "if (dyna_isPlayer) then {[player, dyna_cursorTarget, 19] remoteExec ['EPOCH_fnc_server_transferKeys',2];} else {[player, dyna_cursorTarget, 19] remoteExec ['EPOCH_fnc_server_transferKeysStorage',2];};";
 		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-		tooltip = "format['%1 Keys for %2',((EPOCH_targetKeys select 19) select 0),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 19) select 1) >> 'displayName')]";
+		tooltip = "format['%1 Keys for %2',((EPOCH_playerKeys select 19) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 19) select 0) >> 'displayName')]";
 	};
 };
 

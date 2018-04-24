@@ -280,9 +280,7 @@ EPOCH_fnc_server_targetKeyInfo = {
     _return = [];
     if ((!isNull _target) && (count (_targetKeys select 0) > 0)) then {
         {
-            _name = getText(configFile >> 'CfgVehicles' >> (_x select 0) >> 'displayName');
-
-            _return pushBack [_name,((_targetKeys select 1) select _forEachIndex)];
+            _return pushBack [((_x select 0) select 0),((_targetKeys select 1) select _forEachIndex)];
         } forEach (_targetKeys select 0);
     };
 
@@ -400,6 +398,31 @@ EPOCH_fnc_server_transferKeysStorage = {
                 _obj2 setVariable ["HAS_KEYS", true];
                 _obj2 call EPOCH_fnc_server_targetKeyInfo;
             };
+        };
+    };
+};
+
+EPOCH_fnc_server_deleteKey = {
+    // Drops a key the player has
+    params [["_player",objNull],["_cid",""],["_index",-1]]];
+
+    if !(isNull _player || !isPlayer _player || _uid isEqualTo "" || _index isEqualTo -1) then {
+        _caller = remoteExecutedOwner;
+        if !(_caller isEqualTo _cid || _cid isEqualTo (owner _player) || (owner _player) isEqualTo _caller) exitWith {
+            diag_log text format ["Epoch: ERROR player (%1) attempted to drop %2's keys!",_caller,(name _player)];
+        };
+
+        _playerKeys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+        if ((count (_playerKeys select 0) > 0) && (!isNull ((_playerKeys select 0) select _index))) then {
+            _cnt = (_playerKeys select 1) select _index;
+            if (_cnt isEqualTo 1) then {
+                _vars = (_playerKeys select 0) deleteAt _index;
+                _cnt = (_playerKeys select 1) deleteAt _index;
+            } else {
+                _cnt = (_playerKeys select 1) set [_index,(_cnt)-1];
+            };
+            _player setVariable ["PLAYER_KEYS", _playerKeys];
+            _player call EPOCH_fnc_server_targetKeyInfo;
         };
     };
 };

@@ -29,6 +29,9 @@ params [["_target",objNull]];
 if (isNil "EPOCH_targetKeys") then {
     EPOCH_targetKeys = [];
 };
+if (isNil "EPOCH_playerKeys") then {
+    EPOCH_playerKeys = [];
+};
 
 if !(isNull _target) then {
 
@@ -38,7 +41,11 @@ if !(isNull _target) then {
 
     _arr = [];
     if (count _keyInfo > 0) then {
-        EPOCH_targetKeys = _keyInfo;
+        if (_target isEqualTo player) then {
+            EPOCH_playerKeys = _keyInfo;
+        } else {
+            EPOCH_targetKeys = _keyInfo;
+        };
 
         true
     } else {
