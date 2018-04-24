@@ -22,18 +22,15 @@
 	   BOOL
 */
 //[[[cog import generate_private_arrays ]]]
-private ["_target"];
+private ["_target","_alreadyChecked"];
 //[[[end]]]
 params [["_target",objNull]];
 
 if !(isNull _target) then {
-    EPOCH_tmp_targetHasKeys = nil;
 
-    [_target,player] remoteExec ['EPOCH_fnc_server_targetHasKeys',2];
+    [_target] remoteExec ['EPOCH_fnc_server_targetHasKeys',2];
 
-    waitUntil{ !isNil "EPOCH_tmp_targetHasKeys" };
+    _alreadyChecked = _target getVariable ["HAS_KEYS", false];
 
-    if (EPOCH_tmp_targetHasKeys) then { true } else { false };
-
-    EPOCH_tmp_targetHasKeys = nil;
+    _alreadyChecked
 } else { false };

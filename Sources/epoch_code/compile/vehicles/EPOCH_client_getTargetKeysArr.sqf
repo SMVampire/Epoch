@@ -27,25 +27,14 @@ private ["_select","_keyInfo","_class","_count","_name","_arr"];
 params [["_target",objNull]];
 
 if !(isNull _target) then {
-    EPOCH_tmp_targetKeyInfo = nil;
 
-    [_target,player] remoteExec ['EPOCH_fnc_server_targetHasKeys',2];
+    [_target] remoteExec ['EPOCH_fnc_server_targetKeyInfo',2];
 
-    waitUntil{!isNil "EPOCH_tmp_targetKeyInfo"};
-
-    _keyInfo = EPOCH_tmp_targetKeyInfo;
-    EPOCH_tmp_targetKeyInfo = nil;
+    _keyInfo = _target getVariable ["KEY_INFO", [] ];
 
     _arr = [];
-    if (count (_keyInfo select 0) > 0) then {
-        _class = ((_keyInfo select 0) select _select);
-        _count = ((_keyInfo select 1) select _select);
-
-        _name = getText(configFile >> 'CfgVehicles' >> _class >> 'displayName');
-
-        _arr pushBack [_name,_count];
-
-        EPOCH_targetKeys = _arr;
+    if (count _keyInfo > 0) then {
+        EPOCH_targetKeys = _keyInfo;
 
         true
     } else {

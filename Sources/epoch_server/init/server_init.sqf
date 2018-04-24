@@ -247,7 +247,7 @@ EPOCH_fnc_server_vehIsKeyed = {
 EPOCH_fnc_server_targetHasKeys = {
     // Returns BOOL on whether target has keys
     // Exists to prevent Client from being able to access vehicle keys variable
-    params [["_target",objNull],["_player",objNull]];
+    params [["_target",objNull]];
 
     if (isPlayer _target) then {
         _var = "PLAYER_KEYS";
@@ -260,30 +260,35 @@ EPOCH_fnc_server_targetHasKeys = {
         _tarKeys = _target getVariable [_var, [[],[]] ];
         if (count (_tarKeys select 0) > 0) then {
             _return = true;
+            _target setVariable ["HAS_KEYS", true];
         };
-
-        EPOCH_tmp_targetHasKeys = _return;
-        (owner (vehicle _player)) publicVariableClient "EPOCH_tmp_targetHasKeys";
-        EPOCH_tmp_targetHasKeys = nil;
     };
+
+    _return
 };
 
 EPOCH_fnc_server_targetKeyInfo = {
-    // Returns Information about player keys - NO SECRETS
-    _player = param [1,objNull];
-    _plyrKeys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+    // Sets Information about target keys - NO SECRETS
+    _target = param [1,objNull];
 
-    _return = [[],[]];
-    if ((!isNull _player) && (count (_plyrKeys select 0) > 0)) then {
-        {
-            (_return select 0) pushBack (_x select 0);
-            (_return select 1) pushBack ((_plyrKeys select 1) select _forEachIndex);
-        } forEach (_plyrKeys select 0);
+    if (isPlayer _target) then {
+        _targetKeys = _target getVariable ["PLAYER_KEYS", [[],[]] ];
+    } else {
+        _targetKeys = _target getVariable ["VEHICLE_KEYS", [[],[]] ];
     };
 
-    EPOCH_tmp_targetKeyInfo = _return;
-    (owner (vehicle _player)) publicVariableClient "EPOCH_tmp_targetKeyInfo";
-    EPOCH_tmp_targetKeyInfo = nil;
+    _return = [];
+    if ((!isNull _target) && (count (_targetKeys select 0) > 0)) then {
+        {
+            _name = getText(configFile >> 'CfgVehicles' >> (_x select 0) >> 'displayName');
+
+            _return pushBack [_name,((_targetKeys select 1) select _forEachIndex)];
+        } forEach (_targetKeys select 0);
+    };
+
+    if (count _return > 0) then {
+        _target setVariable ["KEY_INFO", _return];
+    };
 };
 
 EPOCH_fnc_server_transferKeys = {
