@@ -404,7 +404,7 @@ EPOCH_fnc_server_transferKeysStorage = {
 
 EPOCH_fnc_server_deleteKey = {
     // Drops a key the player has
-    params [["_player",objNull],["_cid",""],["_index",-1]]];
+    params [["_player",objNull],["_cid",""],["_index",-1]];
 
     if !(isNull _player || !isPlayer _player || _uid isEqualTo "" || _index isEqualTo -1) then {
         _caller = remoteExecutedOwner;
