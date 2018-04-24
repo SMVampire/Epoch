@@ -13,7 +13,7 @@
     https://github.com/EpochModTeam/Epoch/tree/release/Sources/epoch_server/compile/epoch_player/EPOCH_server_savePlayer.sqf
 */
 //[[[cog import generate_private_arrays ]]]
-private ["_Svars","_allowSave","_appearance","_bloodPIndex","_bloodPressure","_group","_hitpoints","_loadout","_medical","_playerUID","_pos","_return","_return2","_revive","_schemaVersion","_server_vars","_stats","_vehiclePlyr"];
+private ["_Svars","_allowSave","_appearance","_bloodPIndex","_bloodPressure","_group","_hitpoints","_loadout","_medical","_playerUID","_pos","_return","_return2","_revive","_schemaVersion","_server_vars","_stats","_vehiclePlyr","_keys"];
 //[[[end]]]
 params [["_player",objNull], ["_vars",[]] ];
 
@@ -64,6 +64,8 @@ if (_allowSave) then{
 	_group = _player getVariable ["GROUP", ""];
 	_revive = _player getVariable ["REVIVE", true];
 
+	_keys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+
 	_pos = (getposATL _player call EPOCH_precisionPos);
 
 	if (vehicle _player != _player) then {
@@ -96,7 +98,7 @@ if (_allowSave) then{
 	_schemaVersion = 1.0;
 
 	// save player
-	_return = ["Player", _playerUID, EPOCH_expiresPlayer, [[getDir _player, _pos, (call EPOCH_fn_InstanceID), _schemaVersion], _medical, _appearance, _server_vars, _vars, _loadout, [], [], [], [], _group, _revive]] call EPOCH_fnc_server_hiveSETEX;
+	_return = ["Player", _playerUID, EPOCH_expiresPlayer, [[getDir _player, _pos, (call EPOCH_fn_InstanceID), _schemaVersion], _medical, _appearance, _server_vars, _vars, _loadout, [], [], [], [], _group, _revive, _keys]] call EPOCH_fnc_server_hiveSETEX;
 
 	// save community stats
 	_stats = _player getVariable["COMMUNITY_STATS", EPOCH_defaultStatVars];

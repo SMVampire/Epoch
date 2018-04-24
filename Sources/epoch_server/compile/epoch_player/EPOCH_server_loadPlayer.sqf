@@ -13,7 +13,9 @@
 	https://github.com/EpochModTeam/Epoch/tree/release/Sources/epoch_server/compile/epoch_player/EPOCH_server_loadPlayer.sqf
 */
 //[[[cog import generate_private_arrays ]]]
-private ["_Primary","_CheckLocation","_allGroupMembers","_alreadyDead","_assignedItems","_attachments","_backpack","_backpackItems","_canBeRevived","_class","_communityStats","_communityStatsArray","_currentWeapon","_deadPlayer","_defaultData","_dir","_equipped","_found","_goggles","_group","_handgunWeapon","_headgear","_instanceID","_jammer","_jammers","_linkedItems","_loadout","_location","_newLocation","_newPlyr","_playerData","_playerGroup","_playerGroupArray","_playerNetID","_playerUID","_primaryWeapon","_reject","_secondaryWeapon","_serverSettingsConfig","_type","_uniform","_uniformItems","_vars","_vest","_vestItems","_wMags","_wMagsArray","_weapon"];
+private ["_Primary","_CheckLocation","_allGroupMembers","_alreadyDead","_assignedItems","_attachments","_backpack","_backpackItems","_canBeRevived","_class","_communityStats","_communityStatsArray","_currentWeapon","_deadPlayer","_defaultData","_dir","_equipped","_found","_goggles","_group",
+"_handgunWeapon","_headgear","_instanceID","_jammer","_jammers","_linkedItems","_loadout","_location","_newLocation","_newPlyr","_playerData","_playerGroup","_playerGroupArray","_playerNetID","_playerUID","_primaryWeapon","_reject","_secondaryWeapon","_serverSettingsConfig","_type","_uniform",
+"_uniformItems","_vars","_vest","_vestItems","_wMags","_wMagsArray","_weapon","_keys"];
 //[[[end]]]
 _reject = true;
 
@@ -78,7 +80,12 @@ if (!isNull _player) then {
 		];
 
 		// default data, if "Player" data format is changed update this array!
-		_defaultData = [[0, [], _instanceID, 1.0], [0, 0, 1, 0, [0,0,0,0,0,0,0,0,0,0,0]], ["", "", "", "", _currentWeapon, _class], [], call EPOCH_defaultVars_SEPXVar, _loadout, [], [], [], [], "", true];
+		_defaultData = [[0, [], _instanceID, 1.0], [0, 0, 1, 0, [0,0,0,0,0,0,0,0,0,0,0]], ["", "", "", "", _currentWeapon, _class], [], call EPOCH_defaultVars_SEPXVar, _loadout, [], [], [], [], "", true, [[],[]]];
+
+		// Update player data for keys addition
+		if ((count _playerData) isEqualTo ((count _defaultData)-1)) then {
+			_playerData pushBack [[],[]];
+		};
 
 		// If data does not validate against default or is too short, override with default data.
 		if !(_playerData isEqualTypeParams _defaultData) then {
@@ -86,7 +93,7 @@ if (!isNull _player) then {
 			_playerData = _defaultData;
 		};
 
-		_playerData params ["_worldspace","_medical","","_server_vars","_vars","","","","","","_playerGroup","_canBeRevived"];
+		_playerData params ["_worldspace","_medical","","_server_vars","_vars","","","","","","_playerGroup","_canBeRevived","_keys"];
 
 		// Load world space and previous instance id
 		_worldspace params ["_dir","_location","_prevInstance",["_schemaVersion",0.5]];
@@ -344,6 +351,14 @@ if (!isNull _player) then {
 					_newPlyr setVariable["REVIVE", _canBeRevived];
 				};
 
+				if (count _keys == 2) then {
+					_newPlyr setVariable["PLAYER_KEYS", _keys];
+					_newPlyr setVariable ["HAS_KEYS", true];
+					_newPlyr call EPOCH_fnc_server_targetKeyInfo;
+				} else {
+					_newPlyr setVariable["PLAYER_KEYS", [[],[]] ];
+				};
+
 				// load community stats
 				_communityStatsArray = ["CommunityStats", _playerUID] call EPOCH_fnc_server_hiveGETRANGE;
 				_communityStats = (_communityStatsArray param [1,[]]) param [0,[]];
@@ -362,7 +377,7 @@ if (!isNull _player) then {
 				// revive test
 				_newPlyr setVariable ['#rev_enabled', true, true];
 				// [] remoteExec ["bis_fnc_reviveInit",_player];
-				
+
 				// re enable damage server side
 				_newPlyr allowDamage true;
 

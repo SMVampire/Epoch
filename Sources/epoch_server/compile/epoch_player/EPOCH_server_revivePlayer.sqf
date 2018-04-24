@@ -71,7 +71,7 @@ if (!local _player) then {
 				if (count _droppedPrimary == 6) then {
 					_droppedPrimary set [6,_droppedPrimary select 5];
 					_droppedPrimary set [5,[]];
-				
+
 				};
 				if (count _droppedSecondary == 6) then {
 					_droppedSecondary set [6,_droppedSecondary select 5];
@@ -135,6 +135,16 @@ if (!local _player) then {
 				// Workaround for Client / Server synchronizing issue in SetUnitLoadout
 				[_newPlyr,_loadout] call Epoch_server_SetUnitLoadout;
 
+				// Move Keys over
+				_keys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+				// Purge _player keys
+				_player setVariable ["PLAYER_KEYS", [[],[]] ];
+				_player setVariable ["HAS_KEYS", false];
+				// Transfer Keys to _newPlyr
+				_newPlyr setVariable ["PLAYER_KEYS", _keys];
+				_newPlyr setVariable ["HAS_KEYS", true];
+				_newPlyr call EPOCH_fnc_server_targetKeyInfo;
+
 				// Final Push
 				_token = _newPlyr call EPOCH_server_setPToken;
 
@@ -153,7 +163,7 @@ if (!local _player) then {
 
 				// send stat to reviver
 				[_reviver, "Revives", 1, true] call EPOCH_server_updatePlayerStats;
-				
+
 				// send karma stat to reviver
 				_kIndex = EPOCH_communityStats find "Karma";
 				_reviverCStats = _reviver getVariable["COMMUNITY_STATS", EPOCH_defaultStatVars];
