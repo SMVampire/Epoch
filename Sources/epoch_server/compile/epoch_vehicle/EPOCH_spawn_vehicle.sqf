@@ -15,7 +15,7 @@
 //[[[cog import generate_private_arrays ]]]
 private ["_availableColorsConfig","_cfgEpochVehicles","_color","_colors","_count","_marker","_maxDamage","_removemagazinesturret","_removeweapons","_selections","_serverSettingsConfig","_textureSelectionIndex","_textures","_vehLockHiveKey","_vehObj"];
 //[[[end]]]
-params ["_vehClass","_position","_direction","_locked","_slot",["_player",""],["_can_collide","CAN_COLLIDE"],["_spawnLoot",false],["_spawnDamaged",true]];
+params ["_vehClass","_position","_direction","_locked","_slot",["_player",objNull],["_can_collide","CAN_COLLIDE"],["_spawnLoot",false],["_spawnDamaged",true]];
 if !(isClass (configFile >> "CfgVehicles" >> _vehClass)) exitWith {objNull};
 _serverSettingsConfig = configFile >> "CfgEpochServer";
 _removeweapons = [_serverSettingsConfig, "removevehweapons", []] call EPOCH_fnc_returnConfigEntry;
@@ -106,7 +106,7 @@ if !(isNull _vehObj) then{
 	_vehObj setVariable["VEHICLE_SLOT", _slot, true];
 
 	// Lock vehicle for owner
-	if (_locked && _player != "") then {
+	if (_locked && !isNull _player) then {
 		// Create key for vehicle and give to player
 		_secret = ('epochserver' callExtension format['810|%1', 1]);
 
