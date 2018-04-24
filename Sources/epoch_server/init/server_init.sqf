@@ -312,6 +312,7 @@ EPOCH_fnc_server_transferKeys = {
                 _cnt = (_p1Keys select 1) deleteAt _index;
             };
             _player1 setVariable ["PLAYER_KEYS", _p1Keys];
+            _player1 call EPOCH_fnc_server_targetKeyInfo;
 
             // Give to Player 2
             _alrHasKey = [(_vars select 0),(_vars select 1),_player2] call EPOCH_fnc_server_alreadyHasKey;
@@ -322,6 +323,8 @@ EPOCH_fnc_server_transferKeys = {
                 (_p2Keys select 1) pushBack _cnt;
             };
             _player2 setVariable ["PLAYER_KEYS", _p2Keys];
+            _player2 setVariable ["HAS_KEYS", true];
+            _player2 call EPOCH_fnc_server_targetKeyInfo;
         };
     };
 };
@@ -352,6 +355,7 @@ EPOCH_fnc_server_transferKeysStorage = {
                     _cnt = (_obj1Keys select 1) set [_index,(_cnt)-1];
                 };
                 _obj1 setVariable ["PLAYER_KEYS", _obj1Keys];
+                _obj1 call EPOCH_fnc_server_targetKeyInfo;
 
                 // Store on Object
                 _alrHasKey = [(_vars select 0),(_vars select 1),_obj2] call EPOCH_fnc_server_alreadyHasKey;
@@ -363,6 +367,8 @@ EPOCH_fnc_server_transferKeysStorage = {
                     (_obj2Keys select 1) pushBack _cnt;
                 };
                 _obj2 setVariable ["VEHICLE_KEYS", _obj2Keys];
+                _obj2 setVariable ["HAS_KEYS", true];
+                _obj2 call EPOCH_fnc_server_targetKeyInfo;
             };
         };
         if (!isPlayer _obj1 && isPlayer _obj2 && (_isStor1 || _isVeh1)) then {
@@ -379,6 +385,7 @@ EPOCH_fnc_server_transferKeysStorage = {
                     _cnt = (_obj1Keys select 1) set [_index,(_cnt)-1];
                 };
                 _obj1 setVariable ["VEHICLE_KEYS", _obj1Keys];
+                _obj1 call EPOCH_fnc_server_targetKeyInfo;
 
                 // Give to Player
                 _alrHasKey = [(_vars select 0),(_vars select 1),_obj2] call EPOCH_fnc_server_alreadyHasKey;
@@ -390,6 +397,8 @@ EPOCH_fnc_server_transferKeysStorage = {
                     (_obj2Keys select 1) pushBack _cnt;
                 };
                 _obj2 setVariable ["PLAYER_KEYS", _obj2Keys];
+                _obj2 setVariable ["HAS_KEYS", true];
+                _obj2 call EPOCH_fnc_server_targetKeyInfo;
             };
         };
     };
