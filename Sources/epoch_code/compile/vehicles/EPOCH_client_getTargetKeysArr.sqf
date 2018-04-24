@@ -26,6 +26,10 @@ private ["_select","_keyInfo","_class","_count","_name","_arr"];
 //[[[end]]]
 params [["_target",objNull]];
 
+if (isNil "EPOCH_targetKeys") then {
+    EPOCH_targetKeys = [];
+};
+
 if !(isNull _target) then {
 
     [_target] remoteExec ['EPOCH_fnc_server_targetKeyInfo',2];
