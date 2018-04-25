@@ -268,21 +268,21 @@ class keys_self_menu
 {
 	condition = "dyna_plyrHasKeys";
 	action = "player call EPOCH_client_getTargetKeysArr;";
-	icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
-	tooltip = "List Keys";
+	icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_keyring.paa";
+	tooltip = "View Keys";
 
 	class keys_1
 	{
 		condition = "(count EPOCH_playerKeys > 0)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_redkey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 0) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 0) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 0)";
 			action = "[player, clientOwner, 0] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -291,14 +291,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 1)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_greenkey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 1) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 1) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 1)";
 			action = "[player, clientOwner, 1] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -307,14 +307,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 2)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_yellowkey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 2) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 2) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 2)";
 			action = "[player, clientOwner, 2] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -323,14 +323,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 3)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_bluekey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 3) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 3) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 3)";
 			action = "[player, clientOwner, 3] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -339,14 +339,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 4)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_orangekey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 4) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 4) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 4)";
 			action = "[player, clientOwner, 4] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -355,14 +355,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 5)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_purplekey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 5) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 5) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 5)";
 			action = "[player, clientOwner, 5] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -371,14 +371,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 6)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_cyankey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 6) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 6) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 6)";
 			action = "[player, clientOwner, 6] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -387,14 +387,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 7)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_magentakey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 7) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 7) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 7)";
 			action = "[player, clientOwner, 7] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -403,14 +403,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 8)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_limekey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 8) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 8) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 8)";
 			action = "[player, clientOwner, 8] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -419,14 +419,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 9)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_pinkkey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 9) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 9) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 9)";
 			action = "[player, clientOwner, 9] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -435,14 +435,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 10)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_tealkey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 10) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 10) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 10)";
 			action = "[player, clientOwner, 10] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -451,14 +451,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 11)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_lavenderkey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 11) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 11) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 11)";
 			action = "[player, clientOwner, 11] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -467,14 +467,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 12)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_brownkey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 12) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 12) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 12)";
 			action = "[player, clientOwner, 12] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -483,14 +483,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 13)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_creamkey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 13) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 13) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 13)";
 			action = "[player, clientOwner, 13] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -499,14 +499,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 14)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_maroonkey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 14) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 14) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 14)";
 			action = "[player, clientOwner, 14] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -515,14 +515,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 15)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_mintkey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 15) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 15) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 15)";
 			action = "[player, clientOwner, 15] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -531,14 +531,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 16)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_olivekey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 16) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 16) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 16)";
 			action = "[player, clientOwner, 16] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -547,14 +547,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 17)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_coralkey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 17) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 17) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 17)";
 			action = "[player, clientOwner, 17] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -563,14 +563,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 18)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_navykey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 18) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 18) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 18)";
 			action = "[player, clientOwner, 18] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
@@ -579,14 +579,14 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 19)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_greykey.paa";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 19) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 19) select 0) >> 'displayName')]";
 
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 19)";
 			action = "[player, clientOwner, 19] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
-			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Drink.paa";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
 	};
