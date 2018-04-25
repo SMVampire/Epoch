@@ -461,6 +461,7 @@ EPOCH_fnc_server_deleteKey = {
                 _vars = (_playerKeys select 0) deleteAt _index;
                 _cnt = (_playerKeys select 1) deleteAt _index;
             } else {
+                _vars = (_playerKeys select 0) select _index;
                 _cnt = (_playerKeys select 1) set [_index,(_cnt)-1];
             };
             _player setVariable ["PLAYER_KEYS", _playerKeys];
