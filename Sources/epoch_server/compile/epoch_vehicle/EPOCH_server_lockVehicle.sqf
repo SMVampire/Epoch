@@ -145,9 +145,6 @@ if (_logic) then {
             [_vehicle,_secret] call EPOCH_server_save_vehicle;
 
             //diag_log text format ["DEBUG: LockVeh Keys: Secret- %1 / Hash- %2 / _plyrKeys- %3",_secret,_vehHash,str (_player getVariable ["PLAYER_KEYS", [] ])];
-
-            // Inform
-            ["A key was added to your keychain",5] remoteExec ["Epoch_Message",_player];
         };
     };
 
@@ -161,6 +158,11 @@ if (_logic) then {
 		_msg = if (_value) then {"Vehicle Locked"} else {"Vehicle unlocked"};
 		[_msg,5] remoteExec ["Epoch_Message",_player];
 	};
+
+    if (!_vehKeyed && (_lockedOwner isEqualTo _lockOwner) && !_value) then {
+        // Inform for conversion
+        ["A key was added to your keychain",5] remoteExec ["Epoch_Message",_player];
+    };
 }
 else {
 	if (_VehLockMessages) then {
