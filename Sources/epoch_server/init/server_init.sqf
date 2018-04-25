@@ -330,6 +330,7 @@ EPOCH_fnc_server_transferKeys = {
             };
             _player1 setVariable ["PLAYER_KEYS", _p1Keys];
             _player1 call EPOCH_fnc_server_targetKeyInfo;
+            [_player1, _player1 getVariable["VARS", []] ] call EPOCH_server_savePlayer;
 
             // Give to Player 2
             _alrHasKey = [(_vars select 0),(_vars select 1),_player2] call EPOCH_fnc_server_alreadyHasKey;
@@ -342,6 +343,10 @@ EPOCH_fnc_server_transferKeys = {
             _player2 setVariable ["PLAYER_KEYS", _p2Keys];
             _player2 setVariable ["HAS_KEYS", true, true];
             _player2 call EPOCH_fnc_server_targetKeyInfo;
+            [_player2, _player2 getVariable["VARS", []] ] call EPOCH_server_savePlayer;
+
+            [format["You gave %1 a key to a %2",(name _player2),(getText(configFile >> 'CfgVehicles' >> (_vars select 0) >> 'displayName'))],5] remoteExec ["Epoch_Message",_player1];
+            [format["You received a key to a %1",(getText(configFile >> 'CfgVehicles' >> (_vars select 0) >> 'displayName'))],5] remoteExec ["Epoch_Message",_player2];
         };
 
         //diag_log text format ["DEBUG: transferKeys: play1- %1 / play2- %2 / index- %3 / p1keys- %4 / p2keys-%5",(name _player1),(name _player2),_index,str _p1Keys,str _p2Keys];
@@ -377,6 +382,7 @@ EPOCH_fnc_server_transferKeysStorage = {
                 };
                 _obj1 setVariable ["PLAYER_KEYS", _obj1Keys];
                 _obj1 call EPOCH_fnc_server_targetKeyInfo;
+                [_obj1, _obj1 getVariable["VARS", []] ] call EPOCH_server_savePlayer;
 
                 // Store on Object
                 _alrHasKey = [(_vars select 0),(_vars select 1),_obj2] call EPOCH_fnc_server_alreadyHasKey;
@@ -390,6 +396,9 @@ EPOCH_fnc_server_transferKeysStorage = {
                 _obj2 setVariable ["VEHICLE_KEYS", _obj2Keys];
                 _obj2 setVariable ["HAS_KEYS", true, true];
                 _obj2 call EPOCH_fnc_server_targetKeyInfo;
+                [[_obj2]] call EPOCH_server_save_vehicles;
+
+                [format["You stored a %1 key",(getText(configFile >> 'CfgVehicles' >> (_vars select 0) >> 'displayName'))],5] remoteExec ["Epoch_Message",_obj1];
             };
 
             //diag_log text format ["DEBUG: transferKeysStor: obj1- %1 / obj2- %2 / index- %3 / obj1Keys- %4",(name _obj1),(typeOf _obj2),_index,str _obj1Keys];
@@ -409,6 +418,7 @@ EPOCH_fnc_server_transferKeysStorage = {
                 };
                 _obj1 setVariable ["VEHICLE_KEYS", _obj1Keys];
                 _obj1 call EPOCH_fnc_server_targetKeyInfo;
+                [[_obj1]] call EPOCH_server_save_vehicles;
 
                 // Give to Player
                 _alrHasKey = [(_vars select 0),(_vars select 1),_obj2] call EPOCH_fnc_server_alreadyHasKey;
@@ -422,6 +432,9 @@ EPOCH_fnc_server_transferKeysStorage = {
                 _obj2 setVariable ["PLAYER_KEYS", _obj2Keys];
                 _obj2 setVariable ["HAS_KEYS", true, true];
                 _obj2 call EPOCH_fnc_server_targetKeyInfo;
+                [_obj2, _obj2 getVariable["VARS", []] ] call EPOCH_server_savePlayer;
+
+                [format["You've taken a %1 key",(getText(configFile >> 'CfgVehicles' >> (_vars select 0) >> 'displayName'))],5] remoteExec ["Epoch_Message",_obj2];
             };
 
             //diag_log text format ["DEBUG: transferKeysStor: obj1- %1 / obj2- %2 / index- %3 / obj1Keys- %4",(typeof _obj1),(name _obj2),_index,str _obj1Keys];
@@ -452,11 +465,14 @@ EPOCH_fnc_server_deleteKey = {
             };
             _player setVariable ["PLAYER_KEYS", _playerKeys];
             _player call EPOCH_fnc_server_targetKeyInfo;
+            [_player, _player getVariable["VARS", []] ] call EPOCH_server_savePlayer;
 
             if (count (_playerKeys select 0) < 1) then {
                 _player setVariable ["HAS_KEYS", false, true];
                 _player call EPOCH_fnc_server_targetKeyInfo;
             };
+
+            [format["You deleted a %1 key",(getText(configFile >> 'CfgVehicles' >> (_vars select 0) >> 'displayName'))],5] remoteExec ["Epoch_Message",_player];
 
             //diag_log text format ["DEBUG: deleteKey: player- %1 / cid- %2 / index- %3 / caller- %4 / plyrKeys- %5",_player,_cid,_index,_caller,str _playerKeys];
         };

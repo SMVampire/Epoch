@@ -13,7 +13,7 @@
     https://github.com/EpochModTeam/Epoch/tree/release/Sources/epoch_server/compile/epoch_vehicle/EPOCH_spawn_vehicle.sqf
 */
 //[[[cog import generate_private_arrays ]]]
-private ["_availableColorsConfig","_cfgEpochVehicles","_color","_colors","_count","_marker","_maxDamage","_removemagazinesturret","_removeweapons","_selections","_serverSettingsConfig","_textureSelectionIndex","_textures","_vehLockHiveKey","_vehObj"];
+private ["_availableColorsConfig","_cfgEpochVehicles","_color","_colors","_count","_marker","_maxDamage","_removemagazinesturret","_removeweapons","_selections","_serverSettingsConfig","_textureSelectionIndex","_textures","_vehLockHiveKey","_vehObj","_secret"];
 //[[[end]]]
 params ["_vehClass","_position","_direction","_locked","_slot",["_player",objNull],["_can_collide","CAN_COLLIDE"],["_spawnLoot",false],["_spawnDamaged",true]];
 if !(isClass (configFile >> "CfgVehicles" >> _vehClass)) exitWith {objNull};
@@ -111,7 +111,7 @@ if !(isNull _vehObj) then{
 		_secret = ('epochserver' callExtension format['810|%1', 1]);
 
 		_rnd1 = (_vehClass+_secret) call EPOCH_fnc_server_hiveMD5;
-		_vehHash = [((_rnd1)+(EPOCH_server_vehRandomKey))] call EPOCH_fnc_server_hiveMD5;
+		_vehHash = ((_rnd1)+(EPOCH_server_vehRandomKey)) call EPOCH_fnc_server_hiveMD5;
 
 		_vehObj setVariable ["VEHICLE_KEYHASH",_vehHash];
 
