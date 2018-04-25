@@ -163,7 +163,7 @@ for "_i" from 1 to _maxVehicleLimit do {
 						// Add Stored Keys to Vehicle
 						if (count _storedKeys > 0) then {
 							_vehicle setVariable ["VEHICLE_KEYS",_storedKeys];
-							_vehicle setVariable ["HAS_KEYS", true];
+							_vehicle setVariable ["HAS_KEYS", true, true];
 
 							_vehicle call EPOCH_fnc_server_targetKeyInfo;
 						};
