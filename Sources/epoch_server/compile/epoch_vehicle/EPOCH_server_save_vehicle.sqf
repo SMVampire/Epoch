@@ -34,6 +34,7 @@ if (!isNull _vehicle) then {
 		_baseType = _vehicle getVariable ["VEHICLE_BASECLASS",""];
 
 		// Call DB for Key Secret
+		_vehSecret = "";
 		_response = ["Vehicle", _vehHiveKey] call EPOCH_fnc_server_hiveGETRANGE;
 		_response params ["_status","_oldVeh"];
 		if ((_response select 0) == 1 && (_response select 1) isEqualType []) then {

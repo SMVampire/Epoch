@@ -51,8 +51,9 @@ class CfgActionMenu
 
 		dyna_AtHome = "call {_config = 'CfgEpochClient' call EPOCH_returnConfig;_buildingJammerRange = getNumber(_config >> 'buildingJammerRange');_nearjammers = nearestobjects [player,['Plotpole_EPOCH'],_buildingJammerRange];if (_nearjammers isEqualTo []) exitwith {false};_nearestJammer = _nearjammers select 0;((_nearestJammer getVariable['BUILD_OWNER', '-1']) in[getPlayerUID player, Epoch_my_GroupUID])}";
 
-		dyna_plyrHasKeys = "player call EPOCH_targetHasKeys";
-		dyna_targetHasKeys = "(dyna_isVehicle && {dyna_cursorTarget call EPOCH_targetHasKeys})";
+		dyna_plyrHasKeys = "player call EPOCH_targetHasKeys;";
+		dyna_targetHasKeys = "dyna_cursorTarget call EPOCH_targetHasKeys;";
+		dyna_isStorage = "((dyna_cursorTarget isKindOf 'Buildable_Storage') || (dyna_cursorTarget isKindOf 'Constructions_lockedstatic_F') || (dyna_cursorTarget isKindOf 'Secure_Storage_Temp'))";
 	};
 
 	class self

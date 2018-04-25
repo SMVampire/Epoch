@@ -341,6 +341,32 @@ class CfgRemoteExec
             allowedTargets = 2;
             jip = 0;
         };
+        // Vehicle Key Functions
+        class EPOCH_fnc_server_targetHasKeys
+		{
+            allowedTargets = 2;
+            jip = 0;
+        };
+        class EPOCH_fnc_server_targetKeyInfo
+		{
+            allowedTargets = 2;
+            jip = 0;
+        };
+        class EPOCH_fnc_server_transferKeys
+		{
+            allowedTargets = 2;
+            jip = 0;
+        };
+        class EPOCH_fnc_server_transferKeysStorage
+		{
+            allowedTargets = 2;
+            jip = 0;
+        };
+        class EPOCH_fnc_server_deleteKey
+		{
+            allowedTargets = 2;
+            jip = 0;
+        };
     };
     class Commands
     {

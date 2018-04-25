@@ -178,8 +178,9 @@ EPOCH_server_vehRandomKey = ('epochserver' callExtension format['810|%1', 1]); /
 // TODO --> Move Functions to Files
 EPOCH_fnc_server_hashVehicle = {
     // Takes Vehicle Information and provides hash back
-    _vehicle = param [0, objNull];
-    _keySecret = param [1, ""];
+    private ["_vehicle","_keySecret","_vehSlot","_vehHiveKey","_response","_arr","_secret","_keySecret","_rnd1","_return"];
+
+    params [["_vehicle",objNull],["_keySecret",""]];
 
     if (_keySecret isEqualTo "") then {
         // Get secret from DB
@@ -206,17 +207,21 @@ EPOCH_fnc_server_hashVehicle = {
 
     if !(_keySecret isEqualTo "NOKEY") then {
         _rnd1 = ((typeOf _vehicle)+_keySecret) call EPOCH_fnc_server_hiveMD5;
-        _return = [((_rnd1)+(EPOCH_server_vehRandomKey))] call EPOCH_fnc_server_hiveMD5;
+        _return = ((_rnd1)+(EPOCH_server_vehRandomKey)) call EPOCH_fnc_server_hiveMD5;
     } else {
         _return = "NOKEY";
     };
+
+    diag_log text format ["DEBUG: hashVehicle: vehicle- %1 / secret- %2 / serverKey- %3 / hash- %4",(typeOf _vehicle),_keySecret,(EPOCH_server_vehRandomKey),_return];
 
     _return
 };
 
 EPOCH_fnc_server_vehIsKeyed = {
     // Returns BOOL on whether vehicle is keyed
-    _vehicle = param [0, objNull];
+    private ["_vehicle","_vehHash","_vehSlot","_vehHiveKey","_response","_arr","_secret"];
+
+    params [["_vehicle",objNull]];
 
     _vehHash = _vehicle getVariable ["VEHICLE_KEYHASH",""];
 
@@ -247,29 +252,35 @@ EPOCH_fnc_server_vehIsKeyed = {
 EPOCH_fnc_server_targetHasKeys = {
     // Returns BOOL on whether target has keys
     // Exists to prevent Client from being able to access vehicle keys variable
+    private ["_target","_return","_tarKeys"];
+
     params [["_target",objNull]];
 
-    if (isPlayer _target) then {
-        _var = "PLAYER_KEYS";
-    } else {
-        _var = "VEHICLE_KEYS";
-    };
-
     _return = false;
-    if !(isNull _target || isNull _player) then {
-        _tarKeys = _target getVariable [_var, [[],[]] ];
+    if !(isNull _target) then {
+        if (isPlayer _target) then {
+            _tarKeys = _target getVariable ["PLAYER_KEYS", [[],[]] ];
+        } else {
+            _tarKeys = _target getVariable ["VEHICLE_KEYS", [[],[]] ];
+        };
         if (count (_tarKeys select 0) > 0) then {
             _return = true;
-            _target setVariable ["HAS_KEYS", true];
+            _target setVariable ["HAS_KEYS", true, true];
         };
     };
+
+    diag_log text format ["DEBUG: targetHasKeys: target- %1 / tarKeys- %2 / return- %3",(typeOf _target),str (_tarKeys),_return];
 
     _return
 };
 
 EPOCH_fnc_server_targetKeyInfo = {
     // Sets Information about target keys - NO SECRETS
-    _target = param [1,objNull];
+    private ["_target","_targetKeys","_return"];
+
+    params [["_target",objNull]];
+
+    if (isNull _target) exitWith {};
 
     if (isPlayer _target) then {
         _targetKeys = _target getVariable ["PLAYER_KEYS", [[],[]] ];
@@ -278,19 +289,27 @@ EPOCH_fnc_server_targetKeyInfo = {
     };
 
     _return = [];
-    if ((!isNull _target) && (count (_targetKeys select 0) > 0)) then {
+    if (count (_targetKeys select 0) > 0) then {
         {
-            _return pushBack [((_x select 0) select 0),((_targetKeys select 1) select _forEachIndex)];
+            _return pushBack [(_x select 0),((_targetKeys select 1) select _forEachIndex)];
         } forEach (_targetKeys select 0);
+    } else {
+        _target setVariable ["KEY_INFO", [], true];
+        _target setVariable ["HAS_KEYS", false, true];
     };
 
     if (count _return > 0) then {
-        _target setVariable ["KEY_INFO", _return];
+        _target setVariable ["KEY_INFO", _return, true];
+        _target setVariable ["HAS_KEYS", true, true];
     };
+
+    diag_log text format ["DEBUG: targetKeyInfo: target- %1 / targetKeys- %2 / return- %3",(typeOf _target),str _targetKeys,str _return];
 };
 
 EPOCH_fnc_server_transferKeys = {
     // Transfer Vehicle Keys from one player to another
+    private ["_player1","_player2","_index","_p1Keys","_p2Keys","_cnt","_vars","_alrHasKey"];
+
     params [["_player1",objNull],["_player2",objNull],["_index",0]];
 
     // Add more valid player checking?
@@ -299,7 +318,7 @@ EPOCH_fnc_server_transferKeys = {
         _p1Keys = _player1 getVariable ["PLAYER_KEYS", [[],[]] ];
         _p2Keys = _player2 getVariable ["PLAYER_KEYS", [[],[]] ];
 
-        if (count (_p1Keys select 0) > 0) then {
+        if ((count (_p1Keys select 0) > 0) && ((count (_p1Keys select 0))-1 >= _index)) then {
             // Take from Player 1
             _cnt = (_p1Keys select 1) select _index;
             if (_cnt > 1) then {
@@ -321,15 +340,19 @@ EPOCH_fnc_server_transferKeys = {
                 (_p2Keys select 1) pushBack _cnt;
             };
             _player2 setVariable ["PLAYER_KEYS", _p2Keys];
-            _player2 setVariable ["HAS_KEYS", true];
+            _player2 setVariable ["HAS_KEYS", true, true];
             _player2 call EPOCH_fnc_server_targetKeyInfo;
         };
+
+        diag_log text format ["DEBUG: transferKeys: play1- %1 / play2- %2 / index- %3 / p1keys- %4 / p2keys-%5",(name _player1),(name _player2),_index,str _p1Keys,str _p2Keys];
     };
 };
 
 EPOCH_fnc_server_transferKeysStorage = {
     // Transfer Keys from Storage && Vehicles to player or vice versa
     // OBJ1 to OBJ2
+    private ["_obj1","_obj2","_index","_isStor1","_isStor2","_isVeh1","_isVeh2","_obj1Keys","_cnt","_vars","_alrHasKey","_obj2Keys"];
+
     params [["_obj1",objNull],["_obj2",objNull],["_index",0]];
 
     if !(isNull _obj1 || isNull _obj2) then {
@@ -341,7 +364,7 @@ EPOCH_fnc_server_transferKeysStorage = {
 
         if (isPlayer _obj1 && !isPlayer _obj2 && (_isStor2 || _isVeh2)) then {
             _obj1Keys = _obj1 getVariable ["PLAYER_KEYS", [[],[]] ];
-            if ((count (_obj1Keys select 0) > 0) && (!isNull ((_obj1Keys select 0) select _index))) then {
+            if ((count (_obj1Keys select 0) > 0) && ((count (_obj1Keys select 0))-1 >= _index)) then {
 
                 // Take from Player
                 _cnt = (_obj1Keys select 1) select _index;
@@ -365,13 +388,15 @@ EPOCH_fnc_server_transferKeysStorage = {
                     (_obj2Keys select 1) pushBack _cnt;
                 };
                 _obj2 setVariable ["VEHICLE_KEYS", _obj2Keys];
-                _obj2 setVariable ["HAS_KEYS", true];
+                _obj2 setVariable ["HAS_KEYS", true, true];
                 _obj2 call EPOCH_fnc_server_targetKeyInfo;
             };
+
+            diag_log text format ["DEBUG: transferKeysStor: obj1- %1 / obj2- %2 / index- %3 / obj1Keys- %4",(name _obj1),(typeOf _obj2),_index,str _obj1Keys];
         };
         if (!isPlayer _obj1 && isPlayer _obj2 && (_isStor1 || _isVeh1)) then {
             _obj1Keys = _obj1 getVariable ["VEHICLE_KEYS", [[],[]] ];
-            if ((count (_obj1Keys select 0) > 0) && (!isNull ((_obj1Keys select 0) select _index))) then {
+            if ((count (_obj1Keys select 0) > 0) && ((count (_obj1Keys select 0))-1 >= _index)) then {
 
                 // Take from Object
                 _cnt = (_obj1Keys select 1) select _index;
@@ -395,25 +420,29 @@ EPOCH_fnc_server_transferKeysStorage = {
                     (_obj2Keys select 1) pushBack _cnt;
                 };
                 _obj2 setVariable ["PLAYER_KEYS", _obj2Keys];
-                _obj2 setVariable ["HAS_KEYS", true];
+                _obj2 setVariable ["HAS_KEYS", true, true];
                 _obj2 call EPOCH_fnc_server_targetKeyInfo;
             };
+
+            diag_log text format ["DEBUG: transferKeysStor: obj1- %1 / obj2- %2 / index- %3 / obj1Keys- %4",(typeof _obj1),(name _obj2),_index,str _obj1Keys];
         };
     };
 };
 
 EPOCH_fnc_server_deleteKey = {
     // Drops a key the player has
+    private ["_player","_cid","_index","_caller","_playerKeys","_cnt","_vars"];
+
     params [["_player",objNull],["_cid",""],["_index",-1]];
 
-    if !(isNull _player || !isPlayer _player || _uid isEqualTo "" || _index isEqualTo -1) then {
+    if !(isNull _player || !isPlayer _player || _cid isEqualTo "" || _index isEqualTo -1) then {
         _caller = remoteExecutedOwner;
         if !(_caller isEqualTo _cid || _cid isEqualTo (owner _player) || (owner _player) isEqualTo _caller) exitWith {
-            diag_log text format ["Epoch: ERROR player (%1) attempted to drop %2's keys!",_caller,(name _player)];
+            diag_log text format ["Epoch: ERROR player (%1) attempted to delete %2's keys!",_caller,(name _player)];
         };
 
         _playerKeys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
-        if ((count (_playerKeys select 0) > 0) && (!isNull ((_playerKeys select 0) select _index))) then {
+        if ((count (_playerKeys select 0) > 0) && ((count (_playerKeys select 0))-1 >= _index)) then {
             _cnt = (_playerKeys select 1) select _index;
             if (_cnt isEqualTo 1) then {
                 _vars = (_playerKeys select 0) deleteAt _index;
@@ -423,6 +452,13 @@ EPOCH_fnc_server_deleteKey = {
             };
             _player setVariable ["PLAYER_KEYS", _playerKeys];
             _player call EPOCH_fnc_server_targetKeyInfo;
+
+            if (count (_playerKeys select 0) < 1) then {
+                _player setVariable ["HAS_KEYS", false, true];
+                _player call EPOCH_fnc_server_targetKeyInfo;
+            };
+
+            diag_log text format ["DEBUG: deleteKey: player- %1 / cid- %2 / index- %3 / caller- %4 / plyrKeys- %5",_player,_cid,_index,_caller,str _playerKeys];
         };
     };
 };
@@ -431,6 +467,8 @@ EPOCH_fnc_server_alreadyHasKey = {
     // Checks whether the object already has the provided key on it
     // If it does, we don't want to give duplicates, just more copies
     // Returns BOOL on FAIL or INDEX NUMBER on SUCCESS
+    private ["_type","_secret","_target","_return","_keys"];
+
     params [["_type",""],["_secret",""],["_target",objNull]];
 
     if !(_type isEqualTo "" || _secret isEqualTo "" || isNull _target) then {
@@ -455,11 +493,13 @@ EPOCH_fnc_server_alreadyHasKey = {
 EPOCH_fnc_server_testVehKey = {
     // Takes provided vehicle secret and compares it to DB hash
     // Returns BOOL on accepted or failed
-    _vehicle = param [0, objNull];
-    _testSecret = param [1, ""];
+    private ["_vehicle","_testSecret","_vehDBHash","_testHash"];
+
+    params [["_vehicle",objNull],["_testSecret",""]];
 
     if (isNull _vehicle || {!alive _vehicle} || {_testSecret isEqualTo ""} || {_testSecret isEqualTo "NOKEY"}) then { false } else {
         _vehDBHash = _vehicle call EPOCH_fnc_server_hashVehicle;
+        _testHash = "";
         if (_vehDBHash isEqualTo "NOKEY") then { true } else {
             _testHash = [_vehicle,_testSecret] call EPOCH_fnc_server_hashVehicle;
 
@@ -470,6 +510,8 @@ EPOCH_fnc_server_testVehKey = {
 
 EPOCH_fnc_server_isStorageObj = {
     // Returns BOOL on whether the class/obj provided is buildable storage
+    private ["_obj","_type","_cfgBaseBuilding","_staticClassConfig","_staticClass"];
+
     params [["_obj",objNull]];
 
     if (_obj isEqualType "") then {
@@ -482,7 +524,7 @@ EPOCH_fnc_server_isStorageObj = {
     _staticClassConfig = (_cfgBaseBuilding >> _type >> "staticClass");
     if (isText _staticClassConfig) then {
         _staticClass = getText(_staticClassConfig);
-        if (_staticClass isKindOf "Buildable_Storage" || _staticClass isKindOf "Constructions_lockedstatic_F") then{
+        if (_staticClass isKindOf "Buildable_Storage" || _staticClass isKindOf "Constructions_lockedstatic_F" || _staticClass isKindOf 'Secure_Storage_Temp') then{
             true
         } else { false };
     } else { false };

@@ -40,6 +40,7 @@ _plyrHasKey = false;
         };
     };
 } forEach (_plyrKeys select 0);
+//diag_log text format ["DEBUG: LockVeh Keys: isKeyed- %1 / _plyrKeys- %2 / plyrHasKey- %3 / Player- %4",_vehKeyed,_plyrKeys,_plyrHasKey,_player];
 
 // Group access
 _playerUID = getPlayerUID _player;
@@ -128,12 +129,12 @@ if (_logic) then {
             // Convert to New System
             _secret = ('epochserver' callExtension format['810|%1', 1]);
 
-    		_rnd1 = (_vehClass+_secret) call EPOCH_fnc_server_hiveMD5;
-            _vehHash = [((_rnd1)+(EPOCH_server_vehRandomKey))] call EPOCH_fnc_server_hiveMD5;
+    		_rnd1 = ((typeOf _vehicle)+_secret) call EPOCH_fnc_server_hiveMD5;
+            _vehHash = ((_rnd1)+(EPOCH_server_vehRandomKey)) call EPOCH_fnc_server_hiveMD5;
 
-    		_vehObj setVariable ["VEHICLE_KEYHASH",_vehHash];
+    		_vehicle setVariable ["VEHICLE_KEYHASH",_vehHash,true];
 
-    		(_plyrKeys select 0) pushback [_vehClass,_secret];
+    		(_plyrKeys select 0) pushback [(typeOf _vehicle),_secret];
     		(_plyrKeys select 1) pushback 1;
     		_player setVariable ["PLAYER_KEYS",_plyrKeys];
 
@@ -142,6 +143,8 @@ if (_logic) then {
 
             // Force Vehicle Save
             [_vehicle,_secret] call EPOCH_server_save_vehicle;
+
+            //diag_log text format ["DEBUG: LockVeh Keys: Secret- %1 / Hash- %2 / _plyrKeys- %3",_secret,_vehHash,str (_player getVariable ["PLAYER_KEYS", [] ])];
 
             // Inform
             ["A key was added to your keychain",5] remoteExec ["Epoch_Message",_player];

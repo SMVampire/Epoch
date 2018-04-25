@@ -145,10 +145,10 @@ for "_i" from 1 to _maxStorageLimit do {
 			};
 
 			// Add Vehicle Keys
-			_keys = _arr param [6,[[],[]]];
+			_keys = _arr param [7, [[],[]] ];
 			_vehicle setVariable ["VEHICLE_KEYS", _keys];
 			if (count (_keys select 0) > 0) then {
-				_vehicle setVariable ["HAS_KEYS", true];
+				_vehicle setVariable ["HAS_KEYS", true, true];
 
 				_vehicle call EPOCH_fnc_server_targetKeyInfo;
 			};
