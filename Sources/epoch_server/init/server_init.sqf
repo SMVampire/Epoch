@@ -212,7 +212,7 @@ EPOCH_fnc_server_hashVehicle = {
         _return = "NOKEY";
     };
 
-    diag_log text format ["DEBUG: hashVehicle: vehicle- %1 / secret- %2 / serverKey- %3 / hash- %4",(typeOf _vehicle),_keySecret,(EPOCH_server_vehRandomKey),_return];
+    //diag_log text format ["DEBUG: hashVehicle: vehicle- %1 / secret- %2 / serverKey- %3 / hash- %4",(typeOf _vehicle),_keySecret,(EPOCH_server_vehRandomKey),_return];
 
     _return
 };
@@ -269,7 +269,7 @@ EPOCH_fnc_server_targetHasKeys = {
         };
     };
 
-    diag_log text format ["DEBUG: targetHasKeys: target- %1 / tarKeys- %2 / return- %3",(typeOf _target),str (_tarKeys),_return];
+    //diag_log text format ["DEBUG: targetHasKeys: target- %1 / tarKeys- %2 / return- %3",(typeOf _target),str (_tarKeys),_return];
 
     _return
 };
@@ -303,7 +303,7 @@ EPOCH_fnc_server_targetKeyInfo = {
         _target setVariable ["HAS_KEYS", true, true];
     };
 
-    diag_log text format ["DEBUG: targetKeyInfo: target- %1 / targetKeys- %2 / return- %3",(typeOf _target),str _targetKeys,str _return];
+    //diag_log text format ["DEBUG: targetKeyInfo: target- %1 / targetKeys- %2 / return- %3",(typeOf _target),str _targetKeys,str _return];
 };
 
 EPOCH_fnc_server_transferKeys = {
@@ -344,7 +344,7 @@ EPOCH_fnc_server_transferKeys = {
             _player2 call EPOCH_fnc_server_targetKeyInfo;
         };
 
-        diag_log text format ["DEBUG: transferKeys: play1- %1 / play2- %2 / index- %3 / p1keys- %4 / p2keys-%5",(name _player1),(name _player2),_index,str _p1Keys,str _p2Keys];
+        //diag_log text format ["DEBUG: transferKeys: play1- %1 / play2- %2 / index- %3 / p1keys- %4 / p2keys-%5",(name _player1),(name _player2),_index,str _p1Keys,str _p2Keys];
     };
 };
 
@@ -392,7 +392,7 @@ EPOCH_fnc_server_transferKeysStorage = {
                 _obj2 call EPOCH_fnc_server_targetKeyInfo;
             };
 
-            diag_log text format ["DEBUG: transferKeysStor: obj1- %1 / obj2- %2 / index- %3 / obj1Keys- %4",(name _obj1),(typeOf _obj2),_index,str _obj1Keys];
+            //diag_log text format ["DEBUG: transferKeysStor: obj1- %1 / obj2- %2 / index- %3 / obj1Keys- %4",(name _obj1),(typeOf _obj2),_index,str _obj1Keys];
         };
         if (!isPlayer _obj1 && isPlayer _obj2 && (_isStor1 || _isVeh1)) then {
             _obj1Keys = _obj1 getVariable ["VEHICLE_KEYS", [[],[]] ];
@@ -424,7 +424,7 @@ EPOCH_fnc_server_transferKeysStorage = {
                 _obj2 call EPOCH_fnc_server_targetKeyInfo;
             };
 
-            diag_log text format ["DEBUG: transferKeysStor: obj1- %1 / obj2- %2 / index- %3 / obj1Keys- %4",(typeof _obj1),(name _obj2),_index,str _obj1Keys];
+            //diag_log text format ["DEBUG: transferKeysStor: obj1- %1 / obj2- %2 / index- %3 / obj1Keys- %4",(typeof _obj1),(name _obj2),_index,str _obj1Keys];
         };
     };
 };
@@ -458,7 +458,7 @@ EPOCH_fnc_server_deleteKey = {
                 _player call EPOCH_fnc_server_targetKeyInfo;
             };
 
-            diag_log text format ["DEBUG: deleteKey: player- %1 / cid- %2 / index- %3 / caller- %4 / plyrKeys- %5",_player,_cid,_index,_caller,str _playerKeys];
+            //diag_log text format ["DEBUG: deleteKey: player- %1 / cid- %2 / index- %3 / caller- %4 / plyrKeys- %5",_player,_cid,_index,_caller,str _playerKeys];
         };
     };
 };

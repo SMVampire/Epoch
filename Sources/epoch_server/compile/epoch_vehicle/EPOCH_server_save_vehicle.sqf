@@ -50,6 +50,8 @@ if (!isNull _vehicle) then {
 
 		_storedKeys = _vehicle getVariable ["VEHICLE_KEYS", [[],[]] ];
 
+		//diag_log text format ["DEBUG: Save Vehicle: Class- %1 / Pos- %2 / Dir- %3 / Slot- %4 / player- %5 / Nil Secret?- %6",_vehClass,_position,_direction,_slot,_player,(isNil "_secret")];
+
 		_VAL = [typeOf _vehicle,[getposworld _vehicle,vectordir _vehicle,vectorup _vehicle,true],damage _vehicle,_hitpoints,fuel _vehicle,_inventory,[true,magazinesAllTurrets _vehicle],_colorSlot,_baseType,_vehSecret,_storedKeys];
 		["Vehicle", _vehHiveKey, EPOCH_expiresVehicle, _VAL] call EPOCH_fnc_server_hiveSETEX;
 	};

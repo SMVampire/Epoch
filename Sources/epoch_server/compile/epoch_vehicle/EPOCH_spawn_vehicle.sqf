@@ -153,6 +153,8 @@ if !(isNull _vehObj) then{
 	// make vehicle mortal again
 	_vehObj allowDamage true;
 
+	//diag_log text format ["DEBUG: Spawn Vehicle: Class- %1 / Pos- %2 / Dir- %3 / Slot- %4 / player- %5 / Nil Secret?- %6",_vehClass,_position,_direction,_slot,_player,(isNil "_secret")];
+
 } else {
 	diag_log format["DEBUG: Failed to create vehicle: %1", _this];
 };

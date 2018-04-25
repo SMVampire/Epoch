@@ -150,6 +150,8 @@ for "_i" from 1 to _spawnCount do {
 		};
 
 	};
+
+	//diag_log text format ["DEBUG: Spawn Vehicles: Class- %1 / Pos- %2 / Dir- %3 / Slot- %4",_vehClass,_position,_direction,_slot];
 };
 missionNamespace setVariable ['EPOCH_VehicleSlotCount', count EPOCH_VehicleSlots, true];
 true
