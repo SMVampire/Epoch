@@ -37,11 +37,16 @@ if (!isNull _vehicle) then {
 		_vehSecret = "";
 		_response = ["Vehicle", _vehHiveKey] call EPOCH_fnc_server_hiveGETRANGE;
 		_response params ["_status","_oldVeh"];
-		if ((_response select 0) == 1 && (_response select 1) isEqualType []) then {
+		if (_status == 1 && (_response select 1) isEqualType []) then {
 			if (count _oldVeh > 10) then {
 				_vehSecret = _oldVeh select 9;
 				if (_vehSecret isEqualTo "") then {
 					_vehSecret = _provSecret; // Use provided secret - DB secret is empty string
+				};
+			} else {
+				if (count _oldVeh == 0) then {
+					// First Spawn - Use provided secret
+					_vehSecret = _provSecret;
 				};
 			};
 		} else {
@@ -50,7 +55,7 @@ if (!isNull _vehicle) then {
 
 		_storedKeys = _vehicle getVariable ["VEHICLE_KEYS", [[],[]] ];
 
-		//diag_log text format ["DEBUG: Save Vehicle: Class- %1 / Pos- %2 / Dir- %3 / Slot- %4 / player- %5 / Nil Secret?- %6",_vehClass,_position,_direction,_slot,_player,(isNil "_secret")];
+		//diag_log text format ["DEBUG: Save Vehicle: Class- %1 / Slot- %2 / provSecret- %3 / vehSecret- %4",(typeOf _vehicle),_vehSlot,_provSecret,_vehSecret];
 
 		_VAL = [typeOf _vehicle,[getposworld _vehicle,vectordir _vehicle,vectorup _vehicle,true],damage _vehicle,_hitpoints,fuel _vehicle,_inventory,[true,magazinesAllTurrets _vehicle],_colorSlot,_baseType,_vehSecret,_storedKeys];
 		["Vehicle", _vehHiveKey, EPOCH_expiresVehicle, _VAL] call EPOCH_fnc_server_hiveSETEX;
