@@ -17,7 +17,7 @@ private [	"_MaxBankDebit","_SkipOut","_VAL","_aiItems","_bankBalance","_bankData
 			"_group","_helipad","_helipads","_item","_itemClasses","_itemQty","_itemQtys","_itemTax","_itemWorth","_itemsIn","_itemsOut","_makeTradeIn","_message","_nearByHolder",
 			"_objHiveKey","_objOwner","_playerCryptoLimit","_playerNetID","_playerUID","_position","_qtyIndex","_response","_return","_returnIn","_returnOut","_road","_serverSettingsConfig",
 			"_slot","_smoke","_tax","_tmpposition","_tradeIn","_tradeOut","_tradeQtyTotal","_tradeTotal","_vars","_vehHiveKey","_vehObj","_vehSlot","_vehicle","_vehicleBought",
-			"_vehicleSold","_vehicles","_vehslot","_wH","_wHPos","_wp","_kIndex","_playerCStats","_playerKarma","_playerKarmaAdj","_EnableTempVehTrade"
+			"_vehicleSold","_vehicles","_vehslot","_wH","_wHPos","_wp","_kIndex","_playerCStats","_playerKarma","_playerKarmaAdj","_EnableTempVehTrade","_vehKeyed","_plyrKeys","_plyrHasKey","_matching"
 ];
 params ["_trader","_itemsIn","_itemsOut","_player",["_token","",[""]] ];
 
@@ -90,6 +90,41 @@ if (_slot != -1) then {
                                     _item = _BaseClass;
 									_itemsIn set [_foreachindex,[_item,_itemQty]];
                                 };
+
+								// Delete Key from Player (if they have it)
+								_vehKeyed = _vehicle call EPOCH_fnc_server_vehIsKeyed;
+								_plyrKeys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+								_plyrHasKey = false;
+								{
+								    if ((_x select 0) isEqualTo (typeOf _vehicle)) then {
+								        _matching = [_vehicle,(_x select 1)] call EPOCH_fnc_server_testVehKey;
+								        if (_matching) then {
+								            _plyrHasKey = _foreachindex;
+								        };
+								    };
+								} forEach (_plyrKeys select 0);
+
+								if (_plyrHasKey isEqualType 0) then {
+									_index = _plyrHasKey;
+									if ((count (_plyrKeys select 0) > 0) && ((count (_plyrKeys select 0))-1 >= _index)) then {
+										_cnt = (_plyrKeys select 1) select _index;
+							            if (_cnt isEqualTo 1) then {
+							                _vars = (_plyrKeys select 0) deleteAt _index;
+							                _cnt = (_plyrKeys select 1) deleteAt _index;
+							            } else {
+							                _cnt = (_plyrKeys select 1) set [_index,(_cnt)-1];
+							            };
+							            _player setVariable ["PLAYER_KEYS", _plyrKeys];
+							            _player call EPOCH_fnc_server_targetKeyInfo;
+							            [_player, _player getVariable["VARS", []] ] call EPOCH_server_savePlayer;
+
+							            if (count (_plyrKeys select 0) < 1) then {
+							                _player setVariable ["HAS_KEYS", false, true];
+							                _player call EPOCH_fnc_server_targetKeyInfo;
+							            };
+									};
+								};
+
                                 removeFromRemainsCollector [_vehicle];
 								deleteVehicle _vehicle;
 								_vehHiveKey = format["%1:%2", (call EPOCH_fn_InstanceID), _vehSlot];
