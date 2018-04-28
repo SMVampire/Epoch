@@ -139,7 +139,7 @@ for "_i" from 1 to _spawnCount do {
 			};
 		};
 
-		_vehObj = [_vehClass,_position,_direction,true,_slot,objNull,_collide,true,true] call EPOCH_spawn_vehicle;
+		_vehObj = [_vehClass,_position,_direction,false,_slot,objNull,_collide,true,true] call EPOCH_spawn_vehicle;
 
 		if (EPOCH_DEBUG_VEH) then {
 			_marker = createMarker [str(_position) , _position];
