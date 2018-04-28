@@ -64,7 +64,7 @@ if (_allowSave) then{
 	_group = _player getVariable ["GROUP", ""];
 	_revive = _player getVariable ["REVIVE", true];
 
-	_keys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+	_keys = _player getVariable ["VEHICLE_KEYS", [[],[]] ];
 
 	_pos = (getposATL _player call EPOCH_precisionPos);
 

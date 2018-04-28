@@ -136,12 +136,12 @@ if (!local _player) then {
 				[_newPlyr,_loadout] call Epoch_server_SetUnitLoadout;
 
 				// Move Keys over
-				_keys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+				_keys = _player getVariable ["VEHICLE_KEYS", [[],[]] ];
 				// Purge _player keys
-				_player setVariable ["PLAYER_KEYS", [[],[]] ];
+				_player setVariable ["VEHICLE_KEYS", [[],[]] ];
 				_player setVariable ["HAS_KEYS", false];
 				// Transfer Keys to _newPlyr
-				_newPlyr setVariable ["PLAYER_KEYS", _keys];
+				_newPlyr setVariable ["VEHICLE_KEYS", _keys];
 				_newPlyr setVariable ["HAS_KEYS", true];
 				_newPlyr call EPOCH_fnc_server_targetKeyInfo;
 

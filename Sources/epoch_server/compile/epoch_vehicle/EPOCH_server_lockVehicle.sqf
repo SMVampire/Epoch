@@ -30,7 +30,7 @@ _VehLockMessages = ['CfgEpochClient' call EPOCH_returnConfig, "VehLockMessages",
 
 // Prep for Key (un)lock
 _vehKeyed = _vehicle call EPOCH_fnc_server_vehIsKeyed;
-_plyrKeys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+_plyrKeys = _player getVariable ["VEHICLE_KEYS", [[],[]] ];
 _plyrHasKey = false;
 {
     if ((_x select 0) isEqualTo (typeOf _vehicle)) then {
@@ -136,7 +136,7 @@ if (_logic) then {
 
     		(_plyrKeys select 0) pushback [(typeOf _vehicle),_secret];
     		(_plyrKeys select 1) pushback 1;
-    		_player setVariable ["PLAYER_KEYS",_plyrKeys];
+    		_player setVariable ["VEHICLE_KEYS",_plyrKeys];
 
             // Purge Group Lock
             ["VehicleLock", _vehLockHiveKey] call EPOCH_fnc_server_hiveDEL;
@@ -144,7 +144,7 @@ if (_logic) then {
             // Force Vehicle Save
             [_vehicle,_secret] call EPOCH_server_save_vehicle;
 
-            //diag_log text format ["DEBUG: LockVeh Keys: Secret- %1 / Hash- %2 / _plyrKeys- %3",_secret,_vehHash,str (_player getVariable ["PLAYER_KEYS", [] ])];
+            //diag_log text format ["DEBUG: LockVeh Keys: Secret- %1 / Hash- %2 / _plyrKeys- %3",_secret,_vehHash,str (_player getVariable ["VEHICLE_KEYS", [] ])];
         };
     };
 

@@ -258,11 +258,7 @@ EPOCH_fnc_server_targetHasKeys = {
 
     _return = false;
     if !(isNull _target) then {
-        if (isPlayer _target) then {
-            _tarKeys = _target getVariable ["PLAYER_KEYS", [[],[]] ];
-        } else {
-            _tarKeys = _target getVariable ["VEHICLE_KEYS", [[],[]] ];
-        };
+        _tarKeys = _target getVariable ["VEHICLE_KEYS", [[],[]] ];
         if (count (_tarKeys select 0) > 0) then {
             _return = true;
             _target setVariable ["HAS_KEYS", true, true];
@@ -282,11 +278,7 @@ EPOCH_fnc_server_targetKeyInfo = {
 
     if (isNull _target) exitWith {};
 
-    if (isPlayer _target) then {
-        _targetKeys = _target getVariable ["PLAYER_KEYS", [[],[]] ];
-    } else {
-        _targetKeys = _target getVariable ["VEHICLE_KEYS", [[],[]] ];
-    };
+    _targetKeys = _target getVariable ["VEHICLE_KEYS", [[],[]] ];
 
     _return = [];
     if (count (_targetKeys select 0) > 0) then {
@@ -315,8 +307,8 @@ EPOCH_fnc_server_transferKeys = {
     // Add more valid player checking?
 
     if !(isNull _player1 || isNull _player2 || local _player1 || local _player2 || !isPlayer _player1 || !isPlayer _player2) then {
-        _p1Keys = _player1 getVariable ["PLAYER_KEYS", [[],[]] ];
-        _p2Keys = _player2 getVariable ["PLAYER_KEYS", [[],[]] ];
+        _p1Keys = _player1 getVariable ["VEHICLE_KEYS", [[],[]] ];
+        _p2Keys = _player2 getVariable ["VEHICLE_KEYS", [[],[]] ];
 
         if ((count (_p1Keys select 0) > 0) && ((count (_p1Keys select 0))-1 >= _index)) then {
             // Take from Player 1
@@ -328,7 +320,7 @@ EPOCH_fnc_server_transferKeys = {
                 _vars = (_p1Keys select 0) deleteAt _index;
                 _cnt = (_p1Keys select 1) deleteAt _index;
             };
-            _player1 setVariable ["PLAYER_KEYS", _p1Keys];
+            _player1 setVariable ["VEHICLE_KEYS", _p1Keys];
             _player1 call EPOCH_fnc_server_targetKeyInfo;
             [_player1, _player1 getVariable["VARS", []] ] call EPOCH_server_savePlayer;
 
@@ -340,7 +332,7 @@ EPOCH_fnc_server_transferKeys = {
                 (_p2Keys select 0) pushBack _vars;
                 (_p2Keys select 1) pushBack _cnt;
             };
-            _player2 setVariable ["PLAYER_KEYS", _p2Keys];
+            _player2 setVariable ["VEHICLE_KEYS", _p2Keys];
             _player2 setVariable ["HAS_KEYS", true, true];
             _player2 call EPOCH_fnc_server_targetKeyInfo;
             [_player2, _player2 getVariable["VARS", []] ] call EPOCH_server_savePlayer;
@@ -368,7 +360,7 @@ EPOCH_fnc_server_transferKeysStorage = {
         _isVeh2 = if (alive _obj2 && !(locked _obj2 in [2,3])) then { ((_obj2 isKindOf 'LandVehicle') || (_obj2 isKindOf 'Air') || (_obj2 isKindOf 'Ship') || (_obj2 isKindOf 'Tank')) } else {false};
 
         if (isPlayer _obj1 && !isPlayer _obj2 && (_isStor2 || _isVeh2)) then {
-            _obj1Keys = _obj1 getVariable ["PLAYER_KEYS", [[],[]] ];
+            _obj1Keys = _obj1 getVariable ["VEHICLE_KEYS", [[],[]] ];
             if ((count (_obj1Keys select 0) > 0) && ((count (_obj1Keys select 0))-1 >= _index)) then {
 
                 // Take from Player
@@ -380,7 +372,7 @@ EPOCH_fnc_server_transferKeysStorage = {
                     _vars = (_obj1Keys select 0) select _index;
                     _cnt = (_obj1Keys select 1) set [_index,(_cnt)-1];
                 };
-                _obj1 setVariable ["PLAYER_KEYS", _obj1Keys];
+                _obj1 setVariable ["VEHICLE_KEYS", _obj1Keys];
                 _obj1 call EPOCH_fnc_server_targetKeyInfo;
                 [_obj1, _obj1 getVariable["VARS", []] ] call EPOCH_server_savePlayer;
 
@@ -429,7 +421,7 @@ EPOCH_fnc_server_transferKeysStorage = {
                     (_obj2Keys select 0) pushBack _vars;
                     (_obj2Keys select 1) pushBack _cnt;
                 };
-                _obj2 setVariable ["PLAYER_KEYS", _obj2Keys];
+                _obj2 setVariable ["VEHICLE_KEYS", _obj2Keys];
                 _obj2 setVariable ["HAS_KEYS", true, true];
                 _obj2 call EPOCH_fnc_server_targetKeyInfo;
                 [_obj2, _obj2 getVariable["VARS", []] ] call EPOCH_server_savePlayer;
@@ -454,7 +446,7 @@ EPOCH_fnc_server_deleteKey = {
             diag_log text format ["Epoch: ERROR player (%1) attempted to delete %2's keys!",_caller,(name _player)];
         };
 
-        _playerKeys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+        _playerKeys = _player getVariable ["VEHICLE_KEYS", [[],[]] ];
         if ((count (_playerKeys select 0) > 0) && ((count (_playerKeys select 0))-1 >= _index)) then {
             _cnt = (_playerKeys select 1) select _index;
             if (_cnt isEqualTo 1) then {
@@ -464,7 +456,7 @@ EPOCH_fnc_server_deleteKey = {
                 _vars = (_playerKeys select 0) select _index;
                 _cnt = (_playerKeys select 1) set [_index,(_cnt)-1];
             };
-            _player setVariable ["PLAYER_KEYS", _playerKeys];
+            _player setVariable ["VEHICLE_KEYS", _playerKeys];
             _player call EPOCH_fnc_server_targetKeyInfo;
             [_player, _player getVariable["VARS", []] ] call EPOCH_server_savePlayer;
 
@@ -490,11 +482,7 @@ EPOCH_fnc_server_alreadyHasKey = {
 
     if !(_type isEqualTo "" || _secret isEqualTo "" || isNull _target) then {
         _return = false;
-        if (isPlayer _target) then {
-            _keys = _target getVariable ["PLAYER_KEYS", [[],[]] ];
-        } else {
-            _keys = _target getVariable ["VEHICLE_KEYS", [[],[]] ];
-        };
+        _keys = _target getVariable ["VEHICLE_KEYS", [[],[]] ];
         if (count (_keys select 0) > 0) then {
             {
                 if (_x isEqualTo [_type,_secret]) then {

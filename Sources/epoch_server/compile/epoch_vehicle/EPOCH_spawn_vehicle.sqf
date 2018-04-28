@@ -115,10 +115,10 @@ if !(isNull _vehObj) then{
 
 		_vehObj setVariable ["VEHICLE_KEYHASH",_vehHash];
 
-		_plyrKeys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
 		(_plyrKeys select 0) pushback [_vehClass,_secret];
+		_plyrKeys = _player getVariable ["VEHICLE_KEYS", [[],[]] ];
 		(_plyrKeys select 1) pushback 1;
-		_player setVariable ["PLAYER_KEYS",_plyrKeys];
+		_player setVariable ["VEHICLE_KEYS",_plyrKeys];
 		_player setVariable ["HAS_KEYS", true, true];
 		_player call EPOCH_fnc_server_targetKeyInfo;
 		[_player, _player getVariable["VARS", []] ] call EPOCH_server_savePlayer;

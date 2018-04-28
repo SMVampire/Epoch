@@ -93,7 +93,7 @@ if (_slot != -1) then {
 
 								// Delete Key from Player (if they have it)
 								_vehKeyed = _vehicle call EPOCH_fnc_server_vehIsKeyed;
-								_plyrKeys = _player getVariable ["PLAYER_KEYS", [[],[]] ];
+								_plyrKeys = _player getVariable ["VEHICLE_KEYS", [[],[]] ];
 								_plyrHasKey = false;
 								{
 								    if ((_x select 0) isEqualTo (typeOf _vehicle)) then {
@@ -114,7 +114,7 @@ if (_slot != -1) then {
 							            } else {
 							                _cnt = (_plyrKeys select 1) set [_index,(_cnt)-1];
 							            };
-							            _player setVariable ["PLAYER_KEYS", _plyrKeys];
+							            _player setVariable ["VEHICLE_KEYS", _plyrKeys];
 							            _player call EPOCH_fnc_server_targetKeyInfo;
 							            [_player, _player getVariable["VARS", []] ] call EPOCH_server_savePlayer;
 
