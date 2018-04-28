@@ -37,6 +37,8 @@ if (!isNull _vehicle) then {
 
 		_keys = _vehicle getVariable ["VEHICLE_KEYS", [[],[]] ];
 
+		//diag_log text format ["DEBUG: Save Storage: Class- %1 / Slot- %2 / POS- %3 / Inv- %4 / Owners- %5 / Locked?- %6 / Keys- %7",_class,_vehSlot,str _worldspace,str _inventory,str _storageOwners,_locked,str _keys];
+
 		_VAL = [_class, _worldspace, _damage, _inventory, _colorSlot, _storageOwners, _locked, _keys];
 		["Storage", _vehHiveKey, EPOCH_expiresBuilding, _VAL] call EPOCH_fnc_server_hiveSETEX;
 		diag_log format["STORAGE: saved to hive %1 Pos %2 Owners %3 Locked %4", _class, _worldspace, _storageOwners, _locked];
