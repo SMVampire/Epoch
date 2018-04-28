@@ -15,7 +15,7 @@
 //[[[cog import generate_private_arrays ]]]
 private ["_actualHitpoints","_allHitpoints","_allVehicles","_allowDamage","_arr","_arrNum","_availableColorsConfig","_cfgEpochVehicles","_check","_class","_colors","_config","_count","_dataFormat","_dataFormatCount","_diag","_dmg","_found","_immuneIfStartInBase",
 "_jammerOwner","_jammerRange","_jammers","_location","_lockedOwner","_marker","_nearestJammer","_removemagazinesturret","_removeweapons","_response","_selections","_serverSettingsConfig","_textureSelectionIndex","_textures","_vehHiveKey","_vehLockHiveKey","_vehicle",
-"_vehicleSlotIndex","_keySecret","_storedKeys","_vehHash"];
+"_vehicleSlotIndex","_keySecret","_storedKeys","_vehHash","_lockedOwner","_grpResp","_vehLockHiveKey"];
 //[[[end]]]
 params [["_maxVehicleLimit",0]];
 
@@ -157,7 +157,20 @@ for "_i" from 1 to _maxVehicleLimit do {
 							_vehHash = [_vehicle,_keySecret] call EPOCH_fnc_server_hashVehicle;
 							if !(_vehHash isEqualTo "NOKEY") then {
 								_vehicle setVariable ["VEHICLE_KEYHASH",_vehHash];
+								_vehicle lock true;
 							};
+						};
+
+						// If group locked, group
+						_lockedOwner = "-1";
+						_vehLockHiveKey = format["%1:%2", (call EPOCH_fn_InstanceID), _i];
+						_grpResp = ["VehicleLock", _vehLockHiveKey] call EPOCH_fnc_server_hiveGETRANGE;
+						if ((_grpResp select 0) == 1 && (_grpResp select 1) isEqualType [] && !((_grpResp select 1) isEqualTo[])) then {
+							_lockedOwner = _grpResp select 1 select 0;
+						};
+
+						if !(_lockedOwner isEqualTo "-1") then {
+							_vehicle lock true;
 						};
 
 						// Add Stored Keys to Vehicle
@@ -168,8 +181,6 @@ for "_i" from 1 to _maxVehicleLimit do {
 							_vehicle call EPOCH_fnc_server_targetKeyInfo;
 						};
 
-						// lock all vehicles
-						_vehicle lock true;
 						// load vehicle inventory
 						clearWeaponCargoGlobal _vehicle;
 						clearMagazineCargoGlobal _vehicle;
