@@ -275,7 +275,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 0)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_redkey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 0) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 0) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -291,7 +291,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 1)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_greenkey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 1) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 1) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -307,7 +307,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 2)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_yellowkey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 2) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 2) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -323,7 +323,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 3)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_bluekey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 3) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 3) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -339,7 +339,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 4)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_orangekey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 4) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 4) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -355,7 +355,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 5)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_purplekey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 5) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 5) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -371,7 +371,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 6)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_cyankey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 6) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 6) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -387,7 +387,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 7)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_magentakey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 7) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 7) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -403,7 +403,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 8)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_limekey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 8) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 8) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -419,7 +419,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 9)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_pinkkey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 9) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 9) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -435,7 +435,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 10)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_tealkey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 10) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 10) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -451,7 +451,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 11)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_lavenderkey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 11) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 11) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -467,7 +467,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 12)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_brownkey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 12) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 12) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -483,7 +483,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 13)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_creamkey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 13) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 13) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -499,7 +499,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 14)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_maroonkey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 14) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 14) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -515,7 +515,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 15)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_mintkey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 15) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 15) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -531,7 +531,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 16)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_olivekey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 16) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 16) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -547,7 +547,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 17)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_coralkey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 17) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 17) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -563,7 +563,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 18)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_navykey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 18) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 18) select 0) >> 'displayName')]";
 
 		class delete_key
@@ -579,7 +579,7 @@ class keys_self_menu
 	{
 		condition = "(count EPOCH_playerKeys > 19)";
 		action = "";
-		icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_greykey.paa";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_playerKeys select 19) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 19) select 0) >> 'displayName')]";
 
 		class delete_key

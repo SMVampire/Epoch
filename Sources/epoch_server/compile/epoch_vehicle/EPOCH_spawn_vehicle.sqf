@@ -13,7 +13,7 @@
     https://github.com/EpochModTeam/Epoch/tree/release/Sources/epoch_server/compile/epoch_vehicle/EPOCH_spawn_vehicle.sqf
 */
 //[[[cog import generate_private_arrays ]]]
-private ["_availableColorsConfig","_cfgEpochVehicles","_color","_colors","_count","_marker","_maxDamage","_removemagazinesturret","_removeweapons","_selections","_serverSettingsConfig","_textureSelectionIndex","_textures","_vehLockHiveKey","_vehObj","_secret"];
+private ["_availableColorsConfig","_cfgEpochVehicles","_color","_colors","_count","_marker","_maxDamage","_removemagazinesturret","_removeweapons","_selections","_serverSettingsConfig","_textureSelectionIndex","_textures","_vehLockHiveKey","_vehObj","_secret","_keyC"];
 //[[[end]]]
 params ["_vehClass","_position","_direction","_locked","_slot",["_player",objNull],["_can_collide","CAN_COLLIDE"],["_spawnLoot",false],["_spawnDamaged",true]];
 if !(isClass (configFile >> "CfgVehicles" >> _vehClass)) exitWith {objNull};
@@ -115,8 +115,10 @@ if !(isNull _vehObj) then{
 
 		_vehObj setVariable ["VEHICLE_KEYHASH",_vehHash];
 
-		(_plyrKeys select 0) pushback [_vehClass,_secret];
+		_keyC = selectRandom EPOCH_server_keyColors;
+
 		_plyrKeys = _player getVariable ["VEHICLE_KEYS", [[],[]] ];
+		(_plyrKeys select 0) pushback [_vehClass,_secret,_keyC];
 		(_plyrKeys select 1) pushback 1;
 		_player setVariable ["VEHICLE_KEYS",_plyrKeys];
 		_player setVariable ["HAS_KEYS", true, true];

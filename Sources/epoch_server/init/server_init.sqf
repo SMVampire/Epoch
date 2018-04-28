@@ -174,6 +174,7 @@ call EPOCH_server_spawnTraders;
 
 diag_log "Epoch: Preparing Vehicle Keys";
 EPOCH_server_vehRandomKey = ('epochserver' callExtension format['810|%1', 1]); // Only Reference on Server Side
+EPOCH_server_keyColors = ["blue","brown","coral","cream","cyan","green","grey","lavender","lime","magenta","maroon","mint","navy","olive","orange","pink","purple","red","teal","yellow"];
 
 // TODO --> Move Functions to Files
 EPOCH_fnc_server_hashVehicle = {
@@ -283,7 +284,7 @@ EPOCH_fnc_server_targetKeyInfo = {
     _return = [];
     if (count (_targetKeys select 0) > 0) then {
         {
-            _return pushBack [(_x select 0),((_targetKeys select 1) select _forEachIndex)];
+            _return pushBack [(_x select 0),((_targetKeys select 1) select _forEachIndex),(_x select 2)];
         } forEach (_targetKeys select 0);
     } else {
         _target setVariable ["KEY_INFO", [], true];
@@ -325,7 +326,7 @@ EPOCH_fnc_server_transferKeys = {
             [_player1, _player1 getVariable["VARS", []] ] call EPOCH_server_savePlayer;
 
             // Give to Player 2
-            _alrHasKey = [(_vars select 0),(_vars select 1),_player2] call EPOCH_fnc_server_alreadyHasKey;
+            _alrHasKey = [(_vars select 0),(_vars select 1),(_vars select 2),_player2] call EPOCH_fnc_server_alreadyHasKey;
             if (_alrHasKey isEqualType 0) then {
                 (_p2Keys select 1) set [_alrHasKey,(_cnt)+1];
             } else {
@@ -377,7 +378,7 @@ EPOCH_fnc_server_transferKeysStorage = {
                 [_obj1, _obj1 getVariable["VARS", []] ] call EPOCH_server_savePlayer;
 
                 // Store on Object
-                _alrHasKey = [(_vars select 0),(_vars select 1),_obj2] call EPOCH_fnc_server_alreadyHasKey;
+                _alrHasKey = [(_vars select 0),(_vars select 1),(_vars select 2),_obj2] call EPOCH_fnc_server_alreadyHasKey;
                 _obj2Keys = _obj2 getVariable ["VEHICLE_KEYS", [[],[]] ];
                 if (_alrHasKey isEqualType 0) then {
                     (_obj2Keys select 1) set [_alrHasKey,(_cnt)+1];
@@ -413,8 +414,8 @@ EPOCH_fnc_server_transferKeysStorage = {
                 [[_obj1]] call EPOCH_server_save_vehicles;
 
                 // Give to Player
-                _alrHasKey = [(_vars select 0),(_vars select 1),_obj2] call EPOCH_fnc_server_alreadyHasKey;
-                _obj2Keys = _obj2 getVariable ["PLAYER_KEYS", [[],[]] ];
+                _alrHasKey = [(_vars select 0),(_vars select 1),(_vars select 2),_obj2] call EPOCH_fnc_server_alreadyHasKey;
+                _obj2Keys = _obj2 getVariable ["VEHICLE_KEYS", [[],[]] ];
                 if (_alrHasKey isEqualType 0) then {
                     (_obj2Keys select 1) set [_alrHasKey,(_cnt)+1];
                 } else {
@@ -476,16 +477,16 @@ EPOCH_fnc_server_alreadyHasKey = {
     // Checks whether the object already has the provided key on it
     // If it does, we don't want to give duplicates, just more copies
     // Returns BOOL on FAIL or INDEX NUMBER on SUCCESS
-    private ["_type","_secret","_target","_return","_keys"];
+    private ["_type","_secret","_target","_return","_keys","_color"];
 
-    params [["_type",""],["_secret",""],["_target",objNull]];
+    params [["_type",""],["_secret",""],["_color",""],["_target",objNull]];
 
-    if !(_type isEqualTo "" || _secret isEqualTo "" || isNull _target) then {
+    if !(_type isEqualTo "" || _secret isEqualTo "" || _color isEqualTo "" || isNull _target) then {
         _return = false;
         _keys = _target getVariable ["VEHICLE_KEYS", [[],[]] ];
         if (count (_keys select 0) > 0) then {
             {
-                if (_x isEqualTo [_type,_secret]) then {
+                if (_x isEqualTo [_type,_secret,_color]) then {
                     _return = _forEachIndex;
                 };
             } forEach (_keys select 0);
