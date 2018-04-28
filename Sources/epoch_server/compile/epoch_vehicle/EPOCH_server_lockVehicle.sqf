@@ -80,7 +80,7 @@ _crew = [];
 // With the switch to keys, only use Group (old style) if this is the first unlock since update
 // Otherwise we need to use Key Logic
 
-if (_lockedOwner isEqualTo _lockOwner && !_vehKeyed) then {
+if !(_lockedOwner isEqualTo "-1") then {
     // Vehicle still locked with group system
 
     // if vehicle has a crew and player is not inside vehicle only allow locking if already owner
@@ -102,7 +102,7 @@ if (_lockedOwner isEqualTo _lockOwner && !_vehKeyed) then {
 
     _logic = if !(_crew isEqualTo []) then {
     	if (_player in _crew) then {
-    		// allow (un)lock if player is the driver or is inside the vehicle with out a driver.
+    		// allow (un)lock if player is the driver or is inside the vehicle with out a driver, or has the keys
     		(_player isEqualTo _driver || isNull(_driver) || _plyrHasKey || !alive _driver)
     	} else {
     		// allow only if player has the keys and is outside the vehicle
