@@ -140,7 +140,7 @@ if !(isNull _vehObj) then{
 	if (isNil "_secret") then {
 		_vehObj call EPOCH_server_save_vehicle;
 	} else {
-		[_vehObj,_secret] call EPOCH_server_save_vehicle;
+		[_vehObj,_secret,_keyC] call EPOCH_server_save_vehicle;
 	};
 
 	// Event Handlers

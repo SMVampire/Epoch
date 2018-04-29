@@ -13,7 +13,7 @@
     https://github.com/EpochModTeam/Epoch/tree/release/Sources/epoch_server/compile/epoch_vehicle/EPOCH_server_lockVehicle.sqf
 */
 //[[[cog import generate_private_arrays ]]]
-private ["_VehLockMessages","_msg","_crew","_driver","_isLocked","_lockOwner","_lockedOwner","_logic","_playerGroup","_playerUID","_response","_vehLockHiveKey","_vehSlot","_vehKeyed","_plyrKeys","_plyrHasKey","_matching","_secret","_rnd1","_vehHash"];
+private ["_VehLockMessages","_msg","_crew","_driver","_isLocked","_lockOwner","_lockedOwner","_logic","_playerGroup","_playerUID","_response","_vehLockHiveKey","_vehSlot","_vehKeyed","_plyrKeys","_plyrHasKey","_matching","_secret","_rnd1","_vehHash","_keyC"];
 //[[[end]]]
 params [
     ["_vehicle",objNull,[objNull]],
@@ -134,7 +134,9 @@ if (_logic) then {
 
     		_vehicle setVariable ["VEHICLE_KEYHASH",_vehHash,true];
 
-    		(_plyrKeys select 0) pushback [(typeOf _vehicle),_secret];
+            _keyC = selectRandom EPOCH_server_keyColors;
+
+    		(_plyrKeys select 0) pushback [(typeOf _vehicle),_secret,_keyC];
     		(_plyrKeys select 1) pushback 1;
     		_player setVariable ["VEHICLE_KEYS",_plyrKeys];
 
@@ -142,7 +144,7 @@ if (_logic) then {
             ["VehicleLock", _vehLockHiveKey] call EPOCH_fnc_server_hiveDEL;
 
             // Force Vehicle Save
-            [_vehicle,_secret] call EPOCH_server_save_vehicle;
+            [_vehicle,_secret,_keyC] call EPOCH_server_save_vehicle;
 
             //diag_log text format ["DEBUG: LockVeh Keys: Secret- %1 / Hash- %2 / _plyrKeys- %3",_secret,_vehHash,str (_player getVariable ["VEHICLE_KEYS", [] ])];
         };

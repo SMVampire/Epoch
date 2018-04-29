@@ -14,9 +14,9 @@
 */
 //[[[cog import generate_private_arrays ]]]
 private ["_VAL","_cargo","_cargoIndex","_colorSlot","_hitpoints","_inventory","_magsAmmoCargo","_magsAmmoCargoMinimized","_magsAmmoCargox","_newComponents","_selectedWeapon","_selectedWeaponComponents","_startTime",
-"_vehHiveKey","_vehSlot","_weapon","_weaponComponents","_wepsItemsCargo","_wepsItemsCargoNormalized","_wepsItemsCargox","_provSecret","_response","_status","_oldVeh","_vehSecret","_storedKeys"];
+"_vehHiveKey","_vehSlot","_weapon","_weaponComponents","_wepsItemsCargo","_wepsItemsCargoNormalized","_wepsItemsCargox","_provSecret","_response","_status","_oldVeh","_vehSecret","_storedKeys","_provColor","_keyColor"];
 //[[[end]]]
-params [["_vehicle",objNull],["_provSecret",""]];
+params [["_vehicle",objNull],["_provSecret",""],["_provColor",""]];
 
 if (!isNull _vehicle) then {
 
@@ -40,24 +40,28 @@ if (!isNull _vehicle) then {
 		if (_status == 1 && (_response select 1) isEqualType []) then {
 			if (count _oldVeh > 10) then {
 				_vehSecret = _oldVeh select 9;
+				_keyColor = _oldVeh select 10;
 				if (_vehSecret isEqualTo "") then {
 					_vehSecret = _provSecret; // Use provided secret - DB secret is empty string
+					_keyColor = _provColor;
 				};
 			} else {
 				if (count _oldVeh == 0) then {
 					// First Spawn - Use provided secret
 					_vehSecret = _provSecret;
+					_keyColor = _provColor;
 				};
 			};
 		} else {
 			_vehSecret = _provSecret; // Use provided secret - vehicle has never been saved
+			_keyColor = _provColor;
 		};
 
 		_storedKeys = _vehicle getVariable ["VEHICLE_KEYS", [[],[]] ];
 
 		//diag_log text format ["DEBUG: Save Vehicle: Class- %1 / Slot- %2 / provSecret- %3 / vehSecret- %4",(typeOf _vehicle),_vehSlot,_provSecret,_vehSecret];
 
-		_VAL = [typeOf _vehicle,[getposworld _vehicle,vectordir _vehicle,vectorup _vehicle,true],damage _vehicle,_hitpoints,fuel _vehicle,_inventory,[true,magazinesAllTurrets _vehicle],_colorSlot,_baseType,_vehSecret,_storedKeys];
+		_VAL = [typeOf _vehicle,[getposworld _vehicle,vectordir _vehicle,vectorup _vehicle,true],damage _vehicle,_hitpoints,fuel _vehicle,_inventory,[true,magazinesAllTurrets _vehicle],_colorSlot,_baseType,_vehSecret,_keyColor,_storedKeys];
 		["Vehicle", _vehHiveKey, EPOCH_expiresVehicle, _VAL] call EPOCH_fnc_server_hiveSETEX;
 	};
 };
