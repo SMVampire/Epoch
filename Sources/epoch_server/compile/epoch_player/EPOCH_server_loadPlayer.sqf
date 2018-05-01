@@ -354,7 +354,7 @@ if (!isNull _player) then {
 				if (count _keys == 2) then {
 					_newPlyr setVariable["VEHICLE_KEYS", _keys];
 					_newPlyr setVariable ["HAS_KEYS", true];
-					_newPlyr call EPOCH_fnc_server_targetKeyInfo;
+					_newPlyr call EPOCH_server_targetKeyInfo;
 				} else {
 					_newPlyr setVariable["VEHICLE_KEYS", [[],[]] ];
 				};

@@ -29,12 +29,12 @@ if (_player distance _vehicle > 20) exitWith {};
 _VehLockMessages = ['CfgEpochClient' call EPOCH_returnConfig, "VehLockMessages", true] call EPOCH_fnc_returnConfigEntry;
 
 // Prep for Key (un)lock
-_vehKeyed = _vehicle call EPOCH_fnc_server_vehIsKeyed;
+_vehKeyed = _vehicle call EPOCH_server_vehIsKeyed;
 _plyrKeys = _player getVariable ["VEHICLE_KEYS", [[],[]] ];
 _plyrHasKey = false;
 {
     if ((_x select 0) isEqualTo (typeOf _vehicle)) then {
-        _matching = [_vehicle,(_x select 1)] call EPOCH_fnc_server_testVehKey;
+        _matching = [_vehicle,(_x select 1)] call EPOCH_server_testVehKey;
         if (_matching) then {
             _plyrHasKey = true;
         };

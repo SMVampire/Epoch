@@ -143,7 +143,7 @@ if (!local _player) then {
 				// Transfer Keys to _newPlyr
 				_newPlyr setVariable ["VEHICLE_KEYS", _keys];
 				_newPlyr setVariable ["HAS_KEYS", true];
-				_newPlyr call EPOCH_fnc_server_targetKeyInfo;
+				_newPlyr call EPOCH_server_targetKeyInfo;
 
 				// Final Push
 				_token = _newPlyr call EPOCH_server_setPToken;

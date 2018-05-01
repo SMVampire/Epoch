@@ -281,7 +281,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 0)";
-			action = "[player, clientOwner, 0] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 0] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -297,7 +297,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 1)";
-			action = "[player, clientOwner, 1] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 1] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -313,7 +313,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 2)";
-			action = "[player, clientOwner, 2] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 2] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -329,7 +329,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 3)";
-			action = "[player, clientOwner, 3] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 3] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -345,7 +345,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 4)";
-			action = "[player, clientOwner, 4] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 4] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -361,7 +361,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 5)";
-			action = "[player, clientOwner, 5] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 5] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -377,7 +377,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 6)";
-			action = "[player, clientOwner, 6] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 6] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -393,7 +393,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 7)";
-			action = "[player, clientOwner, 7] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 7] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -409,7 +409,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 8)";
-			action = "[player, clientOwner, 8] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 8] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -425,7 +425,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 9)";
-			action = "[player, clientOwner, 9] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 9] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -441,7 +441,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 10)";
-			action = "[player, clientOwner, 10] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 10] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -457,7 +457,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 11)";
-			action = "[player, clientOwner, 11] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 11] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -473,7 +473,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 12)";
-			action = "[player, clientOwner, 12] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 12] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -489,7 +489,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 13)";
-			action = "[player, clientOwner, 13] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 13] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -505,7 +505,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 14)";
-			action = "[player, clientOwner, 14] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 14] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -521,7 +521,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 15)";
-			action = "[player, clientOwner, 15] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 15] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -537,7 +537,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 16)";
-			action = "[player, clientOwner, 16] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 16] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -553,7 +553,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 17)";
-			action = "[player, clientOwner, 17] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 17] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -569,7 +569,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 18)";
-			action = "[player, clientOwner, 18] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 18] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};
@@ -585,7 +585,7 @@ class keys_self_menu
 		class delete_key
 		{
 			condition = "(count EPOCH_playerKeys > 19)";
-			action = "[player, clientOwner, 19] remoteExec ['EPOCH_fnc_server_deleteKey',2];";
+			action = "[player, clientOwner, 19] remoteExec ['EPOCH_server_deleteKey',2];";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_deletekey.paa";
 			tooltip = "Delete Key";
 		};

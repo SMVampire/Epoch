@@ -122,7 +122,7 @@ if !(isNull _vehObj) then{
 		(_plyrKeys select 1) pushback 1;
 		_player setVariable ["VEHICLE_KEYS",_plyrKeys];
 		_player setVariable ["HAS_KEYS", true, true];
-		_player call EPOCH_fnc_server_targetKeyInfo;
+		_player call EPOCH_server_targetKeyInfo;
 		[_player, _player getVariable["VARS", []] ] call EPOCH_server_savePlayer;
 
 		["A key was added to your keychain",5] remoteExec ["Epoch_Message",_player];

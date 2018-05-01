@@ -92,12 +92,12 @@ if (_slot != -1) then {
                                 };
 
 								// Delete Key from Player (if they have it)
-								_vehKeyed = _vehicle call EPOCH_fnc_server_vehIsKeyed;
+								_vehKeyed = _vehicle call EPOCH_server_vehIsKeyed;
 								_plyrKeys = _player getVariable ["VEHICLE_KEYS", [[],[]] ];
 								_plyrHasKey = false;
 								{
 								    if ((_x select 0) isEqualTo (typeOf _vehicle)) then {
-								        _matching = [_vehicle,(_x select 1)] call EPOCH_fnc_server_testVehKey;
+								        _matching = [_vehicle,(_x select 1)] call EPOCH_server_testVehKey;
 								        if (_matching) then {
 								            _plyrHasKey = _foreachindex;
 								        };
@@ -115,12 +115,12 @@ if (_slot != -1) then {
 							                _cnt = (_plyrKeys select 1) set [_index,(_cnt)-1];
 							            };
 							            _player setVariable ["VEHICLE_KEYS", _plyrKeys];
-							            _player call EPOCH_fnc_server_targetKeyInfo;
+							            _player call EPOCH_server_targetKeyInfo;
 							            [_player, _player getVariable["VARS", []] ] call EPOCH_server_savePlayer;
 
 							            if (count (_plyrKeys select 0) < 1) then {
 							                _player setVariable ["HAS_KEYS", false, true];
-							                _player call EPOCH_fnc_server_targetKeyInfo;
+							                _player call EPOCH_server_targetKeyInfo;
 							            };
 									};
 								};

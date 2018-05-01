@@ -154,7 +154,7 @@ for "_i" from 1 to _maxVehicleLimit do {
 
 						// Add Vehicle Key Hash to Vehicle
 						if !(_keySecret isEqualTo "") then {
-							_vehHash = [_vehicle,_keySecret] call EPOCH_fnc_server_hashVehicle;
+							_vehHash = [_vehicle,_keySecret] call EPOCH_server_hashVehicle;
 							if !(_vehHash isEqualTo "NOKEY") then {
 								_vehicle setVariable ["VEHICLE_KEYHASH",_vehHash];
 								_vehicle lock true;
@@ -178,7 +178,7 @@ for "_i" from 1 to _maxVehicleLimit do {
 							_vehicle setVariable ["VEHICLE_KEYS",_storedKeys];
 							_vehicle setVariable ["HAS_KEYS", true, true];
 
-							_vehicle call EPOCH_fnc_server_targetKeyInfo;
+							_vehicle call EPOCH_server_targetKeyInfo;
 						};
 
 						// load vehicle inventory

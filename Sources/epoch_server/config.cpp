@@ -46,6 +46,7 @@ class CfgServerFunctions
 			class server_simulSwap {};
 			class server_simToStatic {};
 			class server_unsuppported {};
+			class server_isStorageObj {};
 		};
 		class epoch_looting {
 			class server_lootContainer {};
@@ -107,6 +108,16 @@ class CfgServerFunctions
 			class server_upgrade_vehicle {};
 			class server_CargoSave {};
 			class server_CargoFill {};
+			// Keys
+			class server_alreadyHasKey {};
+			class server_deleteKey {};
+			class server_hashVehicle {};
+			class server_targetHasKeys {};
+			class server_targetKeyInfo {};
+			class server_testVehKey {};
+			class server_transferKeys {};
+			class server_transferKeysStorage {};
+			class server_vehIsKeyed {};
 		};
 		class epoch_server {
 			class precisionPos {};

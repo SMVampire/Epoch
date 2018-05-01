@@ -150,7 +150,7 @@ for "_i" from 1 to _maxStorageLimit do {
 			if (count (_keys select 0) > 0) then {
 				_vehicle setVariable ["HAS_KEYS", true, true];
 
-				_vehicle call EPOCH_fnc_server_targetKeyInfo;
+				_vehicle call EPOCH_server_targetKeyInfo;
 			};
 
 			clearWeaponCargoGlobal    _vehicle;

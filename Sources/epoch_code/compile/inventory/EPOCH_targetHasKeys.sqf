@@ -28,7 +28,7 @@ params [["_target",objNull]];
 
 if !(isNull _target) then {
 
-    [_target] remoteExec ['EPOCH_fnc_server_targetHasKeys',2];
+    [_target] remoteExec ['EPOCH_server_targetHasKeys',2];
 
     _alreadyChecked = _target getVariable ["HAS_KEYS", false];
 

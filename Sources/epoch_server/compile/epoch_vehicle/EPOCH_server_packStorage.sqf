@@ -55,7 +55,7 @@ if (_class isKindOf 'Constructions_lockedstatic_F') then {
 		} forEach (_keys select 1);
 
 		{
-			[_unit,_player,0] call EPOCH_fnc_server_transferKeysStorage;
+			[_unit,_player,0] call EPOCH_server_transferKeysStorage;
 		} forEach _keyTotal;
 
 		[_unit, _player] call EPOCH_server_save_killedStorage;

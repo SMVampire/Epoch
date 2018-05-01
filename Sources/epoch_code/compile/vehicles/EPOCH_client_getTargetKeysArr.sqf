@@ -4,7 +4,7 @@
     Contributors:
 
 	Description:
-	   Pulls target keys from EPOCH_fnc_server_targetKeyInfo funtion
+	   Pulls target keys from EPOCH_server_targetKeyInfo funtion
 
     Licence:
         Arma Public License Share Alike (APL-SA) - https://www.bistudio.com/community/licenses/arma-public-license-share-alike
@@ -35,7 +35,7 @@ if (isNil "EPOCH_playerKeys") then {
 
 if !(isNull _target) then {
 
-    [_target] remoteExec ['EPOCH_fnc_server_targetKeyInfo',2];
+    [_target] remoteExec ['EPOCH_server_targetKeyInfo',2];
 
     _keyInfo = _target getVariable ["KEY_INFO", [] ];
 
