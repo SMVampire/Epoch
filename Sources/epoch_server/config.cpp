@@ -108,6 +108,7 @@ class CfgServerFunctions
 			class server_upgrade_vehicle {};
 			class server_CargoSave {};
 			class server_CargoFill {};
+			class server_removemagoritemcargo {};
 			// Keys
 			class server_alreadyHasKey {};
 			class server_deleteKey {};

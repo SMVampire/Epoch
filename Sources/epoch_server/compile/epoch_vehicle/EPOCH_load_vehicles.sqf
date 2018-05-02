@@ -13,14 +13,14 @@
 	https://github.com/EpochModTeam/Epoch/tree/release/Sources/epoch_server/compile/epoch_vehicle/EPOCH_load_vehicles.sqf
 */
 //[[[cog import generate_private_arrays ]]]
-private ["_actualHitpoints","_allHitpoints","_allVehicles","_allowDamage","_arr","_arrNum","_availableColorsConfig","_cfgEpochVehicles","_check","_class","_colors","_config","_count","_dataFormat","_dataFormatCount","_diag","_dmg","_found","_immuneIfStartInBase",
-"_jammerOwner","_jammerRange","_jammers","_location","_lockedOwner","_marker","_nearestJammer","_removemagazinesturret","_removeweapons","_response","_selections","_serverSettingsConfig","_textureSelectionIndex","_textures","_vehHiveKey","_vehLockHiveKey","_vehicle",
+private ["_actualHitpoints","_allHitpoints","_allVehicles","_allowDamage","_arr","_arrNum","_availableColorsConfig","_cfgEpochVehicles","_check","_class","_colors","_config","_count","_dataFormat","_dataFormatCount","_diag","_disableVehicleTIE","_dmg","_found","_immuneIfStartInBase",
+"_jammerOwner","_jammerRange","_jammers","_location","_lockedOwner","_marker","_nearestJammer","_removemagazinesturret","_removeweapons","_response","_selections","_serverSettingsConfig","_textureSelectionIndex","_textures","_vehHiveKey","_vehLockHiveKey","_vehicle","_vehicleDynamicSimulationSystem",
 "_vehicleSlotIndex","_keySecret","_storedKeys","_vehHash","_lockedOwner","_grpResp","_vehLockHiveKey","_keyColor"];
 //[[[end]]]
 params [["_maxVehicleLimit",0]];
 
 _diag = diag_tickTime;
-_dataFormat = ["", [], 0, [], 0, [], [], 0, "", "", "", []];
+_dataFormat = ["", [], 0, [], 0, [], [], 0, "", "", "", "", []];
 _dataFormatCount = count _dataFormat;
 EPOCH_VehicleSlots = [];
 _allVehicles = [];
@@ -67,7 +67,7 @@ for "_i" from 1 to _maxVehicleLimit do {
 				if !((_arr select _forEachIndex) isEqualType _x) then {_arr set[_forEachIndex, _x]};
 			} forEach _dataFormat;
 
-			_arr params ["_class","_worldspace","_damage","_hitpoints","_fuel","_inventory","_ammo","_color","_baseClass","_keySecret","_keyColor","_storedKeys"];
+			_arr params ["_class","_worldspace","_damage","_hitpoints","_fuel","_inventory","_ammo","_color","_baseClass",["_plateNumber",""],"_keySecret","_keyColor","_storedKeys"];
 
 			if (_class != "" && _damage < 1) then {
 				// remove location from worldspace and set to new var
@@ -240,6 +240,11 @@ for "_i" from 1 to _maxVehicleLimit do {
 									_allowDamage = false;
 								};
 							};
+						};
+
+						// add previous license plate
+						if !(_plateNumber isEqualTo "") then {
+							_vehicle setPlateNumber _plateNumber;
 						};
 
 						if (_allowDamage) then {

@@ -13,8 +13,7 @@
     https://github.com/EpochModTeam/Epoch/tree/release/Sources/epoch_server/compile/epoch_vehicle/EPOCH_server_save_vehicle.sqf
 */
 //[[[cog import generate_private_arrays ]]]
-private ["_VAL","_cargo","_cargoIndex","_colorSlot","_hitpoints","_inventory","_magsAmmoCargo","_magsAmmoCargoMinimized","_magsAmmoCargox","_newComponents","_selectedWeapon","_selectedWeaponComponents","_startTime",
-"_vehHiveKey","_vehSlot","_weapon","_weaponComponents","_wepsItemsCargo","_wepsItemsCargoNormalized","_wepsItemsCargox","_provSecret","_response","_status","_oldVeh","_vehSecret","_storedKeys","_provColor","_keyColor"];
+private ["_VAL","_baseType","_colorSlot","_hitpoints","_inventory","_vehHiveKey","_vehSlot","_provSecret","_response","_status","_oldVeh","_vehSecret","_storedKeys","_provColor","_keyColor"];
 //[[[end]]]
 params [["_vehicle",objNull],["_provSecret",""],["_provColor",""]];
 
@@ -61,7 +60,7 @@ if (!isNull _vehicle) then {
 
 		//diag_log text format ["DEBUG: Save Vehicle: Class- %1 / Slot- %2 / provSecret- %3 / vehSecret- %4",(typeOf _vehicle),_vehSlot,_provSecret,_vehSecret];
 
-		_VAL = [typeOf _vehicle,[getposworld _vehicle,vectordir _vehicle,vectorup _vehicle,true],damage _vehicle,_hitpoints,fuel _vehicle,_inventory,[true,magazinesAllTurrets _vehicle],_colorSlot,_baseType,_vehSecret,_keyColor,_storedKeys];
+		_VAL = [typeOf _vehicle,[getposworld _vehicle,vectordir _vehicle,vectorup _vehicle,true],damage _vehicle,_hitpoints,fuel _vehicle,_inventory,[true,magazinesAllTurrets _vehicle],_colorSlot,_baseType,(getPlateNumber _vehicle),_vehSecret,_keyColor,_storedKeys];
 		["Vehicle", _vehHiveKey, EPOCH_expiresVehicle, _VAL] call EPOCH_fnc_server_hiveSETEX;
 	};
 };
