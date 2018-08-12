@@ -32,7 +32,9 @@ _keyMap =
 	["Action","EPOCH_keysAction",0x39],
 	["Holster Weapon", "EPOCH_keysHolster", 35],
 	["Debug Monitor", "EPOCH_keysDebugMon", 41],
+	["E-Pad", "EPOCH_keysEPad", 0x44],
 	["AutoRun", "EPOCH_keysAutoRun", 0x11],
+	["Earplugs", "EPOCH_Earplugs", 0x3E],
 
 	["Volume + (ctrl)","EPOCH_keysVolumeUp",0x0D],
 	["Volume - (ctrl)","EPOCH_keysVolumeDown",0x0C],
@@ -57,7 +59,16 @@ _keyMap =
 	["Build: Vector RIGHT", "eXpoch_keysVectorTiltR", 0xCD],
 	["Build: Vector AWAY", "eXpoch_keysVectorTiltAwy", 0xC8],
 	["Build: Vector TOWARD", "eXpoch_keysVectorTiltTwd", 0xD0],
-	["Build: Reset Object", "eXpoch_keysVectorResetObject", 0x4C]
+	["Build: Reset Object", "eXpoch_keysVectorResetObject", 0x4C],
+	
+	["BaseCam: NextCam","Epoch_KB_BaseCamNextCam",0x9C],
+	["BaseCam: Left","Epoch_KB_BaseCamLeft",0x4B],
+	["BaseCam: Right","Epoch_KB_BaseCamRight",0x4D],
+	["BaseCam: Up","Epoch_KB_BaseCamUp",0x48],
+	["BaseCam: Down","Epoch_KB_BaseCamDown",0x50],
+	["BaseCam: Zoom -","Epoch_KB_BaseCamZoomOut",74],
+	["BaseCam: Zoom +","Epoch_KB_BaseCamZoomIn",78],
+	["BaseCam: AutoCam","Epoch_KB_BaseCamAutoCam",0x52]
 ];
 
 _keyMap call EPOCH_custom_KeyMap;

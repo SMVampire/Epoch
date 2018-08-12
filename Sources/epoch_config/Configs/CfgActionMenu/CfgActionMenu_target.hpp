@@ -26,7 +26,7 @@ class build_remove
 {
 	condition = "dyna_buildMode select 1";
 	action = "dyna_cursorTarget call EPOCH_removeBUILD;";
-	icon = "x\addons\a3_epoch_code\Data\UI\buttons\build_remove.paa";
+	icon = "x\addons\a3_epoch_code\Data\UI\buttons\build_trash.paa";
 	tooltipcode = "format['Remove %1',getText(configFile >> 'CfgVehicles' >> (typeof dyna_cursorTarget) >> 'displayName')]";
 };
 class build_move
@@ -110,7 +110,7 @@ class select_jammer
 {
 	condition = "dyna_cursorTargetType isEqualTo 'PlotPole_EPOCH' && (damage dyna_cursorTarget < 1)";
 	action = "[dyna_cursorTarget,player,Epoch_personalToken] remoteExec [""EPOCH_server_makeSP"",2];";
-	icon = "x\addons\a3_epoch_code\Data\UI\buttons\player_inspect.paa";
+	icon = "x\addons\a3_epoch_code\Data\UI\buttons\spawnpoint.paa";
 	tooltip = "Make Spawnpoint";
 };
 
@@ -270,6 +270,20 @@ class VehMaintanance
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Replace_SLG.paa";
 			tooltip = "Replace Winch";
 		};
+		class RepairTireBike1
+		{
+			condition = "'hitfwheel' in (EPOCH_VehicleRepairs select 0)";
+			action = "[dyna_cursorTarget,'repair','hitfwheel'] spawn EPOCH_client_VehicleMaintananceDo";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Repair_Wheel.paa";
+			tooltip = "Repair 1st Wheel";
+		};
+		class RepairTireBike2
+		{
+			condition = "'hitbwheel' in (EPOCH_VehicleRepairs select 0)";
+			action = "[dyna_cursorTarget,'repair','hitbwheel'] spawn EPOCH_client_VehicleMaintananceDo";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Repair_Wheel.paa";
+			tooltip = "Repair 2nd Wheel";
+		};
 		class RepairTire1
 		{
 			condition = "'hitlfwheel' in (EPOCH_VehicleRepairs select 0)";
@@ -325,6 +339,20 @@ class VehMaintanance
 			action = "[dyna_cursorTarget,'repair','hitrbwheel'] spawn EPOCH_client_VehicleMaintananceDo";
 			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Repair_Wheel.paa";
 			tooltip = "Repair 4th Right Wheel";
+		};
+		class ReplaceTireBike1
+		{
+			condition = "'hitfwheel' in (EPOCH_VehicleRepairs select 2)";
+			action = "[dyna_cursorTarget,'replace','hitfwheel'] spawn EPOCH_client_VehicleMaintananceDo";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Replace_Wheel.paa";
+			tooltip = "Replace 1st Wheel";
+		};
+		class ReplaceTireBike2
+		{
+			condition = "'hitbwheel' in (EPOCH_VehicleRepairs select 2)";
+			action = "[dyna_cursorTarget,'replace','hitbwheel'] spawn EPOCH_client_VehicleMaintananceDo";
+			icon = "x\addons\a3_epoch_code\Data\UI\buttons\Replace_Wheel.paa";
+			tooltip = "Replace 2nd Wheel";
 		};
 		class ReplaceTire1
 		{
@@ -548,6 +576,22 @@ class player_revive
 	action = "dyna_cursorTarget call EPOCH_DefibrillatorUse;";
 	icon = "x\addons\a3_epoch_code\Data\UI\buttons\Revive.paa";
 	tooltipcode = "format ['Revive %1',name dyna_cursorTarget]";
+};
+
+class BaseCam
+{
+	condition = "dyna_cursorTargetType isEqualTo 'BaseCamTerminal_EPOCH'";
+	action = "call Epoch_CamUse;";
+	icon = "x\addons\a3_epoch_code\Data\UI\buttons\Camera.paa";
+	tooltip = "Watch BaseCam";
+};
+class ConnectUAV
+{
+	condition = "dyna_cursorTarget iskindof 'UAV_01_base_F' || dyna_cursorTarget iskindof 'UAV_06_base_F'";
+	action = "if ({_x in (assigneditems player)} count ['B_UavTerminal','O_UavTerminal','I_UavTerminal','C_UavTerminal'] > 0) then {dyna_cursorTarget spawn {_unit = _this;if (isnull (driver _unit)) then {_plyr = player;_grp = createGroup side _plyr;_driver = _grp createUnit[""I_UAV_AI"", position _unit, [], 0, ""CAN_COLLIDE""];_driver moveInAny _unit;uisleep 0.5;};player action [""SwitchToUAVDriver"", _unit];};}else {['You need an UAV-Terminal to connect',5] call epoch_message;};";
+	icon = "epoch_code\customs\images\epoch_UAV.paa";
+//	icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_UAV.paa"; <--- Change to Client Update
+	tooltip = "Connect to UAV";
 };
 
 // Vehicle Keys

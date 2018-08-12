@@ -14,7 +14,7 @@
 /*[[[cog from arma_config_tools import *; json_to_arma()]]]*/
 class CfgEpochClient
 {
-    epochVersion = "1.1.1";
+    epochVersion = "1.2.0";
     ArmAVersion = 176;
 	debug = "true";  // true = enable extra rpt debug lines, false to disable
 
@@ -55,6 +55,7 @@ class CfgEpochClient
     storageCountPerMember = 5;		//ignore if "splitCountLimits=0" & "useGroupCountLimits=0"
     maxdoors = 10;					// Max allowed doors per Group
     maxgates = 5;					// Max allowed Gates per Group
+    maxCams = 2;					// Max allowed BaseCams per Group
 
 	MaxBuildingTilt = 180;			// Max degrees players can tilt building elements
 
@@ -177,10 +178,12 @@ class CfgEpochClient
     HandleDamage = "";
     HandleHeal = "";
     Dammaged = "";
-    Hit = "";
+    Hit = "_this call EPOCH_custom_EH_Hit";
     HitPart = "";
     GetInMan = "_this call EPOCH_getInMan;_this call Epoch_custom_EH_GetInMan";
     GetOutMan = "_this call EPOCH_getOutMan;_this call Epoch_custom_EH_GetOutMan";
+	SeatSwitchedMan = "_this call EPOCH_custom_EH_SeatSwitchedMan";
+	FiredNear = "_this call EPOCH_custom_EH_FiredNear";
     // suppress these units from spawning near Jammer or Traders
     nonJammerAI[] = {"B_Heli_Transport_01_F","PHANTOM","EPOCH_Sapper_F","Epoch_SapperG_F","Epoch_SapperB_F","I_UAV_01_F","EPOCH_RyanZombie_1"};
     nonTraderAI[] = {"B_Heli_Transport_01_F","PHANTOM","EPOCH_Sapper_F","Epoch_SapperG_F","Epoch_SapperB_F","I_UAV_01_F","Epoch_Cloak_F","GreatWhite_F","EPOCH_RyanZombie_1"};
@@ -231,28 +234,30 @@ class CfgEpochClient
 			"KitCinderQuarterFloor",	// Item is Upgradeable, but you can remove it here to make it also Craftable
 			"KitCinderHalfFloor",		// Item is Upgradeable, but you can remove it here to make it also Craftable
 			"KitCinderFloor",			// Item is Upgradeable, but you can remove it here to make it also Craftable
-			"KitCinderTower",			// Item is Upgradeable, but you can remove it here to make it also Craftable
-			"KitSolarCharger",			// Supressed until Client Files update!
-			"KitSolarChargerXL"			// Supressed until Client Files update!
+			"KitCinderTower"			// Item is Upgradeable, but you can remove it here to make it also Craftable
 	};
 	VehicleRepairs[] = {												// {Hitpoint, dmg to repair, dmg to replace, mat to repair, mat to replace}
 		{"HitHull",0.33,0.66,"ItemScraps","ItemCorrugated"},
 		{"HitBody",0.33,1,"ItemScraps","ItemCorrugated"},
-		{"HitLFWheel",0.33,1,"VehicleRepair","SpareTire"},
-		{"HitLF2Wheel",0.33,1,"VehicleRepair","SpareTire"},
-		{"HitLMWheel",0.33,1,"VehicleRepair","SpareTire"},
-		{"HitLBWheel",0.33,1,"VehicleRepair","SpareTire"},
-		{"HitRFWheel",0.33,1,"VehicleRepair","SpareTire"},
-		{"HitRF2Wheel",0.33,1,"VehicleRepair","SpareTire"},
-		{"HitRMWheel",0.33,1,"VehicleRepair","SpareTire"},
-		{"HitRBWheel",0.33,1,"VehicleRepair","SpareTire"},
 		{"HitEngine",0.33,0.91,"EngineParts","EngineBlock"},
 		{"glass",0.33,1,"ItemGlass","ItemGlass"},
 		{"HitFuel",0.1,0.66,"ItemDuctTape","FuelTank"},
 		{"HitHRotor",0.33,1,"ItemCorrugated","ItemRotor"},
 		{"HitVRotor",0.33,1,"ItemCorrugated","ItemRotor"},
 		{"HitWinch",0.33,0.91,"ItemCables","ItemCables"},
-		{"HitAvionics",0.33,0.91,"CircuitParts","CircuitParts"}
+		{"HitAvionics",0.33,0.91,"CircuitParts","CircuitParts"},
+		// Wheels - Do not change the order (front to back wheels) here!
+		{"HitLFWheel",0.33,1,"VehicleRepair","SpareTire"},
+		{"HitRFWheel",0.33,1,"VehicleRepair","SpareTire"},
+		{"HitLF2Wheel",0.33,1,"VehicleRepair","SpareTire"},
+		{"HitRF2Wheel",0.33,1,"VehicleRepair","SpareTire"},
+		{"HitLMWheel",0.33,1,"VehicleRepair","SpareTire"},
+		{"HitRMWheel",0.33,1,"VehicleRepair","SpareTire"},
+		{"HitLBWheel",0.33,1,"VehicleRepair","SpareTire"},
+		{"HitRBWheel",0.33,1,"VehicleRepair","SpareTire"},
+		// Mountainbike wheels
+		{"HitFWheel",0.33,0.91,"",""},
+		{"HitBWheel",0.33,0.91,"",""}
 	};
 
     // include configs

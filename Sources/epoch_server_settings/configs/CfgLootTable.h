@@ -908,6 +908,7 @@ class CfgLootTable
 	{
 		items[] = {
 				{ { "FAK", "magazine" }, 50 },
+				{ { "Soap_Epoch", "magazine" }, 3 },
 				{ { "Heal_EPOCH", "item" }, 2 },
 				{ { "Defib_EPOCH", "item" }, 1 },
 				{ {"atropine_epoch", "magazine" }, 6 },
@@ -1217,7 +1218,7 @@ class CfgLootTable
 				{ { "U_OrestesBody", "item" }, 1 },
 				{ { "DLCUniforms", "CfgLootTable" }, 1 },
 				{ { "MaleUniforms_FullGhillieMarkDLC", "CfgLootTable" }, 1 },
-				{ { "Epoch_RadiationSuit_M", "item" }, 1 },
+				{ { "U_RadiationSuit_M_uniform", "item" }, 1 },
 
 				// new uniforms
 				{ { "U_C_Commoner1_1", "item" }, 1 },
@@ -1361,7 +1362,7 @@ class CfgLootTable
 				{ { "U_ghillie1_uniform", "item" }, 1 },
 				{ { "U_ghillie2_uniform", "item" }, 1 },
 				{ { "U_ghillie3_uniform", "item" }, 1 },
-				{ { "Epoch_RadiationSuit_F", "item" }, 1 },
+				{ { "U_RadiationSuit_F_uniform", "item" }, 1 },
 
 				{ { "U_JeansPatched1_uniform", "item" }, 1 },
 				{ { "U_JeansPatched2_uniform", "item" }, 1 },
@@ -1628,6 +1629,8 @@ class CfgLootTable
 				{ { "H_92_EPOCH", "item" }, 1 },
 				{ { "H_104_EPOCH", "item" }, 1 },
                 { { "H_105_EPOCH", "item" }, 1 },
+				{ { "thor_mask_epoch", "item" }, 1, },
+				{ { "iron_mask_epoch", "item" }, 1, },
 				{ { "wolf_mask_epoch", "item" }, 1, {"getDate", 1, "==", 10} }, // only available in october
 				{ { "pkin_mask_epoch", "item" }, 1, {"getDate", 1, "==", 10} }, // only available in october
 				{ { "clown_mask_epoch", "item" }, 1, {"getDate", 1, "==", 10} }, // only available in october

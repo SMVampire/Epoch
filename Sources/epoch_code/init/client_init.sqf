@@ -58,7 +58,10 @@ EPOCH_buildOption = 0;
 EPOCH_nearestLocations = [];
 EPOCH_lastFiredLocation = [];
 EPOCH_IsAutoRunning = false;
+EPOCH_Earplugsin = false;
 EPOCH_LastAutoRunKeyPressed = diag_ticktime;
+EPOCH_PlayerMarkerOn = false;
+EPOCH_DeathMarkerOn = false;
 
 //Radiation
 EPOCH_geiger_shown = false;

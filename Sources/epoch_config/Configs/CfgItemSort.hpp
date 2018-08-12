@@ -172,8 +172,8 @@ class CfgItemSort
 			"U_O_FullGhillie_ard",
 			
 		// Radiation Suits
-			"Epoch_RadiationSuit_M",
-			"Epoch_RadiationSuit_F",
+			"U_RadiationSuit_M_uniform",
+			"U_RadiationSuit_F_uniform",
 			
 		// CIV
 			"U_I_OfficerUniform",
@@ -435,6 +435,8 @@ class CfgItemSort
 			"H_F3_EPOCH",
 			"H_F4_EPOCH",
 			"H_F5_EPOCH",
+			"thor_mask_epoch",
+			"iron_mask_epoch",
 			"wolf_mask_epoch",
 			"pkin_mask_epoch",
 			"clown_mask_epoch",
@@ -952,6 +954,7 @@ class CfgItemSort
 
 		Medical[] = {
 			"FAK",
+			"Soap_Epoch",
 			"Towelette",
 			"HeatPack",
 			"ColdPack",
@@ -1055,11 +1058,13 @@ class CfgItemSort
 			"ItemCorrugated",
 			"ItemCorrugatedLg",
 			"KitStudWall",
+			"KitPlyThirdWall_EPOCH",
 			"KitWoodFloor",
 			"KitWoodHalfFloor",
 			"KitWoodQuarterFloor",
 			"KitWoodStairs",
 			"KitWoodRamp",
+			"KitSnowman",
 			"KitFirePlace",
 			"KitTiPi",
 			"KitShelf",
@@ -1070,6 +1075,8 @@ class CfgItemSort
 			"KitSolarGen",
 			"KitSolarCharger",
 			"KitSolarChargerXL",
+			"BaseCam",
+			"BaseCamTerminal",
 			"KitWorkbench",
 			"KitWoodLadder",
 			"KitWoodTower",
@@ -1193,6 +1200,11 @@ class CfgItemSort
 			"ItemFireExtinguisher"
 		};
 		Vehicles_Land[] = {
+			"hoverboard_epoch_1",
+			"hoverboard_epoch_bttf",
+			"hoverboard_epoch_a3",
+			"hoverboard_epoch_cargo",
+			"MBK_01_EPOCH",
 			"ebike_epoch",								// Motorcycle
 			"C_Offroad_01_EPOCH",						// Offroader
 			"C_Offroad_01_EPOCH1",
@@ -1398,6 +1410,7 @@ class CfgItemSort
 			"O_Heli_Transport_04_box_EPOCH",
 			"O_Heli_Transport_04_covered_EPOCH",
 			"B_Heli_Light_01_EPOCH",
+			"uh1h_Epoch",
 
 			"B_Heli_Light_01_armed_F",
 			"B_Heli_Transport_01_EPOCH",

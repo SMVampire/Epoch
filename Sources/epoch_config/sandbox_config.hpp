@@ -72,6 +72,8 @@ showHUD[] =
 #include "Configs\cfgCrafting.hpp"
 #include "Configs\cfgPricing.hpp"
 #include "Configs\CfgDynamicHUD.hpp"
+#include "Configs\CfgEPad.hpp"
+#include "Configs\CfgEPad_dialogs.hpp"		// Do be moved to client files on update
 
 #include "Configs\CfgEpochClient.hpp"
 
@@ -93,6 +95,7 @@ showHUD[] =
 // A3 specific configs
 #include "Configs\CfgFunctions.hpp"
 #include "Configs\CfgRemoteExec.hpp"
+#include "Configs\CfgDisabledCommands.hpp"
 
 class CfgEpochBuild
 {

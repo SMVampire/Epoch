@@ -99,6 +99,24 @@ if (_dikCode == EPOCH_keysDebugMon) then {
 	_handled = true;
 };
 
+// E-Pad
+if (_dikCode == EPOCH_keysEPad) then {
+	if (isnull (finddisplay 9898)) then {
+		createdialog 'epoch_tablet_gui';
+	};
+};
+
+if (_dikCode == EPOCH_Earplugs) then {
+	if (EPOCH_Earplugsin) then {
+		EPOCH_Earplugsin = false;
+		1 fadeSound 1;
+	}
+	else {
+		EPOCH_Earplugsin = true;
+		1 fadeSound 0.15;
+	};
+};
+
 //Action Menu
 if (_dikCode == EPOCH_keysAction) then {
 	//_handled = true;
@@ -294,6 +312,50 @@ if(!_ctrl && (_dikCode in (actionKeys "HeliRopeAction")))then{
 	};
 	if!(_msg isEqualTo "")then{
 		[_msg,5,[[0,0,0,0.2],[1,1,1,1]]] call Epoch_message_stack;
+	};
+};
+
+if (!isnull (finddisplay -1200) && !isnull Epoch_ActiveCam) then {
+	_multi = 1;
+	if (isnil 'Epoch_CamTrigger') then {
+		Epoch_CamTrigger = diag_ticktime - 0.2;
+	};
+	if (diag_ticktime - Epoch_CamTrigger < 0.1) then {
+		_multi = 3;
+	};
+	Epoch_CamTrigger = diag_ticktime;
+	switch _dikCode do {
+		case Epoch_KB_BaseCamNextCam: {	/* Num Enter */
+			call Epoch_CamUse;
+		};
+		case Epoch_KB_BaseCamLeft: {	/* Num 4 */
+			Epoch_AutoCam = false;
+			Epoch_CamAdjust = [-3*_multi,0,0];
+		};
+		case Epoch_KB_BaseCamRight: {	/* Num 6 */
+			Epoch_AutoCam = false;
+			Epoch_CamAdjust = [3*_multi,0,0];
+		};
+		case Epoch_KB_BaseCamUp: {	/* Num 8 */
+			Epoch_AutoCam = false;
+			Epoch_CamAdjust = [0,8*_multi,0];
+		};
+		case Epoch_KB_BaseCamDown: {	/* Num 2 */
+			Epoch_AutoCam = false;
+			Epoch_CamAdjust = [0,-8*_multi,0];
+		};
+		case Epoch_KB_BaseCamZoomOut: {	/* Num - */
+			Epoch_AutoCam = false;
+			Epoch_CamAdjust = [0,0,0.1*_multi];
+		};
+		case Epoch_KB_BaseCamZoomIn: { /* Num + */
+			Epoch_AutoCam = false;
+			Epoch_CamAdjust = [0,0,-0.1*_multi];
+		};
+		case Epoch_KB_BaseCamAutoCam: { /* Num 0 */
+			Epoch_AutoCam = true;
+			Epoch_CamAdjust = [0,0,0];
+		};
 	};
 };
 _handled

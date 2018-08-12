@@ -897,6 +897,7 @@ class CfgLootTable_MAD
 	{
 		items[] = {
 				{ { "FAK", "magazine" }, 50 },
+				{ { "Soap_Epoch", "magazine" }, 3 },
 				{ { "Heal_EPOCH", "item" }, 2 },
 				{ { "Defib_EPOCH", "item" }, 1 },
 				{ {"atropine_epoch", "magazine" }, 6 },
@@ -1618,6 +1619,8 @@ class CfgLootTable_MAD
 				{ { "H_92_EPOCH", "item" }, 1 },
 				{ { "H_104_EPOCH", "item" }, 1 },
                 { { "H_105_EPOCH", "item" }, 1 },
+				{ { "thor_mask_epoch", "item" }, 1, },
+				{ { "iron_mask_epoch", "item" }, 1, },
 				{ { "wolf_mask_epoch", "item" }, 1, {"getDate", 1, "==", 10} }, // only available in october
 				{ { "pkin_mask_epoch", "item" }, 1, {"getDate", 1, "==", 10} }, // only available in october
 				{ { "clown_mask_epoch", "item" }, 1, {"getDate", 1, "==", 10} }, // only available in october

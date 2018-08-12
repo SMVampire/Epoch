@@ -2100,6 +2100,10 @@ class CfgPricing
     {
         price = 3;
     };
+    class Soap_Epoch
+    {
+        price = 4;
+    };
     class Towelette
     {
         price = 1;
@@ -3078,6 +3082,9 @@ class CfgPricing
     {
         price = 16;
     };
+	class KitPlyThirdWall_EPOCH {
+		price = 18;
+	};
 	class KitWoodQuarterFloor
 	{
 		price = 8; // price of 2 planks
@@ -3133,6 +3140,10 @@ class CfgPricing
     class KitWoodRamp
     {
         price = 24; // price of 6 planks
+    };
+    class KitSnowman
+    {
+        price = 72;
     };
     class KitSpikeTrap
     {
@@ -3261,6 +3272,14 @@ class CfgPricing
     class KitSolarChargerXL
     {
         price = 325;
+    };
+    class BaseCam
+    {
+        price = 250;
+    };
+    class BaseCamTerminal
+    {
+        price = 250;
     };
     class KitCinderWall
     {
@@ -3526,11 +3545,11 @@ class CfgPricing
     {
         price = 22;
     };
-    class Epoch_RadiationSuit_M
+    class U_RadiationSuit_M_uniform
     {
         price = 7;
     };
-    class Epoch_RadiationSuit_F
+    class U_RadiationSuit_F_uniform
     {
         price = 7;
     };
@@ -4380,6 +4399,23 @@ class CfgPricing
 	class C_Offroad_01_EPOCH3: C_Offroad_01_EPOCH{};
 	class C_Offroad_01_EPOCH4: C_Offroad_01_EPOCH{};
 	class C_Offroad_01_EPOCH5: C_Offroad_01_EPOCH{};
+    class hoverboard_epoch_1
+    {
+        price = 1000;
+		tax = 0.9;
+    };
+	class hoverboard_epoch_bttf: hoverboard_epoch_1{};
+	class hoverboard_epoch_a3: hoverboard_epoch_1{};
+    class hoverboard_epoch_cargo
+    {
+        price = 1200;
+		tax = 0.9;
+    };
+    class MBK_01_EPOCH
+    {
+        price = 1250;
+		tax = 0.9;
+    };
     class C_Quadbike_01_EPOCH
     {
         price = 2500;
@@ -4592,6 +4628,11 @@ class CfgPricing
 	class O_Truck_03_covered_EPOCH2: O_Truck_03_covered_EPOCH {};
 	class O_Truck_03_covered_EPOCH3: O_Truck_03_covered_EPOCH {};
 	class O_Truck_03_covered_EPOCH4: O_Truck_03_covered_EPOCH {};
+    class uh1h_Epoch
+    {
+        price = 22500;
+		tax = 0.9;
+    };
     class O_Heli_Light_02_unarmed_EPOCH
     {
         price = 25000;
@@ -5909,6 +5950,14 @@ class CfgPricing
     class U_JeansBlack21_uniform
     {
         price = 5;
+    };
+    class thor_mask_epoch
+    {
+        price = 30;
+    };
+    class iron_mask_epoch
+    {
+        price = 30;
     };
     class hockey_mask_epoch
     {

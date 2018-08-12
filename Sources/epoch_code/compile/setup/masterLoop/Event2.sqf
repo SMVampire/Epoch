@@ -53,7 +53,7 @@ if (_playerRadiation > _radiationEffectsThreshold) then {
 
 // Geiger Deplete Energy
 if (EPOCH_geiger_shown) then {
-	_energyValue = _energyValue - (["CfgEpochClient", "outOfBoundsRadiation", 10] call EPOCH_fnc_returnConfigEntryV2);
+	_energyValue = _energyValue - _outOfBoundsRadiation;
 };
 
 //  Energy Handler
@@ -85,12 +85,14 @@ if !(_attackers isEqualTo[]) then {
 	(_attackers select 0) call EPOCH_client_bitePlayer;
 	_panic = true;
 } else {
-	_toxicObjs = player nearobjects["SmokeShellCustom", 12];
-	if!(_toxicObjs IsEqualTo[]) then {
-		(_toxicObjs select 0) call EPOCH_client_bitePlayer;
-		_panic = true;
-	} else {
-		_panic = false;
+	if !(uniform player in ["Epoch_RadiationSuit_F","Epoch_RadiationSuit_M"]) then {
+		_toxicObjs = player nearobjects["SmokeShellCustom", 12];
+		if!(_toxicObjs IsEqualTo[]) then {
+			(_toxicObjs select 0) call EPOCH_client_bitePlayer;
+			_panic = true;
+		} else {
+			_panic = false;
+		};
 	};
 };
 
