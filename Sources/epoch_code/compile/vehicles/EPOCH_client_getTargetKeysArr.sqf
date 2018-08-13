@@ -35,8 +35,6 @@ if (isNil "EPOCH_playerKeys") then {
 
 if !(isNull _target) then {
 
-    [_target] remoteExec ['EPOCH_server_targetKeyInfo',2];
-
     _keyInfo = _target getVariable ["KEY_INFO", [] ];
 
     _arr = [];
@@ -49,6 +47,8 @@ if !(isNull _target) then {
 
         true
     } else {
+        [_target] remoteExec ['EPOCH_server_targetKeyInfo',2];
+
         false
     };
 } else { false };
