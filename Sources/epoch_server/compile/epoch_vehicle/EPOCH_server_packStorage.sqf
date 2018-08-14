@@ -54,9 +54,9 @@ if (_class isKindOf 'Constructions_lockedstatic_F') then {
 			_keyTotal = _keyTotal + _x;
 		} forEach (_keys select 1);
 
-		{
+		for "_i" from 1 to _keyTotal do {
 			[_unit,_player,0] call EPOCH_server_transferKeysStorage;
-		} forEach _keyTotal;
+		};
 
 		[_unit, _player] call EPOCH_server_save_killedStorage;
 		deleteVehicle _unit;
