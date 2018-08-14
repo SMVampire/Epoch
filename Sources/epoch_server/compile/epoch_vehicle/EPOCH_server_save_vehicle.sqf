@@ -38,8 +38,8 @@ if (!isNull _vehicle) then {
 		_response params ["_status","_oldVeh"];
 		if (_status == 1 && (_response select 1) isEqualType []) then {
 			if (count _oldVeh > 10) then {
-				_vehSecret = _oldVeh select 9;
-				_keyColor = _oldVeh select 10;
+				_vehSecret = _oldVeh select 10;
+				_keyColor = _oldVeh select 11;
 				if (_vehSecret isEqualTo "") then {
 					_vehSecret = _provSecret; // Use provided secret - DB secret is empty string
 					_keyColor = _provColor;

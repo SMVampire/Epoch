@@ -34,7 +34,7 @@ if (_keySecret isEqualTo "") then {
 
         if ((_response select 0) == 1 && (_response select 1) isEqualType []) then {
             if (count _arr > 10) then {
-                _secret = _arr select 9;
+                _secret = _arr select 10;
 
                 if (_secret isEqualTo "") then {
                     _keySecret = "NOKEY";
