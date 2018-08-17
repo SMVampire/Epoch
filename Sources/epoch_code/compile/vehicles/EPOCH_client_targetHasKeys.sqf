@@ -13,7 +13,7 @@
         https://github.com/EpochModTeam/Epoch/tree/release/Sources/epoch_code/compile/inventory/EPOCH_targetHasKeys.sqf
 
     Example:
-        player call EPOCH_targetHasKeys;
+        player call EPOCH_client_targetHasKeys;
 
     Parameter(s):
 	   Target

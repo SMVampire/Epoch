@@ -53,8 +53,8 @@ class CfgActionMenu
 
 		dyna_Watersource = "call {_nearObjects = nearestObjects [player, [], 2];_check = 'water';_ok = false;{if (alive _x) then {_ok = [_x, _check] call EPOCH_worldObjectType;};if (_ok) exitWith {};} forEach _nearObjects;_ok}";
 
-		dyna_plyrHasKeys = "player call EPOCH_targetHasKeys;";
-		dyna_targetHasKeys = "dyna_cursorTarget call EPOCH_targetHasKeys;";
+		dyna_plyrHasKeys = "player call EPOCH_client_targetHasKeys;";
+		dyna_targetHasKeys = "dyna_cursorTarget call EPOCH_client_targetHasKeys;";
 		dyna_isStorage = "((dyna_cursorTarget isKindOf 'Buildable_Storage') || (dyna_cursorTarget isKindOf 'Constructions_lockedstatic_F') || (dyna_cursorTarget isKindOf 'Secure_Storage_Temp'))";
 	};
 
