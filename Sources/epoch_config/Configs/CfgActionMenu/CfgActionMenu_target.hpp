@@ -930,3 +930,171 @@ class take_keys_menu
 		tooltipcode = "format['%1 Keys for %2',((EPOCH_targetKeys select 19) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_targetKeys select 19) select 0) >> 'displayName')]";
 	};
 };
+
+class purchase_keys_menu
+{
+	condition = "dyna_plyrHasKeys && (dyna_isTrader && !dyna_isPlayer && (alive dyna_cursorTarget))";
+	action = "";
+	icon = "x\addons\a3_epoch_code\Data\UI\buttons\epoch_keyring.paa";
+	tooltip = "Purchase Key Duplicate";
+
+	class keys_1
+	{
+		condition = "(count EPOCH_playerKeys > 0)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 0] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 0) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 0) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 0) select 0) >> 'displayName')]";
+	};
+
+	class keys_2
+	{
+		condition = "(count EPOCH_playerKeys > 1)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 1] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 1) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 1) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 1) select 0) >> 'displayName')]";
+	};
+
+	class keys_3
+	{
+		condition = "(count EPOCH_playerKeys > 2)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 2] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 2) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 2) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 2) select 0) >> 'displayName')]";
+	};
+
+	class keys_4
+	{
+		condition = "(count EPOCH_playerKeys > 3)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 3] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 3) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 3) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 3) select 0) >> 'displayName')]";
+	};
+
+	class keys_5
+	{
+		condition = "(count EPOCH_playerKeys > 4)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 4] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 4) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 4) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 4) select 0) >> 'displayName')]";
+	};
+
+	class keys_6
+	{
+		condition = "(count EPOCH_playerKeys > 5)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 5] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 5) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 5) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 5) select 0) >> 'displayName')]";
+	};
+
+	class keys_7
+	{
+		condition = "(count EPOCH_playerKeys > 6)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 6] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 6) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 6) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 6) select 0) >> 'displayName')]";
+	};
+
+	class keys_8
+	{
+		condition = "(count EPOCH_playerKeys > 7)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 7] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 7) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 7) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 7) select 0) >> 'displayName')]";
+	};
+
+	class keys_9
+	{
+		condition = "(count EPOCH_playerKeys > 8)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 8] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 8) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 8) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 8) select 0) >> 'displayName')]";
+	};
+
+	class keys_10
+	{
+		condition = "(count EPOCH_playerKeys > 9)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 9] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 9) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 9) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 9) select 0) >> 'displayName')]";
+	};
+
+	class keys_11
+	{
+		condition = "(count EPOCH_playerKeys > 10)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 10] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 10) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 10) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 10) select 0) >> 'displayName')]";
+	};
+
+	class keys_12
+	{
+		condition = "(count EPOCH_playerKeys > 11)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 11] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 11) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 11) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 11) select 0) >> 'displayName')]";
+	};
+
+	class keys_13
+	{
+		condition = "(count EPOCH_playerKeys > 12)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 12] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 12) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 12) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 12) select 0) >> 'displayName')]";
+	};
+
+	class keys_14
+	{
+		condition = "(count EPOCH_playerKeys > 13)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 13] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 13) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 13) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 13) select 0) >> 'displayName')]";
+	};
+
+	class keys_15
+	{
+		condition = "(count EPOCH_playerKeys > 14)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 14] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 14) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 14) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 14) select 0) >> 'displayName')]";
+	};
+
+	class keys_16
+	{
+		condition = "(count EPOCH_playerKeys > 15)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 15] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 15) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 15) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 15) select 0) >> 'displayName')]";
+	};
+
+	class keys_17
+	{
+		condition = "(count EPOCH_playerKeys > 16)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 16] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 16) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 16) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 16) select 0) >> 'displayName')]";
+	};
+
+	class keys_18
+	{
+		condition = "(count EPOCH_playerKeys > 17)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 17] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 17) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 17) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 17) select 0) >> 'displayName')]";
+	};
+
+	class keys_19
+	{
+		condition = "(count EPOCH_playerKeys > 18)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 18] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 18) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 18) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 18) select 0) >> 'displayName')]";
+	};
+
+	class keys_20
+	{
+		condition = "(count EPOCH_playerKeys > 19)";
+		action = "[dyna_cursorTarget, player, Epoch_personalToken, 19] remoteExec ['EPOCH_server_purchaseKey',2]";
+		iconcode = "format['x\addons\a3_epoch_code\Data\UI\buttons\epoch_%1key.paa',((EPOCH_playerKeys select 19) select 2)]";
+		tooltipcode = "format['Duplicate A Key for %2',((EPOCH_playerKeys select 19) select 1),getText(configFile >> 'CfgVehicles' >> ((EPOCH_playerKeys select 19) select 0) >> 'displayName')]";
+	};
+};

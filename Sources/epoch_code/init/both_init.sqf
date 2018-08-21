@@ -68,6 +68,8 @@ EPOCH_communityStatsCount = count EPOCH_communityStats;
 //GroupSize (number) // Price (String)
 EPOCH_group_upgrade_lvl = ["CfgEpochClient", "group_upgrade_lvl", [4,"100",6,"300",8,"500",10,"1000",12,"1500",13,"1750",14,"2000",15,"3000",16,"5000"]] call EPOCH_fnc_returnConfigEntryV2;
 
+//Key Purchase Price
+EPOCH_pkey_price = 1000;
+
 // disable remote sensors on server and client as all Epoch AI is local to the side controlling it.
 disableRemoteSensors (["CfgEpochClient", "disableRemoteSensors", true] call EPOCH_fnc_returnConfigEntryV2);
-
