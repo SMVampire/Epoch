@@ -12,7 +12,7 @@
     Github:
     https://github.com/EpochModTeam/Epoch/tree/release/Sources/epoch_server/init/server_securityfunctions.sqf
 */
-private ["_skn_unlock","_skn_adminMenuUnlock","_code","_functionName","_remoteExecClientStr","_onLoad","_onUnload","_skn_blockedSpawnMenuUID","_temp","_skn_adminMenuOwner","_case","_skn_adminMenuHigh","_skn_adminMenuLow","_config","_debugClass","_cfg_systemDebug","_skn_systemDebug1","_skn_systemDebug2","_skn_systemDebug3","_skn_systemDebug4","_skn_systemDebug5","_cfg_remoteExecClient","_remoteExecClient_NAMES","_cfg_limits","_skn_playerCryptoLimit","_cfg_learning","_skn_trustedUsers","_str_learningModeCheck","_cfg_quality","_skn_perfMode","_skn_viewDistance","_skn_viewDistanceObects","_skn_terrainGrid","_cfg_blacklistConfig","_skn_badDisplaysArray","_skn_badAnimations","_cfg_variablesConfig","_skn_badVarCheckArray","_skn_nilVarCheckArray","_skn_commandMenuArray","_skn_addEHConfig","_skn_displayAddEHChecks","_skn_addEHArray","_serverSettingsConfig","_skn_enableAntihack","_skn_check_addons","_checkFiles","_skn_check_files","_skn_whitelist_cfgPatches","_skn_adminsOwner","_skn_adminsHigh","_skn_adminsLow","_banReasons","_skn_banReason","_antihack_banDuration","_epoch_banReasons","_kickReasons","_epoch_kickReason","_epoch_kickReasons","_ownerSettings","_skn_adminMenuOwnerSetting","_adminSettings","_skn_adminMenuHighSetting","_lowSettings","_skn_adminMenuLowSetting","_skn_adminMenuMenuKey","_skn_adminMenuInfrontTeleport","_skn_adminMenuBanReasons","_skn_adminMenuCryproCfg","_skn_cfgPatchesCfg","_skn_PVSPrefix","_rndVAR_Count","_skn_rndVA","_skn_PVC_INDEX","_skn_AH_rndVarVehicle","_skn_AH_rndVarPlayer","_skn_AH_rndVarAHInitCheck","_skn_AH_Init","_skn_AH_Code","_skn_AH_Code_CA","_skn_AH_Code_CB","_skn_AH_Ban","_skn_AH_rndVar","_skn_doKickBan","_skn_pv_hackerLog","_skn_pv_adminLog","_skn_server_adminLog","_skn_doAdminRequest","_skn_doAdminLog","_skn_doTokenAuth","_skn_antiTeleportPVC","_skn_Admin_Code","_skn_Admin_Init","_skn_adminRequest_PVC","_skn_adminLog_PVC","_skn_adminLog","_skn_AdminKeyDown","_skn_AdminMenu_Init","_skn_getCtrl","_skn_fnc_Spec","_skn_Update_AdminButtons","_skn_mainMenuCfg","_skn_FillMainMenu","_skn_FillPlayerMenu","_skn_switchMainMenu","_skn_dbClickMainMenu","_skn_spawnMenu","_skn_spawnSpawnMenu","_skn_removespawnMenu","_skn_fillSpawnMenu","_skn_hackerLog","_skn_switchTable","_skn_customBanreason","_skn_flipVehicle","_skn_freeCam","_skn_delete","_skn_deleteMenu","_skn_deleteNow","_skn_doBan","_skn_mapTeleport","_skn_old_esp","_skn_hideAdmin","_skn_old_espMap","_skn_infrontTP","_skn_esp","_skn_godMode","_skn_repairVehicle","_skn_spawnLoot","_skn_mapLootArray","_skn_mapAnimalArray","_skn_mapAIArray","_skn_mapBasesArray","_skn_tg_Spec","_skn_tg_sortOrder","_skn_tg_toggle","_skn_tg_BanPlayer","_skn_tg_delete","_skn_tg_mapTeleport","_skn_tg_spawnTyp","_skn_tg_limitSpawn","_skn_tg_old_espMap","_skn_tg_old_esp","_skn_tg_hideAdmin","_skn_tg_infrontTP","_skn_tg_godMode","_skn_tg_map_player","_skn_tg_map_corpse","_skn_tg_map_loot","_skn_tg_map_animals","_skn_tg_map_vehicle","_skn_tg_map_ai","_skn_tg_map_trader","_skn_tg_map_basebuilding","_skn_t1","_skn_t2","_skn_t3","_skn_t4","_skn_t5","_skn_AH_rndVarAHInitCheckToken","_stringInArray","_displaysArray","_displays","_cfg_displayArray","_skn_adminUIDArray","_skn_adminNAMEArray","_skn_tempuid","_skn_spawnPointCenter","_centerDistance","_sknBanANDSleep","_sknBanANDSleepQuick","_sknPatches","_skn_addonCheckCode","_skn_fileCheckCode","_sknAddActionCheck","_skn_code_ban","_skn_code_init","_skn_code_antihack","_skn_admincode","_skn_admininit","_configs"];
+private ["_skn_unlock","_skn_givekey","_skn_adminMenuUnlock","_code","_functionName","_remoteExecClientStr","_onLoad","_onUnload","_skn_blockedSpawnMenuUID","_temp","_skn_adminMenuOwner","_case","_skn_adminMenuHigh","_skn_adminMenuLow","_config","_debugClass","_cfg_systemDebug","_skn_systemDebug1","_skn_systemDebug2","_skn_systemDebug3","_skn_systemDebug4","_skn_systemDebug5","_cfg_remoteExecClient","_remoteExecClient_NAMES","_cfg_limits","_skn_playerCryptoLimit","_cfg_learning","_skn_trustedUsers","_str_learningModeCheck","_cfg_quality","_skn_perfMode","_skn_viewDistance","_skn_viewDistanceObects","_skn_terrainGrid","_cfg_blacklistConfig","_skn_badDisplaysArray","_skn_badAnimations","_cfg_variablesConfig","_skn_badVarCheckArray","_skn_nilVarCheckArray","_skn_commandMenuArray","_skn_addEHConfig","_skn_displayAddEHChecks","_skn_addEHArray","_serverSettingsConfig","_skn_enableAntihack","_skn_check_addons","_checkFiles","_skn_check_files","_skn_whitelist_cfgPatches","_skn_adminsOwner","_skn_adminsHigh","_skn_adminsLow","_banReasons","_skn_banReason","_antihack_banDuration","_epoch_banReasons","_kickReasons","_epoch_kickReason","_epoch_kickReasons","_ownerSettings","_skn_adminMenuOwnerSetting","_adminSettings","_skn_adminMenuHighSetting","_lowSettings","_skn_adminMenuLowSetting","_skn_adminMenuMenuKey","_skn_adminMenuInfrontTeleport","_skn_adminMenuBanReasons","_skn_adminMenuCryproCfg","_skn_cfgPatchesCfg","_skn_PVSPrefix","_rndVAR_Count","_skn_rndVA","_skn_PVC_INDEX","_skn_AH_rndVarVehicle","_skn_AH_rndVarPlayer","_skn_AH_rndVarAHInitCheck","_skn_AH_Init","_skn_AH_Code","_skn_AH_Code_CA","_skn_AH_Code_CB","_skn_AH_Ban","_skn_AH_rndVar","_skn_doKickBan","_skn_pv_hackerLog","_skn_pv_adminLog","_skn_server_adminLog","_skn_doAdminRequest","_skn_doAdminLog","_skn_doTokenAuth","_skn_antiTeleportPVC","_skn_Admin_Code","_skn_Admin_Init","_skn_adminRequest_PVC","_skn_adminLog_PVC","_skn_adminLog","_skn_AdminKeyDown","_skn_AdminMenu_Init","_skn_getCtrl","_skn_fnc_Spec","_skn_Update_AdminButtons","_skn_mainMenuCfg","_skn_FillMainMenu","_skn_FillPlayerMenu","_skn_switchMainMenu","_skn_dbClickMainMenu","_skn_spawnMenu","_skn_spawnSpawnMenu","_skn_removespawnMenu","_skn_fillSpawnMenu","_skn_hackerLog","_skn_switchTable","_skn_customBanreason","_skn_flipVehicle","_skn_freeCam","_skn_delete","_skn_deleteMenu","_skn_deleteNow","_skn_doBan","_skn_mapTeleport","_skn_old_esp","_skn_hideAdmin","_skn_old_espMap","_skn_infrontTP","_skn_esp","_skn_godMode","_skn_repairVehicle","_skn_spawnLoot","_skn_mapLootArray","_skn_mapAnimalArray","_skn_mapAIArray","_skn_mapBasesArray","_skn_tg_Spec","_skn_tg_sortOrder","_skn_tg_toggle","_skn_tg_BanPlayer","_skn_tg_delete","_skn_tg_mapTeleport","_skn_tg_spawnTyp","_skn_tg_limitSpawn","_skn_tg_old_espMap","_skn_tg_old_esp","_skn_tg_hideAdmin","_skn_tg_infrontTP","_skn_tg_godMode","_skn_tg_map_player","_skn_tg_map_corpse","_skn_tg_map_loot","_skn_tg_map_animals","_skn_tg_map_vehicle","_skn_tg_map_ai","_skn_tg_map_trader","_skn_tg_map_basebuilding","_skn_t1","_skn_t2","_skn_t3","_skn_t4","_skn_t5","_skn_AH_rndVarAHInitCheckToken","_stringInArray","_displaysArray","_displays","_cfg_displayArray","_skn_adminUIDArray","_skn_adminNAMEArray","_skn_tempuid","_skn_spawnPointCenter","_centerDistance","_sknBanANDSleep","_sknBanANDSleepQuick","_sknPatches","_skn_addonCheckCode","_skn_fileCheckCode","_sknAddActionCheck","_skn_code_ban","_skn_code_init","_skn_code_antihack","_skn_admincode","_skn_admininit","_configs"];
 
 _config = (configFile >> "CfgSecConf");
 if (isClass _config) then {diag_log "Loading config..."};
@@ -95,13 +95,14 @@ _skn_adminMenuLowSetting = [_serverSettingsConfig, "adminMenu_LowSetting", _lowS
 _skn_adminMenuMenuKey = [_serverSettingsConfig, "adminMenu_menuKey", 0x3B] call EPOCH_fnc_returnConfigEntry;
 _skn_adminMenuInfrontTeleport = [_serverSettingsConfig, "adminMenu_infrontTeleport", 0x06] call EPOCH_fnc_returnConfigEntry;
 _skn_adminMenuUnlock = [_serverSettingsConfig, "adminMenu_unlock", 0x08] call EPOCH_fnc_returnConfigEntry;
+_skn_adminMenuGiveKey = [_serverSettingsConfig, "adminMenu_giveKey", 0x07] call EPOCH_fnc_returnConfigEntry;
 _skn_adminMenuBanReasons = [_serverSettingsConfig, "adminMenu_BanReasons", ["Traderzone","Hacking","Glitch","Combat Log"]] call EPOCH_fnc_returnConfigEntry;
 _skn_adminMenuCryproCfg = [_serverSettingsConfig, "adminMenu_cryptoCfg", [2500,1000,500,100,50,-1000]] call EPOCH_fnc_returnConfigEntry;
 _skn_cfgPatchesCfg = [_serverSettingsConfig, "antihack_cfgPatchesMode", [2]] call EPOCH_fnc_returnConfigEntry;
 _skn_PVSPrefix = [_serverSettingsConfig, "antihack_PVSPrefix", "EPAH_"] call EPOCH_fnc_returnConfigEntry;
 
 // build array with X number of random strings
-_rndVAR_Count = 99; // 86 = number of (_skn_rndVA deleteAt 0)
+_rndVAR_Count = 100; // 86 = number of (_skn_rndVA deleteAt 0)
 _skn_rndVA = parseSimpleArray ('epochserver' callExtension format['810|%1', _rndVAR_Count]);
 
 EPOCH_hiveWhitelistVarsArray = [];
@@ -211,6 +212,7 @@ _skn_hideAdmin		   = _skn_rndVA deleteAt 0;
 _skn_old_espMap		  = _skn_rndVA deleteAt 0;
 _skn_infrontTP		   = _skn_rndVA deleteAt 0;
 _skn_unlock		   = _skn_rndVA deleteAt 0;
+_skn_givekey		   = _skn_rndVA deleteAt 0;
 _skn_esp				 = _skn_rndVA deleteAt 0;
 _skn_godMode			 = _skn_rndVA deleteAt 0;
 _skn_repairVehicle	   = _skn_rndVA deleteAt 0;
@@ -507,6 +509,7 @@ for "_i" from 1 to 3 do {
 		,['  F2 - Cancel Spectating',[],'','1',[]]
 		,['  F5 - Delete Target',[],'','1',[]]
 		,['  7 - (Un)Lock Target',[],'','1',[]]
+		,['  6 - Give Key Target Vic',[],'','1',[]]
 		];
 	";
 	if (_i == 1) then {
@@ -1113,6 +1116,29 @@ call compile ("'"+_skn_doAdminRequest+"' addPublicVariableEventHandler {
 			};
 		};
 	};
+	if (_case == 111) then {
+		/* [_target,_alrHasKey,_vars] */
+		private ['_pKeys','_cnt'];
+
+		if ((_content select 0) iskindof 'Landvehicle' || (_content select 0) iskindof 'SHIP' || (_content select 0) iskindof 'AIR' || (_content select 0) iskindof 'TANK') then {
+			_pKeys = _admin getVariable ['VEHICLE_KEYS', [[],[]] ];
+
+			if ((_content select 1) isEqualType 0) then {
+                _cnt = (_pKeys select 1) select (_content select 1);
+                (_pKeys select 1) set [(_content select 1),(_cnt)+1];
+            } else {
+                (_pKeys select 0) pushBack [(_content select 2)];
+                (_pKeys select 1) pushBack 1;
+            };
+
+			_admin setVariable ['VEHICLE_KEYS', _pKeys];
+            _admin setVariable ['HAS_KEYS', true, true];+
+            _admin call EPOCH_server_targetKeyInfo;
+            [_admin, _admin getVariable['VARS', []] ] call EPOCH_server_savePlayer;
+
+			[[format ['Given a Key for a %1', typeof (_content select 0)],'PLAIN DOWN']] remoteexec ['cutText',_admin];
+		};
+	};
 	if (_case == 200) then {
 		_playerObj = objectFromNetId _content;
 		_weaponClass = currentWeapon _playerObj;
@@ -1443,6 +1469,7 @@ _skn_admincode = compileFinal ("
 		if (_keyDown == "+str _skn_adminMenuInfrontTeleport+") then {call "+_skn_infrontTP+"};
 		if (_keyDown == 0x3F) then {call "+_skn_delete+"};
 		if (_keyDown == "+str _skn_adminMenuUnlock+") then {call "+_skn_unlock+"};
+		if (_keyDown == "+str _skn_adminMenuGiveKey+") then {call "+_skn_givekey+"};
 	};
 	"+_skn_AdminMenu_Init+" = {
 		disableSerialization;
@@ -2212,6 +2239,43 @@ _skn_admincode = compileFinal ("
 	}
 	else {
 		cutText ['No (Un)Lockable Target found!','PLAIN DOWN'];
+	};
+};
+"+_skn_givekey+" = {
+	private ['_target','_vehSlot','_tmpVeh','_isKeyed','_vehHiveKey','_response','_status','_arr','_secret','_color','_alrHasKey','_vars'];
+
+	_target = cursorTarget;
+	_vehSlot = _vehicle getVariable['VEHICLE_SLOT', 'ABORT'];
+	_tmpVeh = (_vehSlot isEqualTo 'ABORT');
+	_isKeyed = [_target] call EPOCH_server_vehIsKeyed;
+
+	if (_target iskindof 'Landvehicle' || _target iskindof 'SHIP' || _target iskindof 'AIR' || _target iskindof 'TANK') then {
+		if (!_tmpVeh && _isKeyed) then {
+			_vehHiveKey = format ['%1:%2', (call EPOCH_fn_InstanceID),_vehSlot];
+
+		    _response = ['Vehicle', _vehHiveKey] call EPOCH_fnc_server_hiveGETRANGE;
+		    _response params ['_status','_arr'];
+			if ((_response select 0) == 1 && (_response select 1) isEqualType []) then {
+				_secret = _arr select 10;
+		        _color = _arr select 11;
+
+				if !(_secret isEqualTo '') then {
+					_alrHasKey = [(typeOf _target),(_secret),(_color),_player] call EPOCH_server_alreadyHasKey;
+		            _vars = [(typeOf _target),(_secret),(_color)];
+
+					[111,[_target,_alrHasKey,_vars]] call "+_skn_adminRequest_PVC+";
+				} else {
+					cutText ['No Keyed Target found!','PLAIN DOWN'];
+				};
+			} else {
+				cutText ['No Keyed Target found!','PLAIN DOWN'];
+			};
+		} else {
+			cutText ['No Keyed Target found!','PLAIN DOWN'];
+		};
+	}
+	else {
+		cutText ['No Keyed Target found!','PLAIN DOWN'];
 	};
 };
 "+_skn_customBanreason+" = {
