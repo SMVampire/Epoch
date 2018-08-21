@@ -697,6 +697,7 @@ class CfgItemInteractions
     {
         interactAction = 2;
         interactText = "USE";
+        interactActions[] = {{"Attempt Vehicle Hack","[player, Epoch_personalToken] remoteExec ['EPOCH_server_hotwireCar',2];"}};
     };
     class ItemKeyKit : Default
     {
