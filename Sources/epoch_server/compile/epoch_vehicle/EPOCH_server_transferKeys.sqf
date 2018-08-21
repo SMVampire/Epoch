@@ -47,10 +47,11 @@ if !(isNull _player1 || isNull _player2 || local _player1 || local _player2 || !
         // Give to Player 2
         _alrHasKey = [(_vars select 0),(_vars select 1),(_vars select 2),_player2] call EPOCH_server_alreadyHasKey;
         if (_alrHasKey isEqualType 0) then {
+            _cnt = (_p2Keys select 1) select _index;
             (_p2Keys select 1) set [_alrHasKey,(_cnt)+1];
         } else {
             (_p2Keys select 0) pushBack _vars;
-            (_p2Keys select 1) pushBack _cnt;
+            (_p2Keys select 1) pushBack 1;
         };
         _player2 setVariable ["VEHICLE_KEYS", _p2Keys];
         _player2 setVariable ["HAS_KEYS", true, true];

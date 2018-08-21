@@ -52,10 +52,11 @@ if !(isNull _obj1 || isNull _obj2) then {
             _alrHasKey = [(_vars select 0),(_vars select 1),(_vars select 2),_obj2] call EPOCH_server_alreadyHasKey;
             _obj2Keys = _obj2 getVariable ["VEHICLE_KEYS", [[],[]] ];
             if (_alrHasKey isEqualType 0) then {
+                _cnt = (_obj2Keys select 1) select _index;
                 (_obj2Keys select 1) set [_alrHasKey,(_cnt)+1];
             } else {
                 (_obj2Keys select 0) pushBack _vars;
-                (_obj2Keys select 1) pushBack _cnt;
+                (_obj2Keys select 1) pushBack 1;
             };
             _obj2 setVariable ["VEHICLE_KEYS", _obj2Keys];
             _obj2 setVariable ["HAS_KEYS", true, true];
@@ -88,10 +89,11 @@ if !(isNull _obj1 || isNull _obj2) then {
             _alrHasKey = [(_vars select 0),(_vars select 1),(_vars select 2),_obj2] call EPOCH_server_alreadyHasKey;
             _obj2Keys = _obj2 getVariable ["VEHICLE_KEYS", [[],[]] ];
             if (_alrHasKey isEqualType 0) then {
+                _cnt = (_obj2Keys select 1) select _index;
                 (_obj2Keys select 1) set [_alrHasKey,(_cnt)+1];
             } else {
                 (_obj2Keys select 0) pushBack _vars;
-                (_obj2Keys select 1) pushBack _cnt;
+                (_obj2Keys select 1) pushBack 1;
             };
             _obj2 setVariable ["VEHICLE_KEYS", _obj2Keys];
             _obj2 setVariable ["HAS_KEYS", true, true];
