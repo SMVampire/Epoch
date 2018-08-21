@@ -269,6 +269,13 @@ class geiger_menu
 		tooltip = "Unmute warnings";
 	};
 };
+class Epad
+{
+	condition = "EPOCH_EpadButtonOn";
+	action = "if (isnull (finddisplay 9898)) then {createdialog 'epoch_tablet_gui';};";
+	icon = "epoch_code\customs\images\Epad.paa";
+	tooltip = "E-Pad";
+};
 
 // Vehicle Keys
 class keys_self_menu
