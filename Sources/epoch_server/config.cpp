@@ -120,6 +120,8 @@ class CfgServerFunctions
 			class server_transferKeys {};
 			class server_transferKeysStorage {};
 			class server_vehIsKeyed {};
+			class server_hotwireCar {};
+			class server_purchaseKey {};
 		};
 		class epoch_server {
 			class precisionPos {};
