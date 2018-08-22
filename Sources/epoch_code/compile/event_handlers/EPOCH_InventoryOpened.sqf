@@ -64,16 +64,5 @@ if (!isnull _savecontainer && !_blocked) then {
 		};
 	};
 };
-if (!_blocked) then {
-	_hasKeys = _container getVariable ["HAS_KEYS", false];
-	if (_hasKeys) then {
-		_keyC = selectRandom ["ItemKey","ItemKeyBlue","ItemKeyGreen","ItemKeyRed","ItemKeyYellow"];
-		if (_container isKindOf "Man") then {
-			_container addItem _keyC;
-		} else {
-			_container addItemCargoGlobal [_keyC, 1];
-		};
-	};
-};
 
 _blocked
