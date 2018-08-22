@@ -29,7 +29,7 @@ if (isNil "_target" || {isNull _target} || {(_player distance _target > 9)}) exi
 };
 
 // Check it is Keyed
-_vehSlot = _vehicle getVariable["VEHICLE_SLOT", "ABORT"];
+_vehSlot = _target getVariable["VEHICLE_SLOT", "ABORT"];
 _tmpVeh = (_vehSlot isEqualTo "ABORT");
 _isKeyed = [_target] call EPOCH_server_vehIsKeyed;
 

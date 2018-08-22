@@ -367,6 +367,16 @@ class CfgRemoteExec
             allowedTargets = 2;
             jip = 0;
         };
+        class EPOCH_server_purchaseKey
+		{
+            allowedTargets = 2;
+            jip = 0;
+        };
+        class EPOCH_server_hotwireCar
+		{
+            allowedTargets = 2;
+            jip = 0;
+        };
         class EPOCH_server_deleteKey
 		{
             allowedTargets = 2;

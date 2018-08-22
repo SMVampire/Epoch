@@ -1117,7 +1117,6 @@ call compile ("'"+_skn_doAdminRequest+"' addPublicVariableEventHandler {
 		};
 	};
 	if (_case == 111) then {
-		/* [_target,_alrHasKey,_vars] */
 		private ['_pKeys','_cnt'];
 
 		if ((_content select 0) iskindof 'Landvehicle' || (_content select 0) iskindof 'SHIP' || (_content select 0) iskindof 'AIR' || (_content select 0) iskindof 'TANK') then {

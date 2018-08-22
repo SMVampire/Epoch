@@ -40,7 +40,7 @@ if (_current_crypto >= EPOCH_pkey_price) then {
     _vars set[_cIndex, _current_crypto];
     _player setVariable["VARS", _vars];
 
-    _current_crypto remoteExec ['EPOCH_effectCrypto',_leader];
+    _current_crypto remoteExec ['EPOCH_effectCrypto',_player];
 
     // Give Key
     _pKeys = _player getVariable ["VEHICLE_KEYS", [[],[]] ];
